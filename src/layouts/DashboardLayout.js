@@ -7,6 +7,7 @@ import Dashboard from '../components/MyEMS/dashboard/Dashboard';
 import DashboardAlt from '../components/dashboard-alt/DashboardAlt';
 // import Dashboardnu from '../components/dashboard_test/Dashboardnu'
 import Dashboardnu from '../components/dashboard_test/Dashboardnu.js';
+import Dashboardnew from '../components/MyEMS/dashboard_test/Dashboardnew.js';
 
 import NavbarTop from '../components/navbar/NavbarTop';
 import NavbarVertical from '../components/navbar/NavbarVertical';
@@ -44,6 +45,7 @@ const DashboardLayout = ({ location }) => {
             <Route path="/" exact component={Dashboard} />
             <Route path="/dashboard" exact component={Dashboard} />
             <Route path="/dashboardnu" exact component={Dashboardnu} />
+            <Route path="/dashboardnew" exact component={Dashboardnew} />
             <Route path="/dashboard-alt" exact component={DashboardAlt} />
             <DashboardRoutes />
           </Switch>
