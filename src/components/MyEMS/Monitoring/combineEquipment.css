@@ -1,0 +1,15 @@
+.container-rectangle {
+    border: solid 0.3em;
+    width: auto;
+    border-color: aqua;
+}
+
+.container-rectangle-in {
+    border: solid 0.1em;
+    width: auto;
+    border-color: coral;
+}
+
+.custom-margin {
+    margin: 20px;  /* 可以根據需要調整數值 */
+  }
