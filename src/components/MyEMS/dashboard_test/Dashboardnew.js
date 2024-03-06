@@ -7,7 +7,11 @@ import {
 import CardSummary from '../common/CardSummary';
 import LineChart from '../common/LineChart';
 import { toast } from 'react-toastify';
+
 import SharePie from '../common/SharePie';
+import SharePienew from '../common/SharePienew';
+
+
 import loadable from '@loadable/component';
 import { getCookieValue, createCookie, checkEmpty } from '../../../helpers/utils';
 import withRedirect from '../../../hoc/withRedirect';
@@ -17,8 +21,13 @@ import { APIBaseURL, settings } from '../../../config';
 import {v4 as uuid} from 'uuid';
 import annotationPlugin from 'chartjs-plugin-annotation';
 import {  Chart as ChartJS } from 'chart.js';
+
 import BarChart from '../common/BarChart';
+import BarChartnew from '../common/BarChartnew';
+
 import ChartSpacesStackBar from '../common/ChartSpacesStackBar';
+import ChartSpacesStackBarnew from '../common/ChartSpacesStackBarnew';
+
 import RealtimeSensor from '../common/RealtimeSensor';
 import { getItemFromStore } from '../../../helpers/utils';
 import CustomizeMapBox from '../common/CustomizeMapBox';
@@ -41,7 +50,36 @@ const Dashboardnew = ({ setRedirect, setRedirectUrl, t }) => {
 
   //Results
   const [costShareData, setCostShareData] = useState([]);
-  const [timeOfUseShareData, setTimeOfUseShareData] = useState([]);
+  const [timeOfUseShareData, setTimeOfUseShareData] = useState([
+    {
+      "name":"theone",
+      "value": 14,
+      "percent": 27.45
+    },
+    {
+      "name":"thetwo",
+      "value": 25,
+      "percent": 49.02
+    },
+    {
+      "name":"thethree",
+      "value": 12,
+      "percent": 23.53
+    }
+  ]);
+  // const [timeOfUseShareData, setTimeOfUseShareData] = useState([
+  //   {
+  //     "first": 14,
+  //   },
+  //   {
+  //     "first": 25
+  //   },
+  //   {
+  //     "first": 19
+  //   }
+  // ]);
+
+  
   const [TCEShareData, setTCEShareData] = useState([]);
   const [TCO2EShareData, setTCO2EShareData] = useState([]);
 
@@ -78,6 +116,57 @@ const Dashboardnew = ({ setRedirect, setRedirectUrl, t }) => {
 
   const [sensor, setSensor] = useState({});
   const [pointList, setPointList] = useState({});
+
+  const barLabels1 = ['Voltage', 'Current', 'Power'];
+  const lastYearBarList1 = [228.5, 14.6, 3.2];
+  // const thisYearBarList1 = [];
+  const thisYearBarList1 = [228.4, 14.1, 3.1];
+
+
+  // const fixedChildSpacesInputData = [
+  //   10, 
+  //   20,
+  //   30,
+  //   40,
+  //   50
+  // ];
+  // const fixedChildSpacesCostData = [
+  //  5, 
+  //  10,
+  //  15,
+  //  20,
+  //  30
+  // ];
+  const fixedChildSpacesInputData = [
+    {
+      "交流三相位數值":228.5, 
+    },
+    {
+      "交流三相位數值":228.4,
+    } ,
+    {
+      "交流三相位數值":227.2,
+    } 
+    // ,
+    // {
+    //   "subtotals_array":40,
+    // } 
+  ];
+  const fixedChildSpacesCostData = [
+    {
+      "交流三相位數值":14.6, 
+    },
+    {
+      "交流三相位數值":14.1,
+    } ,
+    {
+      "交流三相位數值":14.0,
+    }
+    //  ,
+    // {
+    //   "subtotals_array":20,
+    // } 
+  ];
 
   useEffect(() => {
     let is_logged_in = getCookieValue('is_logged_in');
@@ -548,7 +637,7 @@ const Dashboardnew = ({ setRedirect, setRedirectUrl, t }) => {
     <Fragment>
       <div className="card-deck">
         <Modalex/>
-        <Spinner color="primary" hidden={spinnerHidden}  />
+        {/* <Spinner color="primary" hidden={spinnerHidden}  />
         <Spinner color="secondary" hidden={spinnerHidden}  />
         <Spinner color="success" hidden={spinnerHidden}  />
         <Spinner color="danger" hidden={spinnerHidden}  />
@@ -594,9 +683,10 @@ const Dashboardnew = ({ setRedirect, setRedirectUrl, t }) => {
             footvalue={totalInTCO2E['value_per_unit_area']}
             footunit="(TCO2E/M²)">
             {totalInTCO2E['value'] && <CountUp end={totalInTCO2E['value']} duration={2} prefix="" separator="," decimal="." decimals={2} />}
-          </CardSummary>
+          </CardSummary> */}
       </div>
       <div className='card-deck'>
+          
           <BarChart
             labels={barLabels}
             data={lastYearBarList}
@@ -606,12 +696,25 @@ const Dashboardnew = ({ setRedirect, setRedirectUrl, t }) => {
             footnote={t('Per Unit Area')}
             footunit={"/M²"} >
           </BarChart>
+          
+          <BarChartnew
+            labels={barLabels1}
+            data={lastYearBarList1}
+            compareData={thisYearBarList1}
+            title={t('The Same Period Last Year')}
+            compareTitle={t('This Year')}
+            footnote={t('Per Unit Area')}
+            footunit={"/M²"} >
+          </BarChartnew>
+
+          {/* 本年消耗 */}
           <LineChart reportingTitle={t("This Year's Consumption CATEGORY VALUE UNIT", { 'CATEGORY': null, 'VALUE': null, 'UNIT': null })}
             baseTitle=''
             labels={spaceInputLineChartLabels}
             data={spaceInputLineChartData}
             options={spaceInputLineChartOptions}>
           </LineChart>
+          {/* 本年成本 */}
           <LineChart reportingTitle={t("This Year's Costs CATEGORY VALUE UNIT", { 'CATEGORY': null, 'VALUE': null, 'UNIT': null })}
             baseTitle=''
             labels={spaceCostLineChartLabels}
@@ -640,10 +743,16 @@ const Dashboardnew = ({ setRedirect, setRedirectUrl, t }) => {
           ))}
       </div>
       <Row noGutters>
-        <Col className="mb-3 pr-lg-2 mb-3">
-          <SharePie data={timeOfUseShareData} title={t('Electricity Consumption by Time-Of-Use')} />
+        {/* <Col className="mb-3 pr-lg-2 mb-3">
+          <SharePie data={timeOfUseShareData} title={('圓餅統計圖')} />
+        </Col> */}
+        <Col className="mb-5 pr-lg-2 mb-5">
+          <SharePienew data={timeOfUseShareData} title={('圓餅統計圖')} />
         </Col>
-        <Col className="mb-3 pr-lg-2 mb-3">
+        <Col className="mb-5 pr-lg-2 mb-5">
+          <SharePienew data={timeOfUseShareData} title={('圓餅統計圖')} />
+        </Col>
+        {/* <Col className="mb-3 pr-lg-2 mb-3">
           <SharePie data={costShareData} title={t('Costs by Energy Category')} />
         </Col>
         <Col className="mb-3 pr-lg-2 mb-3">
@@ -651,16 +760,34 @@ const Dashboardnew = ({ setRedirect, setRedirectUrl, t }) => {
         </Col>
         <Col className="mb-3 pr-lg-2 mb-3">
           <SharePie data={TCO2EShareData} title={t('Ton of Carbon Dioxide Emissions by Energy Category')} />
-        </Col>
+        </Col> */}
       </Row>
-      <ChartSpacesStackBar
+      
+      {/* <ChartSpacesStackBar
         title={t('Child Spaces Data')}
         labels={monthLabels}
         inputData={childSpacesInputData}
         costData={childSpacesCostData}
         childSpaces={spaceInputLineChartOptions}
       >
-      </ChartSpacesStackBar>
+      </ChartSpacesStackBar> */}
+
+      {/* <ChartSpacesStackBar
+        title={t('Child Spaces Data')}
+        labels={monthLabels}
+        inputData={fixedChildSpacesInputData}
+        costData={fixedChildSpacesCostData}
+        childSpaces={spaceInputLineChartOptions}
+      >
+      </ChartSpacesStackBar> */}
+      <ChartSpacesStackBarnew
+        title={('交流側統計圖')}
+        labels={monthLabels}
+        inputData={fixedChildSpacesInputData}
+        costData={fixedChildSpacesCostData}
+        childSpaces={spaceInputLineChartOptions}
+      >
+      </ChartSpacesStackBarnew>
 
     </Fragment>
   );
