@@ -109,23 +109,53 @@ const SpaceEnergyItem = ({ setRedirect, setRedirectUrl, t }) => {
   const [cardSummaryList, setCardSummaryList] = useState([]);
   const [sharePieList, setSharePieList] = useState([]);
 
-  const [spaceBaseAndReportingNames, setSpaceBaseAndReportingNames] = useState({"a0":""});
-  const [spaceBaseAndReportingUnits, setSpaceBaseAndReportingUnits] = useState({"a0":"()"});
+  const [spaceBaseAndReportingNames, setSpaceBaseAndReportingNames] = useState({"a0":"","a1":"","a2":""});
+  const [spaceBaseAndReportingUnits, setSpaceBaseAndReportingUnits] = useState({"a0":"()","a1":"()","a2":"()"});
 
-  const [spaceBaseLabels, setSpaceBaseLabels] = useState({"a0": []});
-  const [spaceBaseData, setSpaceBaseData] = useState({"a0": []});
-  const [spaceBaseSubtotals, setSpaceBaseSubtotals] = useState({"a0": (0).toFixed(2)});
+  const [spaceBaseLabels, setSpaceBaseLabels] = useState({"a0": [],"a1": [],"a2": []});
+  const [spaceBaseData, setSpaceBaseData] = useState({"a0": [],"a1": [],"a2": []});
+  const [spaceBaseSubtotals, setSpaceBaseSubtotals] = useState({"a0": (0).toFixed(2),"a1": (0).toFixed(2),"a2": (0).toFixed(2)});
 
-  const [spaceReportingLabels, setSpaceReportingLabels] = useState({"a0": []});
-  const [spaceReportingData, setSpaceReportingData] = useState({"a0": []});
-  const [spaceReportingSubtotals, setSpaceReportingSubtotals] = useState({"a0": (0).toFixed(2)});
+  const [spaceReportingLabels, setSpaceReportingLabels] = useState({"a0": [],"a1": [],"a2": []});
+  const [spaceReportingData, setSpaceReportingData] = useState({"a0": [],"a1": [],"a2": []});
+  const [spaceReportingSubtotals, setSpaceReportingSubtotals] = useState({"a0": (0).toFixed(2),"a1": (0).toFixed(2),"a2": (0).toFixed(2)});
 
-  const [spaceReportingRates, setSpaceReportingRates] = useState({"a0": []});
+  const [spaceReportingRates, setSpaceReportingRates] = useState({"a0": [],"a1": [],"a2": []});
   const [spaceReportingOptions, setSpaceReportingOptions] = useState([]);
 
+
   const [parameterLineChartLabels, setParameterLineChartLabels] = useState([]);
+  // const [parameterLineChartLabels, setParameterLineChartLabels] = useState(['Label1', 'Label2', 'Label3']);
+  const aa = ['Label1', 'Label2', 'Label3'];
+  
+  
   const [parameterLineChartData, setParameterLineChartData] = useState({});
+  // const [parameterLineChartData, setParameterLineChartData] = useState({
+  //   a0: [10, 20, 30],
+  //   a1: [15, 25, 35],
+  //   a2: [9, 145, 88]
+  //   // ...其他索引
+  // });
+  const bb = {
+      a0: [10, 20, 30, 40, 50],
+      a1: [15, 25, 35],
+      a2: [9, 145, 88]
+      // ...其他索引
+  };
+
   const [parameterLineChartOptions, setParameterLineChartOptions] = useState([]);
+  // const [parameterLineChartOptions, setParameterLineChartOptions] = useState([
+  //   { value: 'a0', label: 'Label1' },
+  //   { value: 'a1', label: 'Label2' },
+  //   { value: 'a2', label: 'Label3' }
+  //   // ...其他選項
+  // ]);
+
+  const cc = [
+    { value: 'a0', label: 'Label1' },
+    { value: 'a1', label: 'Label2' },
+    { value: 'a2', label: 'Label3' }
+  ];
 
   const [detailedDataTableData, setDetailedDataTableData] = useState([]);
   const [detailedDataTableColumns, setDetailedDataTableColumns] = useState([{dataField: 'startdatetime', text: t('Datetime'), sort: true}]);
@@ -802,12 +832,19 @@ const SpaceEnergyItem = ({ setRedirect, setRedirectUrl, t }) => {
         options={spaceReportingOptions}>
       </MultiTrendChart>
 
-      <MultipleLineChart reportingTitle={t('Operating Characteristic Curve')}
+      {/* <MultipleLineChart reportingTitle={t('Operating Characteristic Curve')}
         baseTitle=''
         labels={parameterLineChartLabels}
         data={parameterLineChartData}
         options={parameterLineChartOptions}>
+      </MultipleLineChart> */}
+      <MultipleLineChart reportingTitle={t('Operating Characteristic Curve')}
+        baseTitle=''
+        labels={aa}
+        data={bb}
+        options={cc}>
       </MultipleLineChart>
+
       <DetailedDataTable data={detailedDataTableData} title={t('Detailed Data')} columns={detailedDataTableColumns} pagesize={50} >
       </DetailedDataTable>
       <br />
