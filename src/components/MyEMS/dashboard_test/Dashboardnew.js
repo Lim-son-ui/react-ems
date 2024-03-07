@@ -5,7 +5,10 @@ import {
   Row,
   Spinner, } from 'reactstrap';
 import CardSummary from '../common/CardSummary';
+
 import LineChart from '../common/LineChart';
+import LineChartnew from '../common/LineChartnew';
+
 import { toast } from 'react-toastify';
 
 import SharePie from '../common/SharePie';
@@ -92,7 +95,15 @@ const Dashboardnew = ({ setRedirect, setRedirectUrl, t }) => {
   const [totalInTCO2E, setTotalInTCO2E] = useState({});
 
   const [spaceInputLineChartLabels, setSpaceInputLineChartLabels] = useState([]);
+  
   const [spaceInputLineChartData, setSpaceInputLineChartData] = useState({});
+  // const [spaceInputLineChartData, setSpaceInputLineChartData] = useState({
+  //   dataPoint1: 24,
+  //   dataPoint2: 31,
+  //   dataPoint3: 41
+  // });
+
+
   const [spaceInputLineChartOptions, setSpaceInputLineChartOptions] = useState([]);
   const [spaceCostLineChartOptions, setSpaceCostLineChartOptions] = useState([]);
   const [spaceCostLineChartLabels, setSpaceCostLineChartLabels] = useState([]);
@@ -708,12 +719,21 @@ const Dashboardnew = ({ setRedirect, setRedirectUrl, t }) => {
           </BarChartnew>
 
           {/* 本年消耗 */}
-          <LineChart reportingTitle={t("This Year's Consumption CATEGORY VALUE UNIT", { 'CATEGORY': null, 'VALUE': null, 'UNIT': null })}
+          {/* t("This Year's Consumption CATEGORY VALUE UNIT", { 'CATEGORY': null, 'VALUE': null, 'UNIT': null }) */}
+          {/* <LineChart reportingTitle={("斜率圖")}
             baseTitle=''
             labels={spaceInputLineChartLabels}
             data={spaceInputLineChartData}
             options={spaceInputLineChartOptions}>
-          </LineChart>
+          </LineChart> */}
+
+          <LineChartnew reportingTitle={("斜率圖")}
+            baseTitle=''
+            labels={spaceInputLineChartLabels}
+            data={spaceInputLineChartData}
+            options={spaceInputLineChartOptions}>
+          </LineChartnew>
+
           {/* 本年成本 */}
           <LineChart reportingTitle={t("This Year's Costs CATEGORY VALUE UNIT", { 'CATEGORY': null, 'VALUE': null, 'UNIT': null })}
             baseTitle=''
