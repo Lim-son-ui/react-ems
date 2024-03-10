@@ -10,7 +10,8 @@ import './logo.css';
 const Logo = ({ at, width, className, ...rest }) => {
   return (
     <Link
-      to="/"
+      // to="/"
+      to="/dashboardnew"
       className={classNames(
         'text-decoration-none',
         { 'navbar-brand text-left': at === 'navbar-vertical' },

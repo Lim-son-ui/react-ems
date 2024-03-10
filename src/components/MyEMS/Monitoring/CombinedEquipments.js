@@ -764,7 +764,8 @@ const CombinedEquipments = ({ setRedirect, setRedirectUrl, t }) => {
           keyField='id' 
           data={ paginationData } 
           columns={ columns } 
-          classes='mb-3'
+          // classes='mb-3'
+          classes="table-dashboard table-striped table-sm fs--1  mb-0 table-dashboard-th-nowrap"
           // classes="table-dashboard table-striped table-sm fs--1 border-bottom mb-0 table-dashboard-th-nowrap custom-margin"
           rowClasses="btn-reveal-trigger"
           headerClasses="bg-200 text-900"

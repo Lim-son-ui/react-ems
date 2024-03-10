@@ -20,10 +20,9 @@ echarts.use([
   ToolboxComponent,
   DataZoomComponent,
   MarkLineComponent,
-  MarkPointComponent
-]);
+  MarkPointComponent]);
 
-const MultipleLineChart = ({
+const MultipleLineChartnew = ({
   reportingTitle,
   baseTitle,
   labels,
@@ -282,6 +281,7 @@ const MultipleLineChart = ({
               {baseTitle}
             </p>
           </Col>
+          {/* 帶出label */}
           {options[0] && isIterableArray(options) &&
             <Col xs="auto" className="d-none d-sm-block">
               <CheckPicker
@@ -297,6 +297,7 @@ const MultipleLineChart = ({
             </Col>
           }
         </Row>
+        {/* 運行值條圖 */}
         <ReactEchartsCore
             echarts={echarts}
             notMerge={true}
@@ -308,4 +309,4 @@ const MultipleLineChart = ({
   );
 };
 
-export default MultipleLineChart;
+export default MultipleLineChartnew;

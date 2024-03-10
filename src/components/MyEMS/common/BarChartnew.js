@@ -37,12 +37,28 @@ const BarChartnew = ({
   const { isDark } = useContext(AppContext);
   const chartRef = useRef(null);
   const [chartData, setChartData] = useState({
-    datasets: [{
-      data: [0, 0, 0, 0, 0, 0],
-      backgroundColor: 'rgba(255, 99, 132, 0.2)',
-      borderColor: 'rgba(255, 99, 132, 1)',
-      borderWidth: 1,
-    }]
+    datasets: [
+      {
+        data: [0, 0, 0, 0, 0, 0],
+        backgroundColor: 'rgba(255, 99, 132, 0.2)',
+        borderColor: 'rgba(255, 99, 132, 1)',
+        borderWidth: 1,
+      }
+      //,
+      // {
+      //   data: [15, 20, 16],
+      //   backgroundColor: '#1a3a64',
+      //   borderColor: 'rgba(255, 99, 132, 1)',
+      //   borderWidth: 1,
+      // }
+      // ,
+      // {
+      //   data: [1, 2, 1],
+      //   backgroundColor: '#2c7be5',
+      //   borderColor: 'rgba(255, 99, 132, 1)',
+      //   borderWidth: 1,
+      // }
+    ]
   });
 
   useEffect(() => {
@@ -120,7 +136,8 @@ const BarChartnew = ({
               } else {
                 arr = compareData[tooltipItem.dataIndex];
               }
-              return tooltipItem.dataset.label + ': ' + arr.name + ' ' + arr.subtotal + arr.unit;
+              // return tooltipItem.dataset.label + ': ' + arr.name + ' ' + arr.subtotal + arr.unit;
+              return tooltipItem.dataset.label;
             },
             footer: function(tooltipItem) {
               let arr = {};
@@ -131,7 +148,8 @@ const BarChartnew = ({
               }
               let rate = arr['increment_rate'] ? arr['increment_rate'] + '\n' : '';
               let perUnit_area = Math.round((arr['subtotal_per_unit_area'] + Number.EPSILON) * 100) / 100;
-              return rate + footnote + perUnit_area + ': ' + arr['unit'] + footunit;
+              // return rate + footnote + perUnit_area + ': ' + arr['unit'] + footunit;
+              return footnote + arr + footunit;
             }
           }
         },

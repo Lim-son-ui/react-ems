@@ -48,18 +48,36 @@ const ChartSpacesStackBarnew = ({ labels, inputData, costData, title, childSpace
             gradientFill.addColorStop(0, isDark ? 'rgba(44,123,229, 0.5)' : 'rgba(255, 255, 255, 0.3)');
             gradientFill.addColorStop(1, isDark ? 'transparent' : 'rgba(255, 255, 255, 0)');
             
+            const labl = [('R相'),('S相'),('T相')];
+
+
             inputData.forEach((item, itemIndex) => {
                 dataArray.push({
-                    label:  ('交流三相電壓'),
+                    // label:  [('PCS側')],
+                    label:  labl[itemIndex],
                     stack: ('類別一'),
                     data: item,
                     backgroundColor: colors[itemIndex % 5],
-                })
+                }
+                //,
+                // {
+                //     label:  ('BM告警'),
+                //     stack: ('類別一'),
+                //     data: item,
+                //     backgroundColor: colors[itemIndex % 5],
+                // },
+                // {
+                //     label:  ('B告警'),
+                //     stack: ('類別一'),
+                //     data: item,
+                //     backgroundColor: colors[itemIndex % 5],
+                // }
+                )
             })
 
             costData.forEach((item, itemIndex) => {
                 dataArray.push({
-                    label:  ('交流三相電流'),
+                    label:  ('交流三相電壓'),
                     stack: ('類別二'),
                     data: item,
                     backgroundColor: colors[itemIndex % 5],

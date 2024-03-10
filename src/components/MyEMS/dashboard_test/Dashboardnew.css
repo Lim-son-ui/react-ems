@@ -1,0 +1,31 @@
+.react-bootstrap-table .table-bordered{
+    border: double 0.3em;
+    /* width: auto; */
+    border-color: cadetblue;
+}
+
+/* .container-rectangle {
+    border: solid 0.3em;
+    width: auto;
+    border-color: aqua; 
+} */
+/* 增加表格每行的邊界 */
+
+/* .react-bootstrap-table tbody tr { */
+     /* 指定邊框的顏色 */
+    /* border: 1px solid #dee2e6; */
+    /* width: auto; */
+  /* } */
+
+/* .react-bootstrap-table .table-bordered { */
+    /* border: 1px solid #dee2e6;  */
+    /* 指定邊框的顏色 */
+  /* } */
+  
+  /* 增加表頭的邊界 */
+  /* .react-bootstrap-table thead th {
+    border: 1px solid #dee2e6;  */
+    /* 指定邊框的顏色 */
+  /* } */
+  
+  

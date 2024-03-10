@@ -1,4 +1,5 @@
 import React, { Fragment, useEffect, useState } from 'react';
+import BootstrapTable from 'react-bootstrap-table-next'
 import CountUp from 'react-countup';
 import {
   Col,
@@ -36,6 +37,10 @@ import { getItemFromStore } from '../../../helpers/utils';
 import CustomizeMapBox from '../common/CustomizeMapBox';
 import Modalex from '../dashboard/Modalex';
 
+import EchartsDemo from '../Space/EchartsDemo';
+import ReactEchartsCore from 'echarts-for-react';
+import './Dashboardnew.css'
+
 ChartJS.register(annotationPlugin);
 
 const ChildSpacesTable = loadable(() => import('../common/ChildSpacesTable'));
@@ -55,19 +60,41 @@ const Dashboardnew = ({ setRedirect, setRedirectUrl, t }) => {
   const [costShareData, setCostShareData] = useState([]);
   const [timeOfUseShareData, setTimeOfUseShareData] = useState([
     {
-      "name":"theone",
-      "value": 14,
+      "name":"MPPT告警",
+      "value": 12,
       "percent": 27.45
     },
     {
-      "name":"thetwo",
-      "value": 25,
+      "name":"ACDC告警",
+      "value": 4,
       "percent": 49.02
     },
     {
-      "name":"thethree",
-      "value": 12,
+      "name":"DCDC告警",
+      "value": 1,
       "percent": 23.53
+    }
+  ]);
+  const [timeOfUseShareData_bms, setTimeOfUseShareData_bms] = useState([
+    {
+      "name":"DRY_IN3",
+      "value": 31,
+      "percent": 0
+    },
+    {
+      "name":"DSG_RLY",
+      "value": 31,
+      "percent": 0
+    },
+    {
+      "name":"CHG_RLY",
+      "value": 31,
+      "percent": 0
+    },
+    {
+      "name":"COV_W",
+      "value": 5,
+      "percent": 0
     }
   ]);
   // const [timeOfUseShareData, setTimeOfUseShareData] = useState([
@@ -128,10 +155,13 @@ const Dashboardnew = ({ setRedirect, setRedirectUrl, t }) => {
   const [sensor, setSensor] = useState({});
   const [pointList, setPointList] = useState({});
 
-  const barLabels1 = ['Voltage', 'Current', 'Power'];
-  const lastYearBarList1 = [228.5, 14.6, 3.2];
+  const barLabels1 = ['1月', '2月', '3月'];
+  // const lastYearBarList1 = [3.341, 3.336, 3.321];
+  // const lastYearBarList1 = [3.341, 3.336, 3.321];
+  const lastYearBarList1 = [31, 29, 11];
   // const thisYearBarList1 = [];
-  const thisYearBarList1 = [228.4, 14.1, 3.1];
+  const thisYearBarList1 = [1, 2, 1];
+  // const thisYearBarList1 = [3276, 3284, 3269];
 
 
   // const fixedChildSpacesInputData = [
@@ -150,33 +180,25 @@ const Dashboardnew = ({ setRedirect, setRedirectUrl, t }) => {
   // ];
   const fixedChildSpacesInputData = [
     {
-      "交流三相位數值":228.5, 
+      "交流三相電壓 數值":228.5, 
     },
     {
-      "交流三相位數值":228.4,
+      "交流三相電壓 數值":228.4,
     } ,
     {
-      "交流三相位數值":227.2,
-    } 
-    // ,
-    // {
-    //   "subtotals_array":40,
-    // } 
+      "交流三相電壓 數值":227.2,
+    }
   ];
   const fixedChildSpacesCostData = [
     {
-      "交流三相位數值":14.6, 
+      "交流A相 電壓":228.5, 
     },
     {
-      "交流三相位數值":14.1,
+      "交流B相 電壓":228.4,
     } ,
     {
-      "交流三相位數值":14.0,
-    }
-    //  ,
-    // {
-    //   "subtotals_array":20,
-    // } 
+      "交流C相 電壓":227.2,
+    } 
   ];
 
   useEffect(() => {
@@ -199,12 +221,12 @@ const Dashboardnew = ({ setRedirect, setRedirectUrl, t }) => {
       let isResponseOK = false;
       if (isFetchDashboard) {
         setIsFetchDashboard(false);
-        toast(
-          <Fragment>
-            {t("Welcome to MyEMS")}<br />
-            {t("An Industry Leading Open Source Energy Management System")}
-          </Fragment>
-        );
+        // toast(
+        //   <Fragment>
+        //     {t("Welcome to MyEMS")}<br />
+        //     {t("An Industry Leading Open Source Energy Management System")}
+        //   </Fragment>
+        // );
 
         fetch(
           APIBaseURL +
@@ -644,10 +666,67 @@ const Dashboardnew = ({ setRedirect, setRedirectUrl, t }) => {
     }
   }, [setRedirect, setRedirectUrl, t])
 
+
+  const columns = [
+    {
+        dataField: 'selectedStrategName',
+        text: '策略',
+        classes: 'py-2 align-middle'
+    }, 
+    {
+        dataField: 'selectedMonthName',
+        text: '月',
+        classes: 'py-2 align-middle'
+    }, 
+    {
+        dataField: 'selectedStartTimeName',
+        text: '開始',
+        classes: 'py-2 align-middle'
+    },
+    {
+        dataField: 'selectedEndTimeName',
+        text: '結束',
+        classes: 'py-2 align-middle'
+    },
+    {
+        dataField: 'selectedPowerName',
+        text: '功率',
+        classes: 'py-2 align-middle'
+    }
+  ];
+
+  const toDoList = [
+    {
+      'selectedStrategName':'充電',
+      'selectedMonthName':'2月',
+      'selectedStartTimeName':'00:01',
+      'selectedEndTimeName':'06:00',
+      'selectedPowerName':'-15.0'
+
+    },
+    {
+      'selectedStrategName':'待機',
+      'selectedMonthName':'2月',
+      'selectedStartTimeName':'06:01',
+      'selectedEndTimeName':'09:00',
+      'selectedPowerName':'0.0'
+    },
+    {
+      'selectedStrategName':'放電',
+      'selectedMonthName':'2月',
+      'selectedStartTimeName':'09:01',
+      'selectedEndTimeName':'12:00',
+      'selectedPowerName':'15.0'
+    }
+  ];
+
+
   return (
     <Fragment>
       <div className="card-deck">
         <Modalex/>
+        
+        {/* <EchartsDemo/> */}
         {/* <Spinner color="primary" hidden={spinnerHidden}  />
         <Spinner color="secondary" hidden={spinnerHidden}  />
         <Spinner color="success" hidden={spinnerHidden}  />
@@ -696,9 +775,10 @@ const Dashboardnew = ({ setRedirect, setRedirectUrl, t }) => {
             {totalInTCO2E['value'] && <CountUp end={totalInTCO2E['value']} duration={2} prefix="" separator="," decimal="." decimals={2} />}
           </CardSummary> */}
       </div>
+      {/* <EchartsDemo/>    */}
+      
       <div className='card-deck'>
-          
-          <BarChart
+          {/* <BarChart
             labels={barLabels}
             data={lastYearBarList}
             compareData={thisYearBarList}
@@ -706,17 +786,26 @@ const Dashboardnew = ({ setRedirect, setRedirectUrl, t }) => {
             compareTitle={t('This Year')}
             footnote={t('Per Unit Area')}
             footunit={"/M²"} >
-          </BarChart>
+          </BarChart> */}
           
           <BarChartnew
             labels={barLabels1}
             data={lastYearBarList1}
             compareData={thisYearBarList1}
-            title={t('The Same Period Last Year')}
-            compareTitle={t('This Year')}
-            footnote={t('Per Unit Area')}
-            footunit={"/M²"} >
+            title={('MPPT告警')}
+            compareTitle={('ACDC告警')}
+            footnote={('發生:')}
+            footunit={"次"} >
           </BarChartnew>
+          {/* <BarChartnew
+            labels={barLabels}
+            data={lastYearBarList}
+            compareData={thisYearBarList}
+            title={('MPPT告警')}
+            compareTitle={('ACDC告警')}
+            footnote={('每單位 充電加總')}
+            footunit={"voltage"} >
+          </BarChartnew> */}
 
           {/* 本年消耗 */}
           {/* t("This Year's Consumption CATEGORY VALUE UNIT", { 'CATEGORY': null, 'VALUE': null, 'UNIT': null }) */}
@@ -726,8 +815,8 @@ const Dashboardnew = ({ setRedirect, setRedirectUrl, t }) => {
             data={spaceInputLineChartData}
             options={spaceInputLineChartOptions}>
           </LineChart> */}
-
-          <LineChartnew reportingTitle={("斜率圖")}
+          {/* 帶出一天的頻率 */}
+          <LineChartnew reportingTitle={("頻率圖")}
             baseTitle=''
             labels={spaceInputLineChartLabels}
             data={spaceInputLineChartData}
@@ -735,12 +824,12 @@ const Dashboardnew = ({ setRedirect, setRedirectUrl, t }) => {
           </LineChartnew>
 
           {/* 本年成本 */}
-          <LineChart reportingTitle={t("This Year's Costs CATEGORY VALUE UNIT", { 'CATEGORY': null, 'VALUE': null, 'UNIT': null })}
+          {/* <LineChart reportingTitle={t("This Year's Costs CATEGORY VALUE UNIT", { 'CATEGORY': null, 'VALUE': null, 'UNIT': null })}
             baseTitle=''
             labels={spaceCostLineChartLabels}
             data={spaceCostLineChartData}
             options={spaceCostLineChartOptions}>
-          </LineChart>
+          </LineChart> */}
       </div>
       <div className='wrapper'>
 
@@ -762,15 +851,27 @@ const Dashboardnew = ({ setRedirect, setRedirectUrl, t }) => {
             </RealtimeSensor>
           ))}
       </div>
+
+      <BootstrapTable 
+          keyField='id' 
+          data={ toDoList } 
+          columns={ columns } 
+          // classes='mb-3 table-bordered react-bootstrap-table'
+          // classes='mb-3'
+          classes="table-dashboard table-striped table-sm fs--1  mb-0 table-dashboard-th-nowrap"
+          // classes="table-dashboard table-striped table-sm fs--1 border-bottom mb-0 table-dashboard-th-nowrap custom-margin"
+          rowClasses="btn-reveal-trigger"
+          headerClasses="bg-200 text-900"
+      />
       <Row noGutters>
         {/* <Col className="mb-3 pr-lg-2 mb-3">
           <SharePie data={timeOfUseShareData} title={('圓餅統計圖')} />
         </Col> */}
         <Col className="mb-5 pr-lg-2 mb-5">
-          <SharePienew data={timeOfUseShareData} title={('圓餅統計圖')} />
+          <SharePienew data={timeOfUseShareData} title={('PCS告警統計圖')} />
         </Col>
         <Col className="mb-5 pr-lg-2 mb-5">
-          <SharePienew data={timeOfUseShareData} title={('圓餅統計圖')} />
+          <SharePienew data={timeOfUseShareData_bms} title={('BMS告警統計圖')} />
         </Col>
         {/* <Col className="mb-3 pr-lg-2 mb-3">
           <SharePie data={costShareData} title={t('Costs by Energy Category')} />
@@ -801,13 +902,15 @@ const Dashboardnew = ({ setRedirect, setRedirectUrl, t }) => {
       >
       </ChartSpacesStackBar> */}
       <ChartSpacesStackBarnew
-        title={('交流側統計圖')}
+        title={('AC側')}
         labels={monthLabels}
         inputData={fixedChildSpacesInputData}
         costData={fixedChildSpacesCostData}
         childSpaces={spaceInputLineChartOptions}
       >
       </ChartSpacesStackBarnew>
+
+      {/* <EchartsDemo/> */}
 
     </Fragment>
   );

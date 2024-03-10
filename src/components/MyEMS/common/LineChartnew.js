@@ -40,11 +40,12 @@ const LineChartnew = ({
 //   });
 
 const [lineData, setLineData] = useState({
-    labels: ['Label1', 'Label2', 'Label3'], // X 軸的標籤
+    // labels: ['Label1', 'Label2', 'Label3'], // X 軸的標籤
+    labels: ['00:00', '01:00', '02:00', '03:00', '03:00', '04:00', '05:00', '06:00', '07:00'],
     datasets: [
       {
-        label: 'Dataset 1', // 資料集的名稱
-        data: [934, 423, 634], // 數據點的數值
+        label: '一次測', // 資料集的名稱
+        data: [60.4, 60.3, 60.4, 60.2, 60.1, 59.9, 59.6, 60.1, 60.0], // 數據點的數值
         borderColor: 'rgba(255, 99, 132, 1)', // 線條顏色
         borderWidth: 2, // 線條寬度
         fill: true, // 是否填充區域

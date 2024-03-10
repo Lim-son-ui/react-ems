@@ -14,8 +14,9 @@ export const testRoutes = {
       // exact: true 
     },
     { 
-      to: '/dashboardnew', 
-      name: 'Feed', 
+      // to: '/dashboardnew', 
+      to: '/space/energyitem', 
+      name: 'other', 
       // exact: true 
     },
     {

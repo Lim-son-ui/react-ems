@@ -21,7 +21,11 @@ import loadable from '@loadable/component';
 import Cascader from 'rc-cascader';
 import CardSummary from '../common/CardSummary';
 import MultiTrendChart from '../common/MultiTrendChart';
+
 import MultipleLineChart from '../common/MultipleLineChart';
+import MultipleLineChartnew from '../common/MultipleLineChartnew';
+
+
 import SharePie from '../common/SharePie';
 import { getCookieValue, createCookie, checkEmpty } from '../../../helpers/utils';
 import withRedirect from '../../../hoc/withRedirect';
@@ -34,6 +38,11 @@ import { comparisonTypeOptions } from '../common/ComparisonTypeOptions';
 import DateRangePickerWrapper from '../common/DateRangePickerWrapper';
 import { endOfDay} from 'date-fns';
 import AppContext from '../../../context/Context';
+
+
+import EchartsDemo from './EchartsDemo'
+
+
 
 const ChildSpacesTable = loadable(() => import('../common/ChildSpacesTable'));
 const DetailedDataTable = loadable(() => import('../common/DetailedDataTable'));
@@ -118,7 +127,7 @@ const SpaceEnergyItem = ({ setRedirect, setRedirectUrl, t }) => {
 
   const [spaceReportingLabels, setSpaceReportingLabels] = useState({"a0": [],"a1": [],"a2": []});
   const [spaceReportingData, setSpaceReportingData] = useState({"a0": [],"a1": [],"a2": []});
-  const [spaceReportingSubtotals, setSpaceReportingSubtotals] = useState({"a0": (0).toFixed(2),"a1": (0).toFixed(2),"a2": (0).toFixed(2)});
+  const [spaceReportingSubtotals, setSpaceReportingSubtotals] = useState({"a0": (0).toFixed(2),"a0": (1).toFixed(2),"a0": (2).toFixed(2)});
 
   const [spaceReportingRates, setSpaceReportingRates] = useState({"a0": [],"a1": [],"a2": []});
   const [spaceReportingOptions, setSpaceReportingOptions] = useState([]);
@@ -126,7 +135,7 @@ const SpaceEnergyItem = ({ setRedirect, setRedirectUrl, t }) => {
 
   const [parameterLineChartLabels, setParameterLineChartLabels] = useState([]);
   // const [parameterLineChartLabels, setParameterLineChartLabels] = useState(['Label1', 'Label2', 'Label3']);
-  const aa = ['Label1', 'Label2', 'Label3'];
+  const aa = ['2023/12/31', '2024/01/04', '2024/01/16',  '2024/01/31', '2024/02/04', '2024/02/15', '2024/02/29'];
   
   
   const [parameterLineChartData, setParameterLineChartData] = useState({});
@@ -797,7 +806,7 @@ const SpaceEnergyItem = ({ setRedirect, setRedirectUrl, t }) => {
           </Form>
         </CardBody>
       </Card>
-      <div className="card-deck">
+      {/* <div className="card-deck">
         {cardSummaryList.map(cardSummaryItem => (
           <CardSummary key={cardSummaryItem['name']}
             rate={cardSummaryItem['increment_rate']}
@@ -809,8 +818,9 @@ const SpaceEnergyItem = ({ setRedirect, setRedirectUrl, t }) => {
             {cardSummaryItem['subtotal'] && <CountUp end={cardSummaryItem['subtotal']} duration={2} prefix="" separator="," decimal="." decimals={2} />}
           </CardSummary>
         ))}
-      </div>
-      <Row noGutters>
+      </div> */}
+      {/* 這下面的本來就沒帶出來 */}
+      {/* <Row noGutters>
         {sharePieList.map(sharePieItem => (
           <Col key={sharePieItem['energy_category_name']} className="mb-3 pr-lg-2 mb-3">
             <SharePie key={sharePieItem['energy_category_name']}
@@ -818,7 +828,34 @@ const SpaceEnergyItem = ({ setRedirect, setRedirectUrl, t }) => {
               title={t('CATEGORY UNIT Consumption by Energy Items', { 'CATEGORY': sharePieItem['energy_category_name'], 'UNIT': '(' + sharePieItem['unit'] + ')' })} />
           </Col>
         ))}
-      </Row>
+      </Row> */}
+
+
+      {/* <MultipleLineChart reportingTitle={t('Operating Characteristic Curve')}
+        baseTitle=''
+        labels={parameterLineChartLabels}
+        data={parameterLineChartData}
+        options={parameterLineChartOptions}>
+      </MultipleLineChart> */}
+      {/* <MultipleLineChart reportingTitle={t('Operating Characteristic Curve')}
+        baseTitle=''
+        labels={aa}
+        data={bb}
+        options={cc}>
+      </MultipleLineChart> */}
+
+      <MultipleLineChartnew reportingTitle={t('Operating Characteristic Curve')}
+        baseTitle=''
+        labels={aa}
+        data={bb}
+        options={cc}>
+      </MultipleLineChartnew>
+
+      {/* 0308下午嘗試 多直條 折線比較圖 */}
+      <EchartsDemo/>
+
+
+
 
       <MultiTrendChart reportingTitle = {{"name": "Reporting Period Consumption CATEGORY VALUE UNIT", "substitute": ["CATEGORY", "VALUE", "UNIT"], "CATEGORY": spaceBaseAndReportingNames, "VALUE": spaceReportingSubtotals, "UNIT": spaceBaseAndReportingUnits}}
         baseTitle = {{"name": "Base Period Consumption CATEGORY VALUE UNIT", "substitute": ["CATEGORY", "VALUE", "UNIT"], "CATEGORY": spaceBaseAndReportingNames, "VALUE": spaceBaseSubtotals, "UNIT": spaceBaseAndReportingUnits}}
@@ -831,19 +868,6 @@ const SpaceEnergyItem = ({ setRedirect, setRedirectUrl, t }) => {
         rates={spaceReportingRates}
         options={spaceReportingOptions}>
       </MultiTrendChart>
-
-      {/* <MultipleLineChart reportingTitle={t('Operating Characteristic Curve')}
-        baseTitle=''
-        labels={parameterLineChartLabels}
-        data={parameterLineChartData}
-        options={parameterLineChartOptions}>
-      </MultipleLineChart> */}
-      <MultipleLineChart reportingTitle={t('Operating Characteristic Curve')}
-        baseTitle=''
-        labels={aa}
-        data={bb}
-        options={cc}>
-      </MultipleLineChart>
 
       <DetailedDataTable data={detailedDataTableData} title={t('Detailed Data')} columns={detailedDataTableColumns} pagesize={50} >
       </DetailedDataTable>
