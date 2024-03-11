@@ -1,3 +1,8 @@
 .ReactModal__Overlay {
     z-index: 1100; /* 适当调整 z-index 的值 */
+    background-color: 	#007979;
+  }
+
+  .custom-modal-overlay {
+    background-color: 	#007979; /* 更換成你想要的背景色碼 */
   }

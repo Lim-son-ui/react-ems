@@ -1,0 +1,17 @@
+[
+    {
+        "category":"aaa",
+        "time":"2023-11-06 10:50:21",
+        "content":"login successful"
+    },
+    {
+        "category":"bbb",
+        "time":"2023-11-06 10:50:21",
+        "content":"set country_code: GLOBAL"
+    },
+    {
+        "category":"ccc",
+        "time":"2023-11-06 10:50:21",
+        "content":"Login : sysgration.admin"
+    }
+]

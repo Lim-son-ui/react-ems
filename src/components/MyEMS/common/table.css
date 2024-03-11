@@ -1,0 +1,83 @@
+.red-text {
+    color: red;
+}
+
+.green-text{
+    color: green;
+}
+
+.green-coloumn{
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: center;
+    background-color: #4CAF50;
+    color: white;
+}
+
+.red-coloumn{
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: center;
+    background-color: #e52113;
+    color: white;
+}
+
+.overload-alert{
+    border-radius: 40%;
+    background-color: rgba(119, 136, 153, 0.622);    
+}
+
+.overload-alert:hover{    
+    background-color: lightgray;    
+}
+
+
+.overload-none{
+    background-color: lightblue;
+    border-radius: 40%;
+}
+
+.overload-none:hover{
+    background-color: lightcyan;
+    border-radius: 40%;
+}
+
+
+
+table {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+table td, 
+table th{
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+table tr:nth-child(even){
+    background-color: #f2f2f2;
+}
+
+table tr:hover {
+    background-color: #ddd;
+}
+
+table th{
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: center;
+    background-color: #4CAF50;
+    color: white;
+}
+
+.table-with-spacing {
+    border-collapse: separate;
+    border-spacing: 10px; /* 设置你希望的间隔大小 */
+  }
+  
+  /* 你可能需要调整表格的宽度，以适应固定的间隔 */
+  .table-with-spacing th, .table-with-spacing td {
+    padding: 8px; /* 调整单元格内部的填充以适应间隔 */
+  }

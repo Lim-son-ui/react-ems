@@ -41,6 +41,10 @@ import EchartsDemo from '../Space/EchartsDemo';
 import ReactEchartsCore from 'echarts-for-react';
 import './Dashboardnew.css'
 
+
+import BarChartExample from '../common/BarChartExample';
+import Tabler_react from './Tabler_react';
+
 ChartJS.register(annotationPlugin);
 
 const ChildSpacesTable = loadable(() => import('../common/ChildSpacesTable'));
@@ -724,6 +728,10 @@ const Dashboardnew = ({ setRedirect, setRedirectUrl, t }) => {
   return (
     <Fragment>
       <div className="card-deck">
+        {/* 第三種table */}
+        <Tabler_react/>
+        {/* 第二種table */}
+        <BarChartExample/>
         <Modalex/>
         
         {/* <EchartsDemo/> */}

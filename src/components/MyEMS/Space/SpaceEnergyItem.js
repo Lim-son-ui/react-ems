@@ -135,7 +135,7 @@ const SpaceEnergyItem = ({ setRedirect, setRedirectUrl, t }) => {
 
   const [parameterLineChartLabels, setParameterLineChartLabels] = useState([]);
   // const [parameterLineChartLabels, setParameterLineChartLabels] = useState(['Label1', 'Label2', 'Label3']);
-  const aa = ['2023/12/31', '2024/01/04', '2024/01/16',  '2024/01/31', '2024/02/04', '2024/02/15', '2024/02/29'];
+  const aa = [, '2024/01/04', '2024/01/16',  '2024/01/31', '2024/02/04', '2024/02/15', '2024/02/29'];
   
   
   const [parameterLineChartData, setParameterLineChartData] = useState({});
@@ -145,12 +145,15 @@ const SpaceEnergyItem = ({ setRedirect, setRedirectUrl, t }) => {
   //   a2: [9, 145, 88]
   //   // ...其他索引
   // });
+
   const bb = {
-      a0: [10, 20, 30, 40, 50],
-      a1: [15, 25, 35],
-      a2: [9, 145, 88]
+      'a0': [1, 20, 30],
+      'a1': [2, 25, 35],
+      'a2': [3, 145, 88]
       // ...其他索引
   };
+  
+
 
   const [parameterLineChartOptions, setParameterLineChartOptions] = useState([]);
   // const [parameterLineChartOptions, setParameterLineChartOptions] = useState([

@@ -15,6 +15,10 @@ import {
     Row,
     Spinner, } from 'reactstrap';
 
+import BarChartExample from '../common/BarChartExample'
+import Tabler_react from '../dashboard_test/Tabler_react';
+
+
 function Modalex() {
     const random = () => Math.round(Math.random() * 100)
     const [modalIsOpen, setModalIsOpen] = useState(false);
@@ -54,7 +58,7 @@ function Modalex() {
         <div>
         <button onClick={openModal}>點我開啟</button>
             <Modal
-                classNameName='ReactModal__Overlay'
+                classNameName='ReactModal__Overlay custom-modal-overlay'
                 isOpen={modalIsOpen}
                 onRequestClose={closeModal}
                 contentLabel='example modal'
@@ -100,6 +104,9 @@ function Modalex() {
                     }}
                     labels="months"
                 />
+
+                <Tabler_react/>
+                <BarChartExample/>
 
                 <CChartLine
                     data={{

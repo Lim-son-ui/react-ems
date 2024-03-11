@@ -22,6 +22,8 @@ echarts.use([
   MarkLineComponent,
   MarkPointComponent]);
 
+
+// 主要 控制呈現內容  的部分為series node  data 這幾個變數
 const MultipleLineChartnew = ({
   reportingTitle,
   baseTitle,
