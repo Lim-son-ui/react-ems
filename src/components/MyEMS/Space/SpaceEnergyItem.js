@@ -135,8 +135,10 @@ const SpaceEnergyItem = ({ setRedirect, setRedirectUrl, t }) => {
 
   const [parameterLineChartLabels, setParameterLineChartLabels] = useState([]);
   // const [parameterLineChartLabels, setParameterLineChartLabels] = useState(['Label1', 'Label2', 'Label3']);
-  const aa = [, '2024/01/04', '2024/01/16',  '2024/01/31', '2024/02/04', '2024/02/15', '2024/02/29'];
-  
+  // const aa = ['', '2024/01/04', '2024/01/16',  '2024/01/31', '2024/02/04', '2024/02/15', '2024/02/29'];
+  const aa = ['2024-01-04', '2024-01-04', '2024-01-16',  '2024-01-31', '2024-02-04', '2024-02-15', '2024-02-29'];
+  // const aa = [new Date('2019-02-27').getTime(), new Date('2020-02-27').getTime(), new Date('2021-02-27').getTime(),  new Date('2022-02-27').getTime(), new Date('2023-02-27').getTime(), new Date('2024-01-27').getTime(), new Date('2024-03-05').getTime()];
+
   
   const [parameterLineChartData, setParameterLineChartData] = useState({});
   // const [parameterLineChartData, setParameterLineChartData] = useState({
@@ -147,9 +149,9 @@ const SpaceEnergyItem = ({ setRedirect, setRedirectUrl, t }) => {
   // });
 
   const bb = {
-      'a0': [1, 20, 30],
-      'a1': [2, 25, 35],
-      'a2': [3, 145, 88]
+      a0: [1, 20, 30],
+      // 'a1': [2, 25, 35],
+      // 'a2': [3, 145, 88]
       // ...其他索引
   };
   
@@ -165,8 +167,8 @@ const SpaceEnergyItem = ({ setRedirect, setRedirectUrl, t }) => {
 
   const cc = [
     { value: 'a0', label: 'Label1' },
-    { value: 'a1', label: 'Label2' },
-    { value: 'a2', label: 'Label3' }
+    // { value: 'a1', label: 'Label2' },
+    // { value: 'a2', label: 'Label3' }
   ];
 
   const [detailedDataTableData, setDetailedDataTableData] = useState([]);
@@ -847,7 +849,8 @@ const SpaceEnergyItem = ({ setRedirect, setRedirectUrl, t }) => {
         options={cc}>
       </MultipleLineChart> */}
 
-      <MultipleLineChartnew reportingTitle={t('Operating Characteristic Curve')}
+      {/* 0312帶入圖形 */}
+      <MultipleLineChartnew reportingTitle={t('測試折線圖吧')}
         baseTitle=''
         labels={aa}
         data={bb}

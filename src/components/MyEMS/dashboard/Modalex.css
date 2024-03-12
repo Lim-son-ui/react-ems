@@ -1,7 +1,9 @@
 .ReactModal__Overlay {
     z-index: 1100; /* 适当调整 z-index 的值 */
     background-color: 	#007979;
-    background: linear-gradient(to top, #c5d5fa, #c3dc99);
+    /* background: linear-gradient(to top, #c5d5fa, #c3dc99); */
+    /* background: conic-gradient(to top, #c5d5fa, #c3dc99); */
+    background: radial-gradient(to top, #c5d5fa, #c3dc99);
   }
 
   .custom-modal-overlay {

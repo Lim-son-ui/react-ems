@@ -62,9 +62,9 @@ export default function HorizontalBarChart(){
     const startDate = moment('2023-01-01');
     const endDate = moment('2024-03-10');
 
-    // const datelabels = [];
+    const datelabels = [];
     // const datelabels = ['2024-01-01','2024-01-02','2024-01-03','2024-01-04','2024-01-05'];
-    const datelabels = ['2024/01/01','2024/01/02','2024/01/03','2024/01/04','2024/01/05'];
+    //const datelabels = ['2024/01/01','2024/01/02','2024/01/03','2024/01/04','2024/01/05'];
     const currentDate = startDate.clone();
 
     while(currentDate.isSameOrBefore(endDate)){
@@ -84,12 +84,12 @@ export default function HorizontalBarChart(){
         {
             label: 'Dataset 1',
             //data: datelabels,
-            // data: labels.map( () => 
-            //     faker.datatype.number({ min: -1000, max: 1000 })
-            // ),
-            data: datelabels.map( () => 
+            data: labels.map( () => 
                 faker.datatype.number({ min: -1000, max: 1000 })
             ),
+            // data: datelabels.map( () => 
+            //     faker.datatype.number({ min: -1000, max: 1000 })
+            // ),
             // data: labels.map(() => 
             //     datelabels
             // ),
@@ -99,12 +99,12 @@ export default function HorizontalBarChart(){
         {
             label: 'Dataset 2',
             //data: datelabels,
-            // data: labels.map(() => 
-            //     faker.datatype.number({ min: -1000, max: 1000 })
-            // ),
-            data: datelabels.map(() => 
+            data: labels.map(() => 
                 faker.datatype.number({ min: -1000, max: 1000 })
             ),
+            // data: datelabels.map(() => 
+            //     faker.datatype.number({ min: -1000, max: 1000 })
+            // ),
             // data: labels.map(() => 
             //     datelabels
             // ),

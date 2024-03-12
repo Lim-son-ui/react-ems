@@ -45,6 +45,9 @@ import './Dashboardnew.css'
 import BarChartExample from '../common/BarChartExample';
 import Tabler_react from './Tabler_react';
 import HorizontalBarChart from './HorizontalBarChart';
+import ApexCharts from './Apexchart';
+import Apexchart from './Apexchart';
+import Apexchart2 from './Apexchart2';
 
 ChartJS.register(annotationPlugin);
 
@@ -728,8 +731,12 @@ const Dashboardnew = ({ setRedirect, setRedirectUrl, t }) => {
 
   return (
     <Fragment>
-      <div className="card-deck">
 
+      
+      <Apexchart2/>
+      <Apexchart/>
+      
+      <div className="card-deck">
         <HorizontalBarChart/>
         {/* 第三種table */}
         <Tabler_react/>
