@@ -35,9 +35,11 @@ const MultipleLineChartnew = ({
   const [values, setValues] = useState(['a0']);
   const [oldValues, setOldValues] = useState(['a0']);
   const { isDark } = useContext(AppContext);
+
   const [nodes, setNodes] = useState([{
     name: options.label,
     borderWidth: 2,
+    // data: data['a0'],
     data: data['a0'],
     type: 'line',
     markPoint: {
@@ -71,6 +73,8 @@ const MultipleLineChartnew = ({
       },
     },
   }]);
+
+
   const [lastMoment, setLastMoment] = useState(moment());
   const [lineLabels, setLinaLabels] = useState([]);
 
@@ -215,7 +219,8 @@ const MultipleLineChartnew = ({
       },
       xAxis: {
         type: 'category',
-        data: lineLabels ? lineLabels : ['0'],
+        // data: lineLabels ? lineLabels : ['0'],
+        data: ['2024/03/11', '2024/03/12', '2024/03/13', '2024/03/14', '2024/03/15', '2024/03/16', '2024/03/17'],
         axisLabel: {
           interval: 'auto',
           color: rgbaColor(isDark ? '#fff' : '#000', 0.8),
@@ -272,6 +277,60 @@ const MultipleLineChartnew = ({
       ],
     };
   }
+
+  // const getOption = () => {
+  //   return {
+  //     tooltip: {
+  //       trigger: 'axis',
+  //       backgroundColor: '#ffffff',
+  //       borderColor: '#cccccc',
+  //       padding: 10,
+  //       textStyle: {
+  //         color: '#333333',
+  //       },
+  //       formatter: function (params) {
+  //         const date = params[0].name;
+  //         const value = params[0].value[1];
+  //         return `Date: ${date}<br/>Frequency: ${value}`;
+  //       },
+  //     },
+  //     grid: {
+  //       left: '5%',
+  //       right: '5%',
+  //       bottom: '15%',
+  //       containLabel: true,
+  //     },
+  //     xAxis: {
+  //       type: 'category',
+  //       data: data.map(item => item.date), // 请确保你的数据结构有一个包含日期的字段
+  //       axisLabel: {
+  //         interval: 'auto',
+  //         rotate: 30,
+  //       },
+  //     },
+  //     yAxis: {
+  //       type: 'value',
+  //       splitLine: { show: false },
+  //     },
+  //     series: [
+  //       {
+  //         type: 'line',
+  //         data: data.map(item => [item.date, item.frequency]), // 请确保你的数据结构有日期和频率字段
+  //         markLine: {
+  //           lineStyle: {
+  //             color: 'red',
+  //           },
+  //           data: [
+  //             {
+  //               type: 'average',
+  //               name: 'Average Frequency',
+  //             },
+  //           ],
+  //         },
+  //       },
+  //     ],
+  //   };
+  // };
 
   return (
     <Card className="mb-3">

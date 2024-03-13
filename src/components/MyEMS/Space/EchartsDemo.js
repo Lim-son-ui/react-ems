@@ -25,7 +25,8 @@ function EchartsDemo() {
     
     const option = {
         title: {
-            text: 'Temperature Change in the Coming Week'
+            // text: 'Temperature Change in the Coming Week'
+            text: '日期統計'
           },
           tooltip: {
             trigger: 'axis'
@@ -46,7 +47,8 @@ function EchartsDemo() {
           xAxis: {
             type: 'category',
             boundaryGap: false,
-            data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+            // data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+            data: ['2024/03/11', '2024/03/12', '2024/03/13', '2024/03/14', '2024/03/15', '2024/03/16', '2024/03/17']
           },
           yAxis: {
             type: 'value',
