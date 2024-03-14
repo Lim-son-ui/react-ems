@@ -9,6 +9,10 @@ export const testRoutes = {
   icon: 'chart-pie',
   children: [
     { 
+      to: '/datatest', 
+      name: 'test',
+    },
+    { 
       to: '/fdd', 
       name: 'fdd', 
       // exact: true 
@@ -24,12 +28,12 @@ export const testRoutes = {
       name: 'Dashboard',
       // exact: true
     },
-
     { 
       to: '/monitoring/combinedequipments', 
       name: 'combinedequipments',
       // exact: true 
     }
+    
   ]
 };
 

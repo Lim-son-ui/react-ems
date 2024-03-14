@@ -8,6 +8,8 @@ import DashboardAlt from '../components/dashboard-alt/DashboardAlt';
 // import Dashboardnu from '../components/dashboard_test/Dashboardnu'
 import Dashboardnu from '../components/dashboard_test/Dashboardnu.js';
 import Dashboardnew from '../components/MyEMS/dashboard_test/Dashboardnew.js';
+import Datatest from '../components/MyEMS/newdatatest/Datatest'
+
 
 import NavbarTop from '../components/navbar/NavbarTop';
 import NavbarVertical from '../components/navbar/NavbarVertical';
@@ -47,6 +49,7 @@ const DashboardLayout = ({ location }) => {
             <Route path="/dashboardnu" exact component={Dashboardnu} />
             <Route path="/dashboardnew" exact component={Dashboardnew} />
             <Route path="/dashboard-alt" exact component={DashboardAlt} />
+            <Route path="/datatest" exact component={Datatest} />
             <DashboardRoutes />
           </Switch>
           {!isKanban && <Footer />}

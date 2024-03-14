@@ -475,12 +475,58 @@ const CombinedEquipments = ({ setRedirect, setRedirectUrl, t }) => {
     setToDoList([...toDoList.reverse()]);
   }
 
+  const confirm_submit = () => {
+    toDoList.forEach((val) => {
+      // 解析選定的開始時間字符串，假設它的格式是 "12時30分"
+      
+
+      if( val.selectedStartTimeName && val.selectedEndTimeName) {
+        const [hourStr, minuteStr] = val.selectedStartTimeName.split('時');
+        const  startTimeHour = parseInt(hourStr, 10); // 小時部分
+        const startTimeMinute = parseInt(val.selectedStartTimeName.split('/')[1].split('分')[0], 10); // 分鐘部分
+
+        const [end_hourStr, end_minuteStr] = val.selectedEndTimeName.split('時');
+        const endTimeHour = parseInt(end_hourStr, 10); // 小時部分
+        const endTimeMinute = parseInt(val.selectedEndTimeName.split('/')[1].split('分')[0], 10); // 分鐘部分
+
+
+        axios.post("http://localhost:3088/write_addData", {
+        startTimeHour,
+        startTimeMinute,
+        endTimeHour,
+        endTimeMinute
+      }).then(() => {
+        // 請求成功處理
+      }).catch((error) => {
+        // 請求失敗處理
+        console.error("Error:", error);
+      });
+      }
+
+      // 發送 POST 請求到後端
+      
+    });
+    // toDoList.map((val, key) => {
+    //   axios.post("http://localhost:3088/write_addData", {
+    //     startTimeHour: val.startTimeHour,
+    //     startTimeMinute: val.startTimeMinute,
+    //     endTimeHour: val.endTimeHour,
+    //     endTimeMinute: val.endTimeMinute
+    //   }).then(() => {
+       
+    //   });
+    // })
+  };
+
   const handleDelete = (id) => {
     const deleteToDo = toDoList.filter((to) => to.id !== id);
     // 最後狀態需要更新回傳，將刪除傳遞給array
     // ...為擴展運算符號
     setToDoList([...deleteToDo]);
   };
+
+  
+
 
   const [isSelected, setIsSelected] = useState(false);
   let table = createRef();
@@ -523,6 +569,16 @@ const CombinedEquipments = ({ setRedirect, setRedirectUrl, t }) => {
         text: '開始',
         classes: 'py-2 align-middle'
     },
+    // {
+    //     dataField: 'selectedStartTimeNameHour',
+    //     text: '開始(時)',
+    //     classes: 'py-2 align-middle'
+    // },
+    // {
+    //     dataField: 'selectedStartTimeNameMinute',
+    //     text: '開始(分)',
+    //     classes: 'py-2 align-middle'
+    // },
     {
         dataField: 'selectedEndTimeName',
         text: '結束',
@@ -730,6 +786,15 @@ const CombinedEquipments = ({ setRedirect, setRedirectUrl, t }) => {
                   <br />
                   <ButtonGroup id="submit">
                     <Button color="secondary"  onClick={reverse}>{('反置')}</Button>
+                    {/* <Button color="secondary"  onClick={reverse}>{('送出')}</Button> */}
+                  </ButtonGroup>
+                </FormGroup>
+              </Col>
+              <Col xs="auto">
+                <FormGroup>
+                  <br />
+                  <ButtonGroup id="submit">
+                    <Button color="secondary"  onClick={confirm_submit}>{('送出')}</Button>
                     {/* <Button color="secondary"  onClick={reverse}>{('送出')}</Button> */}
                   </ButtonGroup>
                 </FormGroup>

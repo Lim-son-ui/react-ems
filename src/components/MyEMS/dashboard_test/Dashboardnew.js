@@ -37,7 +37,9 @@ import { getItemFromStore } from '../../../helpers/utils';
 import CustomizeMapBox from '../common/CustomizeMapBox';
 import Modalex from '../dashboard/Modalex';
 
+
 import EchartsDemo from '../Space/EchartsDemo';
+import MultipleLineChartnew from '../common/MultipleLineChartnew';
 import ReactEchartsCore from 'echarts-for-react';
 import './Dashboardnew.css'
 
@@ -48,6 +50,8 @@ import HorizontalBarChart from './HorizontalBarChart';
 import ApexCharts from './Apexchart';
 import Apexchart from './Apexchart';
 import Apexchart2 from './Apexchart2';
+
+
 
 ChartJS.register(annotationPlugin);
 
@@ -729,10 +733,34 @@ const Dashboardnew = ({ setRedirect, setRedirectUrl, t }) => {
   ];
 
 
+  const aa = [];
+
+  const bb = {
+    a0: [1, 20, 30],
+    a1: [2, 25, 35],
+    a2: [3, 145, 88, 210, 179]
+    // ...其他索引
+  };
+
+  const cc = [
+    { value: 'a0', label: 'Label1' },
+    { value: 'a1', label: 'Label2' },
+    { value: 'a2', label: 'Label3' }
+  ];
+
   return (
     <Fragment>
 
-      
+
+      <MultipleLineChartnew reportingTitle={t('折線圖1')}
+        baseTitle=''
+        labels={aa}
+        data={bb}
+        options={cc}>
+      </MultipleLineChartnew>
+      <EchartsDemo/>
+
+
       <Apexchart2/>
       <Apexchart/>
       
