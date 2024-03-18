@@ -58,7 +58,7 @@ function Modalex() {
         <div>
         <button onClick={openModal}>點我開啟</button>
             <Modal
-                classNameName='ReactModal__Overlay custom-modal-overlay'
+                // className='ReactModal__Overlay'
                 isOpen={modalIsOpen}
                 onRequestClose={closeModal}
                 contentLabel='example modal'

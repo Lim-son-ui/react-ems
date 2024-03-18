@@ -46,6 +46,10 @@ import Boot_table from './Boot_table';
 
 // import { Scrollbars } from "react-custom-scrollbars"
 import { Scrollbar } from 'react-scrollbars-custom'
+import Swal from 'sweetalert2';
+
+// import '@sweetalert2/theme-borderless'
+import '@sweetalert2/theme-wordpress-admin'
 
 const CombinedEquipments = ({ setRedirect, setRedirectUrl, t }) => {
   useEffect(() => {
@@ -172,8 +176,10 @@ const CombinedEquipments = ({ setRedirect, setRedirectUrl, t }) => {
   };
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-  const [selectedStrategName, setSelectedStrategName] = useState(undefined);
-  const [selectedStrategyID, setSelectedStrategyID] = useState(undefined);
+  const [selectedStrategName, setSelectedStrategName] = useState("");
+  // const [selectedStrategName, setSelectedStrategName] = useState(undefined);
+  // const [selectedStrategyID, setSelectedStrategyID] = useState(undefined);
+  const [selectedStrategyID, setSelectedStrategyID] = useState("");
 
   let onSpaceStrategyChange = (value, selectedOptions) => {
     setSelectedStrategName(selectedOptions.map(o => o.label).join('/'));
@@ -183,8 +189,10 @@ const CombinedEquipments = ({ setRedirect, setRedirectUrl, t }) => {
   }
 
   //--------------------
-  const [selectedMonthName, setSelectedMonthName] = useState(undefined);
-  const [selectedMonthID, setSelectedMonthID] = useState(undefined);
+  const [selectedMonthName, setSelectedMonthName] = useState("");
+  // const [selectedMonthName, setSelectedMonthName] = useState(undefined);
+  // const [selectedMonthID, setSelectedMonthID] = useState(undefined);
+  const [selectedMonthID, setSelectedMonthID] = useState("");
 
   let onSpaceMonthChange = (value, selectedOptions) => {
     setSelectedMonthName(selectedOptions.map(o => o.label).join('/'));
@@ -193,8 +201,10 @@ const CombinedEquipments = ({ setRedirect, setRedirectUrl, t }) => {
     onSpaceCascaderChange(value, selectedOptions)
   }
   //--------------------
-  const [selectedStartTimeName, setSelectedStartTimeName] = useState(undefined);
-  const [selectedStartTimeID, setSelectedStartTimeID] = useState(undefined);
+  const [selectedStartTimeName, setSelectedStartTimeName] = useState("");
+  // const [selectedStartTimeName, setSelectedStartTimeName] = useState(undefined);
+  // const [selectedStartTimeID, setSelectedStartTimeID] = useState(undefined);
+  const [selectedStartTimeID, setSelectedStartTimeID] = useState("");
 
   let onSpaceStartTimeChange = (value, selectedOptions) => {
     setSelectedStartTimeName(selectedOptions.map(o => o.label).join('/'));
@@ -203,8 +213,11 @@ const CombinedEquipments = ({ setRedirect, setRedirectUrl, t }) => {
     onSpaceCascaderChange(value, selectedOptions)
   }
   //--------------------
-  const [selectedEndTimeName, setSelectedEndTimeName] = useState(undefined);
-  const [selectedEndTimeID, setSelectedEndTimeID] = useState(undefined);
+  const [selectedEndTimeName, setSelectedEndTimeName] = useState("");
+  // const [selectedEndTimeName, setSelectedEndTimeName] = useState(undefined);
+  // const [selectedEndTimeID, setSelectedEndTimeID] = useState(undefined);
+  const [selectedEndTimeID, setSelectedEndTimeID] = useState("");
+
 
   let onSpaceEndTimeChange = (value, selectedOptions) => {
     setSelectedEndTimeName(selectedOptions.map(o => o.label).join('/'));
@@ -213,8 +226,11 @@ const CombinedEquipments = ({ setRedirect, setRedirectUrl, t }) => {
     onSpaceCascaderChange(value, selectedOptions)
   }
   //--------------------
-  const [selectedPowerName, setSelectedPowerName] = useState(undefined);
-  const [selectedPowerID, setSelectedPowerID] = useState(undefined);
+  const [selectedPowerName, setSelectedPowerName] = useState("");
+  // const [selectedPowerName, setSelectedPowerName] = useState(undefined);
+  // const [selectedPowerID, setSelectedPowerID] = useState(undefined);
+  const [selectedPowerID, setSelectedPowerID] = useState("");
+
   //--------------------
   let onSpaceCascaderChange = (value, selectedOptions) => {
     // setSelectedSpaceName(selectedOptions.map(o => o.label).join('/'));
@@ -264,6 +280,7 @@ const CombinedEquipments = ({ setRedirect, setRedirectUrl, t }) => {
   const { loading } = useFakeFetch(equipments);
 
   const [toDoList, setToDoList] = useState([]);
+
   const [updateId, setUpdateId] = useState(0);
   
   const { data: paginationData, meta: paginationMeta, handler: paginationHandler } = usePagination(toDoList, 4);
@@ -275,27 +292,27 @@ const CombinedEquipments = ({ setRedirect, setRedirectUrl, t }) => {
   const isList = true;
   const isGrid = false;
 
-  useEffect(() => {
-    setEquipmentIds(equipments.map(equipment => equipment.id));
-  }, []);
+  // useEffect(() => {
+  //   setEquipmentIds(equipments.map(equipment => equipment.id));
+  // }, []);
 
   // Handler
-  const handleSubmit = e => {
-    e.preventDefault();
-    console.log('handleSubmit');
-    console.log(selectedSpaceID);
-    console.log(selectedCombinedEquipment);
-    // // disable submit button
-    // setSubmitButtonDisabled(true);
-    // // show spinner
-    // setSpinnerHidden(false);
+  // const handleSubmit = e => {
+  //   e.preventDefault();
+  //   console.log('handleSubmit');
+  //   console.log(selectedSpaceID);
+  //   console.log(selectedCombinedEquipment);
+  //   // // disable submit button
+  //   // setSubmitButtonDisabled(true);
+  //   // // show spinner
+  //   // setSpinnerHidden(false);
 
-    // // enable submit button
-    // setSubmitButtonDisabled(false);
-    // // hide spinner
-    // setSpinnerHidden(true);
+  //   // // enable submit button
+  //   // setSubmitButtonDisabled(false);
+  //   // // hide spinner
+  //   // setSpinnerHidden(true);
 
-  };
+  // };
 
 
   // const [selectedStrategyName, setSelectedStrategyName] = useState(undefined);
@@ -391,17 +408,25 @@ const CombinedEquipments = ({ setRedirect, setRedirectUrl, t }) => {
   // 當按下加入按鈕_0304測試動態帶入新資料
   const handleSubmit_2 = (e) => {
 
+    // 只有當 確定有值新增才執行
+
+    Swal.fire({
+      title: "注意!!",
+      text: "您已確定新增!",
+      icon: "success"
+    });
+
     e.preventDefault();
     if(updateId){
       const updateToDo = toDoList.find((i) => i.id === updateId);
       const updatedToDoList = toDoList.map((t) => 
-        t.id === updateToDo.id ? (t = 
+        t.id === updateToDo.id ?  
           {id: t.id, 
             selectedStrategName, 
             selectedMonthName, 
             selectedStartTimeName, 
             selectedEndTimeName, 
-            selectedPowerName})
+            selectedPowerName}
         :t
       );
 
@@ -414,20 +439,14 @@ const CombinedEquipments = ({ setRedirect, setRedirectUrl, t }) => {
       setSelectedEndTimeName("");
       setSelectedPowerName("");
 
-      // setSelectedStrategName(selectedStrategName);
-      // setSelectedMonthName(selectedMonthName);
-      // setSelectedStartTimeName(selectedStartTimeName);
-      // setSelectedEndTimeName(selectedEndTimeName);
-      // setSelectedPowerName(selectedPowerName);
-
       return;
     }
 
-    if(selectedStrategName !== " "){
+    if(selectedStartTimeName !== " "){
       setToDoList([
-        ...toDoList
-        ,{
-            id: `${selectedStrategName}-${Date.now()}`,
+        ...toDoList,
+        {
+            id: `${selectedStartTimeName}`,
             selectedStrategName,
             selectedMonthName,
             selectedStartTimeName,
@@ -442,9 +461,12 @@ const CombinedEquipments = ({ setRedirect, setRedirectUrl, t }) => {
       setSelectedEndTimeName("");
       setSelectedPowerName("");
 
+      
       allpage(page, perPage, toDoList, total, paginationHandler);
 
     }
+
+    
   }
 
 
@@ -453,8 +475,8 @@ const CombinedEquipments = ({ setRedirect, setRedirectUrl, t }) => {
     const endIndex = startIndex + perPage;
   
     // 從 toDoList 中截取相應的資料
-    const paginatedData = toDoList.slice(startIndex, endIndex);
-  
+    const paginatedData = toDoList.slice(startIndex, endIndex);    
+
     // 更新 paginationData
     paginationHandler.onChangePage(page, paginatedData, total);
   }
@@ -468,7 +490,7 @@ const CombinedEquipments = ({ setRedirect, setRedirectUrl, t }) => {
     setSelectedStartTimeName(updateToDo.selectedStartTimeName);        
     setSelectedEndTimeName(updateToDo.selectedEndTimeName);
     setSelectedPowerName(updateToDo.selectedPowerName);
-};
+  };
 
 
   const reverse = () => {
@@ -522,6 +544,7 @@ const CombinedEquipments = ({ setRedirect, setRedirectUrl, t }) => {
     const deleteToDo = toDoList.filter((to) => to.id !== id);
     // 最後狀態需要更新回傳，將刪除傳遞給array
     // ...為擴展運算符號
+
     setToDoList([...deleteToDo]);
   };
 
@@ -531,11 +554,11 @@ const CombinedEquipments = ({ setRedirect, setRedirectUrl, t }) => {
   const [isSelected, setIsSelected] = useState(false);
   let table = createRef();
 
-  const onSelect = () => {
-    setImmediate(() => {
-      setIsSelected(!!table.current.selectionContext.selected.length);
-    });
-  };
+  // const onSelect = () => {
+  //   setImmediate(() => {
+  //     setIsSelected(!!table.current.selectionContext.selected.length);
+  //   });
+  // };
 
   const actionFormatter = (dataField, { id }) => (
     // Control your row with this id
@@ -569,16 +592,6 @@ const CombinedEquipments = ({ setRedirect, setRedirectUrl, t }) => {
         text: '開始',
         classes: 'py-2 align-middle'
     },
-    // {
-    //     dataField: 'selectedStartTimeNameHour',
-    //     text: '開始(時)',
-    //     classes: 'py-2 align-middle'
-    // },
-    // {
-    //     dataField: 'selectedStartTimeNameMinute',
-    //     text: '開始(分)',
-    //     classes: 'py-2 align-middle'
-    // },
     {
         dataField: 'selectedEndTimeName',
         text: '結束',
@@ -598,6 +611,11 @@ const CombinedEquipments = ({ setRedirect, setRedirectUrl, t }) => {
   ];
 
 
+  const confirm = () => {
+    if(window.confirm('請問，確定要執行送出?')){
+      confirm_submit();
+    }
+  }
 
   return (
     <Fragment>
@@ -610,7 +628,8 @@ const CombinedEquipments = ({ setRedirect, setRedirectUrl, t }) => {
        {/* 提交 空間 組合設備 */}
       <Card className="bg-light mb-3">
         <CardBody className="p-3">
-          <Form onSubmit={handleSubmit}>
+          <Form>
+          {/* <Form onSubmit={handleSubmit}> */}
             <Row form>
 
 
@@ -794,7 +813,7 @@ const CombinedEquipments = ({ setRedirect, setRedirectUrl, t }) => {
                 <FormGroup>
                   <br />
                   <ButtonGroup id="submit">
-                    <Button color="secondary"  onClick={confirm_submit}>{('送出')}</Button>
+                    <Button color="secondary"  onClick={confirm}>{('送出')}</Button>
                     {/* <Button color="secondary"  onClick={reverse}>{('送出')}</Button> */}
                   </ButtonGroup>
                 </FormGroup>
@@ -827,10 +846,15 @@ const CombinedEquipments = ({ setRedirect, setRedirectUrl, t }) => {
         
         <BootstrapTable 
           keyField='id' 
+          // data={ toDoList }
           data={ paginationData } 
           columns={ columns } 
-          // classes='mb-3'
-          classes="table-dashboard table-striped table-sm fs--1  mb-0 table-dashboard-th-nowrap"
+          
+          classes='mb-2 table-striped'
+          // classes='mb-4 table-dashboard table-striped'
+          // classes="table-dashboard table-striped table-sm fs--1  mb-3 table-dashboard-th-nowrap"
+          
+          // classes="table-dashboard table-striped table-sm fs--1  mb-0 table-dashboard-th-nowrap"
           // classes="table-dashboard table-striped table-sm fs--1 border-bottom mb-0 table-dashboard-th-nowrap custom-margin"
           rowClasses="btn-reveal-trigger"
           headerClasses="bg-200 text-900"

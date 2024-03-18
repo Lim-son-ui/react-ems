@@ -41,11 +41,16 @@ import Modalex from '../dashboard/Modalex';
 import EchartsDemo from '../Space/EchartsDemo';
 import MultipleLineChartnew from '../common/MultipleLineChartnew';
 import ReactEchartsCore from 'echarts-for-react';
-import './Dashboardnew.css'
+// import './Dashboardnew.css'
 
-
+// 就是table的嘗試
 import BarChartExample from '../common/BarChartExample';
 import Tabler_react from './Tabler_react';
+import Materialtable from './Materialtable';
+import Materialreacttable from './Materialreacttable';
+
+
+
 import HorizontalBarChart from './HorizontalBarChart';
 import ApexCharts from './Apexchart';
 import Apexchart from './Apexchart';
@@ -763,6 +768,9 @@ const Dashboardnew = ({ setRedirect, setRedirectUrl, t }) => {
 
       <Apexchart2/>
       <Apexchart/>
+
+      {/* 第五種table 較為完整*/}
+      <Materialreacttable/>
       
       <div className="card-deck">
         <HorizontalBarChart/>
@@ -770,6 +778,9 @@ const Dashboardnew = ({ setRedirect, setRedirectUrl, t }) => {
         <Tabler_react/>
         {/* 第二種table */}
         <BarChartExample/>
+        {/* 第四種table */}
+        <Materialtable/>
+               
         <Modalex/>
         
         {/* <EchartsDemo/> */}
