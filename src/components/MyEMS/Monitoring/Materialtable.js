@@ -26,8 +26,44 @@ import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 
 
+// import Cascader from 'rc-cascader';
+// import { Cascader , Input } from 'antd';
+import { Cascader } from 'antd';
+import {
+    Col,
+    Card,
+    CardBody,
+    Input
+} from 'reactstrap'
+// import {
+//     Breadcrumb,
+//     BreadcrumbItem,
+//     ButtonGroup,
+//     Card,
+//     CardBody,
+//     Col,
+//     CustomInput,
+//     Row,
+//     Form,
+//     FormGroup,
+//     DropdownItem,
+//     DropdownMenu,
+//     DropdownToggle,
+//     UncontrolledDropdown,
+//     Label,
+//     Spinner,
+// } from 'reactstrap'
+
+
 const Example = () => {
   const [validationErrors, setValidationErrors] = useState({});
+
+  const [selectedStrategy, setSelectedStrategy] = useState('');
+  const [selectedMonth, setSelectedMonth] = useState('');
+  const [selectedStartTime, setSelectedStartTime] = useState('');
+  const [selectedEndTime, setSelectedEndTime] = useState('');
+  const [selectedPower, setSelectedPower] = useState('');
+
 
 
   const columns = useMemo(
@@ -39,61 +75,73 @@ const Example = () => {
         size: 80,
       },
       {
-        accessorKey: 'firstName',
-        header: 'First Name',
+        accessorKey: 'strategy',
+        header: 'Strategy',
         muiEditTextFieldProps: {
           required: true,
-          error: !!validationErrors?.firstName,
-          helperText: validationErrors?.firstName,
-          //remove any previous validation errors when user focuses on the input
+          error: !!validationErrors?.strategy,
+          helperText: validationErrors?.strategy,
           onFocus: () =>
             setValidationErrors({
               ...validationErrors,
-              firstName: undefined,
-            }),
-          //optionally add validation checking for onBlur or onChange
-        },
-      },
-      {
-        accessorKey: 'lastName',
-        header: 'Last Name',
-        muiEditTextFieldProps: {
-          required: true,
-          error: !!validationErrors?.lastName,
-          helperText: validationErrors?.lastName,
-          //remove any previous validation errors when user focuses on the input
-          onFocus: () =>
-            setValidationErrors({
-              ...validationErrors,
-              lastName: undefined,
+              strategy: undefined,
             }),
         },
       },
       {
-        accessorKey: 'email',
-        header: 'Email',
+        accessorKey: 'month',
+        header: 'Month',
         muiEditTextFieldProps: {
-          type: 'email',
           required: true,
-          error: !!validationErrors?.email,
-          helperText: validationErrors?.email,
-          //remove any previous validation errors when user focuses on the input
+          error: !!validationErrors?.month,
+          helperText: validationErrors?.month,
           onFocus: () =>
             setValidationErrors({
               ...validationErrors,
-              email: undefined,
+              month: undefined,
             }),
         },
       },
       {
-        accessorKey: 'state',
-        header: 'State',
-        editVariant: 'select',
-        editSelectOptions: usStates,
+        accessorKey: 'starttime',
+        header: 'Start Time',
         muiEditTextFieldProps: {
-          select: true,
-          error: !!validationErrors?.state,
-          helperText: validationErrors?.state,
+          required: true,
+          error: !!validationErrors?.starttime,
+          helperText: validationErrors?.starttime,
+          onFocus: () =>
+            setValidationErrors({
+              ...validationErrors,
+              starttime: undefined,
+            }),
+        },
+      },
+      {
+        accessorKey: 'endtime',
+        header: 'End Time',
+        muiEditTextFieldProps: {
+          required: true,
+          error: !!validationErrors?.endtime,
+          helperText: validationErrors?.endtime,
+          onFocus: () =>
+            setValidationErrors({
+              ...validationErrors,
+              endtime: undefined,
+            }),
+        },
+      },
+      {
+        accessorKey: 'power',
+        header: 'Power',
+        muiEditTextFieldProps: {
+          required: true,
+          error: !!validationErrors?.power,
+          helperText: validationErrors?.power,
+          onFocus: () =>
+            setValidationErrors({
+              ...validationErrors,
+              power: undefined,
+            }),
         },
       },
     ],
@@ -121,14 +169,34 @@ const Example = () => {
 
   //CREATE action
   const handleCreateUser = async ({ values, table }) => {
-    const newValidationErrors = validateUser(values);
-    if (Object.values(newValidationErrors).some((error) => error)) {
-      setValidationErrors(newValidationErrors);
-      return;
-    }
-    setValidationErrors({});
-    await createUser(values);
-    table.setCreatingRow(null); //exit creating mode
+    // const newValidationErrors = validateUser(values);
+    // if (Object.values(newValidationErrors).some((error) => error)) {
+    //   setValidationErrors(newValidationErrors);
+    //   return;
+    // }
+    // setValidationErrors({});
+    // await createUser(values);
+    // table.setCreatingRow(null); //exit creating mode
+
+    const newValidationErrors = validateUser({
+        strategy: selectedStrategy,
+        month: selectedMonth,
+        starttime: selectedStartTime,
+        endtime: selectedEndTime,
+        power: selectedPower,
+      });
+      if (Object.values(newValidationErrors).some((error) => error)) {
+        setValidationErrors(newValidationErrors);
+        return;
+      }
+      setValidationErrors({});
+      await createUser({
+        strategy: selectedStrategy,
+        month: selectedMonth,
+        starttime: selectedStartTime,
+        endtime: selectedEndTime,
+        power: selectedPower,
+      });
   };
 
 
@@ -241,8 +309,123 @@ const Example = () => {
     },
   });
 
+  const options = [
+    {
+      value: 'strategy1',
+      label: '充電',
+    },
+    {
+      value: 'strategy2',
+      label: '放電',
+    },
+    {
+        value: 'strategy3',
+        label: '待機',
+    }
+    // Add more strategy options as needed
+  ];
 
-  return <MaterialReactTable table={table} />;
+  const options_month = [
+    {
+      value: 'January',
+      label: 'January',
+    },
+    {
+      value: 'February',
+      label: 'February',
+    },
+    {
+        value: 'March',
+        label: 'March',
+      },
+      {
+        value: 'April',
+        label: 'April',
+      },
+      {
+        value: 'May',
+        label: 'May',
+      },
+    // Add more month options as needed
+  ];
+
+  const option_time = [
+    {
+      value: '00:00',
+      label: '00:00',
+    },
+    {
+      value: '01:00',
+      label: '01:00',
+    },
+    {
+      value: '02:00',
+      label: '02:00',
+    },
+    {
+      value: '03:00',
+      label: '03:00',
+    },
+    // Add more time options as needed
+  ];
+
+
+  return (
+
+    <div>
+
+        <Card className="bg-light mb-3">
+            <CardBody className="p-3">
+                {/* <Col xs={3} sm={2}> */}
+                    <Cascader
+                    options={options}
+                    onChange={(value) => setSelectedStrategy(value)}
+                    placeholder="Select Strategy"
+                    value={selectedStrategy}
+                    />
+                {/* </Col> */}
+                {/* <Col xs={3} sm={2}> */}
+                    <Cascader
+                    options={options_month}
+                    onChange={(value) => setSelectedMonth(value)}
+                    placeholder="Select Month"
+                    value={selectedMonth}
+                    />
+                {/* </Col> */}
+                {/* <Col xs={3} sm={2}> */}
+                    <Cascader
+                    options={option_time}
+                    onChange={(value) => setSelectedStartTime(value)}
+                    placeholder="Select Start Time"
+                    value={selectedStartTime}
+                    />
+                {/* </Col> */}
+                {/* <Col xs={3} sm={2}> */}
+                    <Cascader
+                    options={option_time}
+                    onChange={(value) => setSelectedEndTime(value)}
+                    placeholder="Select End Time"
+                    value={selectedEndTime}
+                    />
+                {/* </Col> */}
+                {/* <Col xs={3} sm={2}> */}
+                    <Input
+                    value={selectedPower}
+                    onChange={(e) => setSelectedPower(e.target.value)}
+                    placeholder="Enter Power"
+                    />
+                {/* </Col> */}
+            </CardBody>
+        </Card>
+        <Box sx={{ marginBottom: '1rem' }}>
+            <Button onClick={handleCreateUser} variant="contained" color="primary">
+                Create New User
+            </Button>
+        </Box>
+
+        <MaterialReactTable table={table} />
+    </div>
+  );
 };
 
 
@@ -361,10 +544,10 @@ const validateEmail = (email) =>
 
 function validateUser(user) {
   return {
-    firstName: !validateRequired(user.firstName)
+    strategy: !validateRequired(user.strategy)
       ? 'First Name is Required'
       : '',
-    lastName: !validateRequired(user.lastName) ? 'Last Name is Required' : '',
-    email: !validateEmail(user.email) ? 'Incorrect Email Format' : '',
+    month: !validateRequired(user.month) ? 'Last Name is Required' : '',
+    // star: !validateEmail(user.email) ? 'Incorrect Email Format' : '',
   };
 }
