@@ -55,38 +55,38 @@ const Fault = ({ setRedirect, setRedirectUrl, t }) => {
   const [exportButtonHidden, setExportButtonHidden] = useState(true);
   const [submitButtonDisabled, setSubmitButtonDisabled] = useState(false);
 
-  useEffect(() => {
-    let is_logged_in = getCookieValue('is_logged_in');
-    let user_name = getCookieValue('user_name');
-    let user_display_name = getCookieValue('user_display_name');
-    let user_uuid = getCookieValue('user_uuid');
-    let token = getCookieValue('token');
+  // useEffect(() => {
+  //   let is_logged_in = getCookieValue('is_logged_in');
+  //   let user_name = getCookieValue('user_name');
+  //   let user_display_name = getCookieValue('user_display_name');
+  //   let user_uuid = getCookieValue('user_uuid');
+  //   let token = getCookieValue('token');
 
-    // let faultList = []
-    // let fault = {}
+  //   // let faultList = []
+  //   // let fault = {}
 
-    // fault['id'] = "1";
-    // fault['subject'] = "這是主題";
-    // fault['created_datetime'] = "20240226";
-    // fault['message'] = "這是內容";
-    // fault['status'] = "這是狀態";
-    // fault['url'] = "這是url";
+  //   // fault['id'] = "1";
+  //   // fault['subject'] = "這是主題";
+  //   // fault['created_datetime'] = "20240226";
+  //   // fault['message'] = "這是內容";
+  //   // fault['status'] = "這是狀態";
+  //   // fault['url'] = "這是url";
 
-    // faultList.push(fault);
-    // setFaults(faultList);
+  //   // faultList.push(fault);
+  //   // setFaults(faultList);
 
-    if (is_logged_in === null || !is_logged_in) {
-      setRedirectUrl(`/authentication/basic/login`);
-      setRedirect(true);
-    } else {
-      //update expires time of cookies
-      createCookie('is_logged_in', true, settings.cookieExpireTime);
-      createCookie('user_name', user_name, settings.cookieExpireTime);
-      createCookie('user_display_name', user_display_name, settings.cookieExpireTime);
-      createCookie('user_uuid', user_uuid, settings.cookieExpireTime);
-      createCookie('token', token, settings.cookieExpireTime);
-    }
-  }, );
+  //   if (is_logged_in === null || !is_logged_in) {
+  //     setRedirectUrl(`/authentication/basic/login`);
+  //     setRedirect(true);
+  //   } else {
+  //     //update expires time of cookies
+  //     createCookie('is_logged_in', true, settings.cookieExpireTime);
+  //     createCookie('user_name', user_name, settings.cookieExpireTime);
+  //     createCookie('user_display_name', user_display_name, settings.cookieExpireTime);
+  //     createCookie('user_uuid', user_uuid, settings.cookieExpireTime);
+  //     createCookie('token', token, settings.cookieExpireTime);
+  //   }
+  // }, );
   // State
   let table = createRef();
 
@@ -177,10 +177,46 @@ const Fault = ({ setRedirect, setRedirectUrl, t }) => {
     </UncontrolledDropdown>
   );
 
+  // const columns = [
+  //   {
+  //     dataField: 'subject',
+  //     text: t('Notification Subject'),
+  //     classes: 'py-2 align-middle',
+  //     formatter: subjectFormatter,
+  //     sort: true
+  //   },
+  //   {
+  //     dataField: 'created_datetime',
+  //     text: t('Notification Created Datetime'),
+  //     classes: 'py-2 align-middle',
+  //     sort: true
+  //   },
+  //   {
+  //     dataField: 'message',
+  //     text: t('Notification Message'),
+  //     classes: 'py-2 align-middle',
+  //     formatter: messageFormatter,
+  //     sort: true
+  //   },
+  //   {
+  //     dataField: 'status',
+  //     text: t('Notification Status'),
+  //     classes: 'py-2 align-middle',
+  //     formatter: statusFormatter,
+  //     sort: true
+  //   },
+  //   {
+  //     dataField: '',
+  //     text: '',
+  //     classes: 'py-2 align-middle',
+  //     formatter: actionFormatter,
+  //     align: 'right'
+  //   }
+  // ];
   const columns = [
     {
-      dataField: 'subject',
-      text: t('Notification Subject'),
+      dataField: 'AC1_warning',
+      text: t('Notification AC1_warning'),
       classes: 'py-2 align-middle',
       formatter: subjectFormatter,
       sort: true
@@ -304,13 +340,13 @@ const Fault = ({ setRedirect, setRedirectUrl, t }) => {
         if (json.length > 0) {
           json.forEach((currentValue, index) => {
             let fault = {}
-            // fault['id'] = currentValue['id'];
-            // fault['subject'] = currentValue['subject'];
-            // fault['created_datetime'] = moment(parseInt(currentValue['created_datetime']))
-            //     .format("YYYY-MM-DD HH:mm:ss");
-            // fault['message'] = currentValue['message'];
-            // fault['status'] = currentValue['status'];
-            // fault['url'] = currentValue['url'];
+            fault['id'] = currentValue['id'];
+            fault['subject'] = currentValue['subject'];
+            fault['created_datetime'] = moment(parseInt(currentValue['created_datetime']))
+                .format("YYYY-MM-DD HH:mm:ss");
+            fault['message'] = currentValue['message'];
+            fault['status'] = currentValue['status'];
+            fault['url'] = currentValue['url'];
 
             fault['id'] = "1";
             fault['subject'] = "這是主題";
@@ -607,12 +643,80 @@ const Fault = ({ setRedirect, setRedirectUrl, t }) => {
   };
 
   const handle_test = () => {
-    axios.get("http://localhost:3088/get_myems_warn").then((response) => {
+    // axios.get("http://localhost:3088/get_myems_warn").then((response) => {
+    //   //setScheduleList(response.data);
+    //   setFaults(response.data);
+    // });
+    axios.get("http://localhost:3089/get_myems_warn").then((response) => {
       //setScheduleList(response.data);
       setFaults(response.data);
     });
   }
 
+  // 以下跟告警有關
+  //-----------------------------------------------------------------------------------------
+  const [warning_data, set_warning_data] = useState([]);
+  const [listacenvironerror, setlistacenvironerror] = useState([]);
+
+  const get_ac1_warning = () => {
+    axios.get("http://localhost:3088/getWarninig").then((response) => {
+      set_warning_data(response.data);
+      setFaults(response.data);
+    });
+  }
+
+  const confirm = () => {
+    if(window.confirm('請問，確定要執行此動作?')){
+        // get_data();
+        get_ac1_warning();
+    }
+}
+
+  //初始給定一值  16 bits 告警
+  useEffect(() => {
+    get_ac1_warning();
+    const List_ac_environ_error = [
+      '鎖相告警',
+      '直流側硬件起故障',
+      '交流側硬件起故障',
+      '直流軟件起故障',
+      '電網諧振故障',
+      '輸入阻抗故障',
+      '輸入阻抗告警',
+      'CANB通信異常告警',
+      '系統存在地址衝突故障',
+      '系統主機存在地址衝突故障',
+      '模塊地址異常故障',
+      'DC電壓採集故障告警',
+      'AC電壓採集異常告警',
+      'DC側主計電器告警',
+      '過載告警'
+    ]
+
+    setlistacenvironerror(List_ac_environ_error);
+
+  },[]);
+
+
+
+  // 處理告警內容
+  const handlewarningcontent = (readwarningcontent) => {
+    const binarystring = readwarningcontent.toString(2).padStart(listacenvironerror.length, '0')
+    
+    const warningcolors = listacenvironerror.map((error, index) => {
+      const color = (binarystring.charAt(index) === '1') ? 'red' : 'green';
+      return `${error}: ${color}`;
+    });
+    
+
+    console.log('warning colors:', warningcolors);
+    // const color = (binarystring.charAt(index) === '1')
+  }
+
+
+  const handleWarningColor = (bit) => {
+    return bit === '1' ? 'red' : 'green';
+  }
 
   return (
     <Fragment>
@@ -690,10 +794,17 @@ const Fault = ({ setRedirect, setRedirectUrl, t }) => {
                 <FormGroup>
                   <br />
                   <ButtonGroup id="submit">
-                    <Button color="success" disabled={submitButtonDisabled} >{t('Submit')}</Button>
+                  {/* disabled={submitButtonDisabled} */}
+                    <Button color="success"  onClick={handleSubmit}>{t('Submit')}</Button>
+                  </ButtonGroup>
+                  {/* <ButtonGroup id="submit">
+                    <Button color="info" disabled={submitButtonDisabled} onClick={handle_test} >{t('test')}</Button>
+                  </ButtonGroup> */}
+                  <ButtonGroup id="submit">
+                    <Button color="info" onClick={handle_test} >{t('test')}</Button>
                   </ButtonGroup>
                   <ButtonGroup id="submit">
-                    <Button color="info" disabled={submitButtonDisabled} onClick={handle_test} >{t('test')}</Button>
+                    <Button color="warning"  onClick={confirm} >{('讀取')}</Button>
                   </ButtonGroup>
                 </FormGroup>
               </Col>
@@ -761,6 +872,27 @@ const Fault = ({ setRedirect, setRedirectUrl, t }) => {
                       headerClasses="bg-200 text-900"
                       {...paginationTableProps}
                     />
+
+                    <ul>
+                      {listacenvironerror.map((error, index) => (
+                        <li key={index} style={{ backgroundColor: handleWarningColor(warning_data.toString(2)[index]) }}>
+                            {error}
+                        </li>
+                      ))}
+                    </ul>
+                    {/* <BootstrapTable
+                      ref={table}
+                      bootstrap4
+                      keyField="id"
+                      data={faults}
+                      columns={columns}
+                      selectRow={selectRow(onSelect)}
+                      bordered={false}
+                      classes="table-dashboard table-striped table-sm fs--1 border-bottom mb-0 table-dashboard-th-nowrap"
+                      rowClasses="btn-reveal-trigger"
+                      headerClasses="bg-200 text-900"
+                      {...paginationTableProps}
+                    /> */}
                   </div>
                   <Row noGutters className="px-1 py-3 flex-center">
                     <Col xs="auto">

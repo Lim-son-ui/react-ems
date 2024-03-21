@@ -50,6 +50,8 @@ import Swal from 'sweetalert2';
 
 // import '@sweetalert2/theme-borderless'
 import '@sweetalert2/theme-wordpress-admin'
+import Materialtable from './Materialtable';
+
 
 const CombinedEquipments = ({ setRedirect, setRedirectUrl, t }) => {
   useEffect(() => {
@@ -433,10 +435,10 @@ const CombinedEquipments = ({ setRedirect, setRedirectUrl, t }) => {
       setToDoList(updatedToDoList);
       setUpdateId(0);
       
-      setSelectedStrategName("");
-      setSelectedMonthName("");
-      setSelectedStartTimeName("");
-      setSelectedEndTimeName("");
+      setSelectedStrategName(selectedStrategName);
+      setSelectedMonthName(selectedMonthName);
+      setSelectedStartTimeName(selectedStartTimeName);
+      setSelectedEndTimeName(selectedEndTimeName);
       setSelectedPowerName("");
 
       return;
@@ -446,7 +448,8 @@ const CombinedEquipments = ({ setRedirect, setRedirectUrl, t }) => {
       setToDoList([
         ...toDoList,
         {
-            id: `${selectedStartTimeName}`,
+            // id: `${selectedStartTimeName}`,
+            id: toDoList.length+1,
             selectedStrategName,
             selectedMonthName,
             selectedStartTimeName,
@@ -843,7 +846,10 @@ const CombinedEquipments = ({ setRedirect, setRedirectUrl, t }) => {
         rowClasses="btn-reveal-trigger"
         headerClasses="bg-200 text-900"
         /> */}
-        
+        <Materialtable/>
+
+
+
         <BootstrapTable 
           keyField='id' 
           // data={ toDoList }

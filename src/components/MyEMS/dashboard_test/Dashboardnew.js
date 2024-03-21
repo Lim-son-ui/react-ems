@@ -41,7 +41,7 @@ import Modalex from '../dashboard/Modalex';
 import EchartsDemo from '../Space/EchartsDemo';
 import MultipleLineChartnew from '../common/MultipleLineChartnew';
 import ReactEchartsCore from 'echarts-for-react';
-// import './Dashboardnew.css'
+import './Dashboardnew.css'
 
 // 就是table的嘗試
 import BarChartExample from '../common/BarChartExample';
