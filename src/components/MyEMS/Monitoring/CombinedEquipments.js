@@ -846,10 +846,7 @@ const CombinedEquipments = ({ setRedirect, setRedirectUrl, t }) => {
         rowClasses="btn-reveal-trigger"
         headerClasses="bg-200 text-900"
         /> */}
-        <Materialtable/>
-
-
-
+        
         <BootstrapTable 
           keyField='id' 
           // data={ toDoList }
@@ -950,6 +947,7 @@ const CombinedEquipments = ({ setRedirect, setRedirectUrl, t }) => {
         </CardBody>
       </Card>
 
+      <Materialtable/>
       {/* <ShowTable/> */}
       {/* <ShowTable>
 

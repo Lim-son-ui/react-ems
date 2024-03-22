@@ -1,67 +1,99 @@
 [
     {
-        "ac1_warn":"鎖相告警",
-        "ac2_warn":"鎖相告警"
+        "ac1_warn_sum":"鎖相告警",
+        "ac1_warn_environ":"正母線二級過壓告警",
+        "ac1_warn_hardware":"電網電壓高告警",
+        "ac1_warn_temp":"進風口環境溫度過高告警"
     },
     {
-        "ac1_warn":"直流側硬件起故障",
-        "ac2_warn":"直流側硬件起故障"
+        "ac1_warn_sum":"直流側硬件起故障",
+        "ac1_warn_environ":"負母線二級過壓告警",
+        "ac1_warn_hardware":"電網電壓低告警",
+        "ac1_warn_temp":"出風口環境溫度過高告警"
     },
     {
-        "ac1_warn":"交流側硬件起故障",
-        "ac2_warn":"交流側硬件起故障"
+        "ac1_warn_sum":"交流側硬件起故障",
+        "ac1_warn_environ":"模組A1相過流告警",
+        "ac1_warn_hardware":"電網電頻率高告警",
+        "ac1_warn_temp":"模組A2溫度過高告警"
     },
     {
-        "ac1_warn":"直流軟件起故障",
-        "ac2_warn":"直流軟件起故障"
+        "ac1_warn_sum":"直流軟件起故障",
+        "ac1_warn_environ":"模組B1相過流告警",
+        "ac1_warn_hardware":"電網電頻率低告警",
+        "ac1_warn_temp":"模組B2溫度過高告警"
     },
     {
-        "ac1_warn":"電網諧振故障",
-        "ac2_warn":"電網諧振故障"
+        "ac1_warn_sum":"電網諧振故障",
+        "ac1_warn_environ":"模組C1相過流告警",
+        "ac1_warn_hardware":"母線總壓過高告警",
+        "ac1_warn_temp":"模組C2溫度過高告警"
     },
     {
-        "ac1_warn":"輸入阻抗故障",
-        "ac2_warn":"輸入阻抗故障"
+        "ac1_warn_sum":"輸入阻抗故障",
+        "ac1_warn_environ":"模組A2相過流告警",
+        "ac1_warn_hardware":"母線總壓過低告警",
+        "ac1_warn_temp":"模組A1溫度過高告警"
     },
     {
-        "ac1_warn":"輸入阻抗告警",
-        "ac2_warn":"輸入阻抗告警"
+        "ac1_warn_sum":"輸入阻抗告警",
+        "ac1_warn_environ":"模組B2相過流告警",
+        "ac1_warn_hardware":"正母線一級過壓告警",
+        "ac1_warn_temp":"模組B1溫度過高告警"
     },
     {
-        "ac1_warn":"CANB通信異常告警",
-        "ac2_warn":"CANB通信異常告警"
+        "ac1_warn_sum":"CANB通信異常告警",
+        "ac1_warn_environ":"模組C2相過流告警",
+        "ac1_warn_hardware":"負母線一級過壓告警",
+        "ac1_warn_temp":"模組C1溫度過高告警"
     },
     {
-        "ac1_warn":"系統存在地址衝突故障",
-        "ac2_warn":"系統存在地址衝突故障"
+        "ac1_warn_sum":"系統存在地址衝突故障",
+        "ac1_warn_environ":"輔助電源故障",
+        "ac1_warn_hardware":"直流端口過壓告警",
+        "ac1_warn_temp":"模組A2溫度傳感器故障"
     },
     {
-        "ac1_warn":"系統主機存在地址衝突故障",
-        "ac2_warn":"系統主機存在地址衝突故障"
+        "ac1_warn_sum":"系統主機存在地址衝突故障",
+        "ac1_warn_environ":"開機CANA通信故障",
+        "ac1_warn_hardware":"直流端口欠壓告警",
+        "ac1_warn_temp":"模組B2溫度傳感器故障"
     },
     {
-        "ac1_warn":"模塊地址異常故障",
-        "ac2_warn":"模塊地址異常故障"
+        "ac1_warn_sum":"模塊地址異常故障",
+        "ac1_warn_environ":"風機1故障",
+        "ac1_warn_hardware":"電網相序告警",
+        "ac1_warn_temp":"模組C2溫度傳感器故障"
     },
     {
-        "ac1_warn":"DC電壓採集故障告警",
-        "ac2_warn":"DC電壓採集故障告警"
+        "ac1_warn_sum":"DC電壓採集故障告警",
+        "ac1_warn_environ":"風機2故障",
+        "ac1_warn_hardware":"逆變相序告警",
+        "ac1_warn_temp":"模組A1溫度傳感器故障"
     },
     {
-        "ac1_warn":"AC電壓採集異常告警",
-        "ac2_warn":"AC電壓採集異常告警"
+        "ac1_warn_sum":"AC電壓採集異常告警",
+        "ac1_warn_environ":"風機3故障",
+        "ac1_warn_hardware":"逆變幅值鎖定告警",
+        "ac1_warn_temp":"模組B1溫度傳感器故障"
     },
     {
-        "ac1_warn":"DC側主計電器告警",
-        "ac2_warn":"DC側主計電器告警"
+        "ac1_warn_sum":"DC側主計電器告警",
+        "ac1_warn_environ":"逆變過壓告警",
+        "ac1_warn_hardware":"交流輸出短路故障",
+        "ac1_warn_temp":"模組C1溫度傳感器故障"
     },
     {
-        "ac1_warn":"母線中點不均告警",
-        "ac2_warn":"母線中點不均告警"
+        "ac1_warn_sum":"母線中點不均告警",
+        "ac1_warn_environ":"逆變欠壓告警",
+        "ac1_warn_hardware":"交流電流採樣故障",
+        "ac1_warn_temp":"AC恆壓模式下電網接入故障"
     },
     {
-        "ac1_warn":"過載告警",
-        "ac2_warn":"過載告警"
+        "ac1_warn_sum":"過載告警",
+        "ac1_warn_environ":"急停故障",
+        "ac1_warn_hardware":"內部rs485通信故障",
+        "ac1_warn_temp":"DSP軟件版本不匹配故障"
     }
 
 ]

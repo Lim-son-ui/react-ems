@@ -6,7 +6,7 @@ import { COLUMNS } from './WARN_COLUMNS'
 
 
 function Reacttable() {
-    const read_warn_content = useState([635,736])
+    const read_warn_content = useState([635,736, 243, 1032])
 
     // console.log("this is 0")
     // console.log(read_warn_content[0])

@@ -13,6 +13,12 @@ import {
   DialogTitle,
   IconButton,
   Tooltip,
+
+
+
+  ThemeProvider,
+  createTheme,
+  useTheme
 } from '@mui/material';
 import {
   QueryClient,
@@ -35,7 +41,7 @@ import {
     Card,
     CardBody,
     Input
-} from 'reactstrap'
+} from 'reactstrap';
 // import {
 //     Breadcrumb,
 //     BreadcrumbItem,
@@ -55,6 +61,7 @@ import {
 //     Spinner,
 // } from 'reactstrap'
 
+import './Materialtable.css';
 
 const Example = () => {
   const [validationErrors, setValidationErrors] = useState({});
@@ -150,6 +157,53 @@ const Example = () => {
   );
 
 
+  const globalTheme = useTheme();
+  const tableTheme = useMemo(
+    () =>
+      createTheme({
+        palette: {
+          mode: globalTheme.palette.mode, //let's use the same dark/light mode as the global theme
+          primary: globalTheme.palette.secondary, //swap in the secondary color as the primary for the table
+          info: {
+            main: 'rgb(255,122,0)', //add in a custom color for the toolbar alert background stuff
+          },
+          background: {
+            default:
+              globalTheme.palette.mode === 'dark'
+                ? 'rgb(144,202,249)' //random light yellow color for the background in light mode
+                //'rgb(254,255,244)' //random light yellow color for the background in light mode
+                : '#000', //pure black table in dark mode for fun
+          },
+        },
+        typography: {
+          button: {
+            textTransform: 'none', //customize typography styles for all buttons in table by default
+            fontSize: '1.2rem',
+          },
+        },
+        components: {
+          MuiTooltip: {
+            styleOverrides: {
+              tooltip: {
+                fontSize: '1.1rem', //override to make tooltip font size larger
+              },
+            },
+          },
+          MuiSwitch: {
+            styleOverrides: {
+              thumb: {
+                color: 'black', //change the color of the switch thumb in the columns show/hide menu to pink
+              },
+            },
+          },
+        },
+      }),
+    [globalTheme],
+  );
+
+
+
+
   //call CREATE hook
   const { mutateAsync: createUser, isPending: isCreatingUser } =
     useCreateUser();
@@ -229,6 +283,26 @@ const Example = () => {
     editDisplayMode: 'modal', //default ('row', 'cell', 'table', and 'custom' are also available)
     enableEditing: true,
     getRowId: (row) => row.id,
+
+    //新增的部分~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-
+
+    muiTableHeadCellProps: {
+        sx:(theme) => ({
+            // color: theme.palette.text.secondary,
+            color: 'lightsalmon',
+        }),
+    },
+
+    muiTableBodyCellProps: ({ column }) => ({
+        sx: {
+            color: 'steelblue',
+            backgroundColor: 'darkgrey'
+        }
+    }),
+
+
+    //新增的部分~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-
+    
     muiToolbarAlertBannerProps: isLoadingUsersError
       ? {
           color: 'error',
@@ -238,6 +312,9 @@ const Example = () => {
     muiTableContainerProps: {
       sx: {
         minHeight: '500px',
+        // 新增的  如下
+        // backgroundColor: 'lightblue', // 設置背景色
+        //backgroundColor: 'steelblue', // 設置背景色
       },
     },
     onCreatingRowCancel: () => setValidationErrors({}),
@@ -426,7 +503,15 @@ const Example = () => {
             </Button>
         </Box>
 
-        <MaterialReactTable table={table} />
+        {/* <div className="material-table-container"> */}
+        <ThemeProvider theme={tableTheme}>
+            <MaterialReactTable 
+                    table={table} 
+                    className="materialtable_overlay"
+            />
+        </ThemeProvider>
+            
+        {/* </div> */}
     </div>
   );
 };

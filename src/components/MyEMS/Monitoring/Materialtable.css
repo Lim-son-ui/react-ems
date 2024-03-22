@@ -1,0 +1,9 @@
+.materialtable_overlay {
+    background-color: 	#007979;
+    background: radial-gradient(to top, #c5d5fa, #c3dc99);
+}
+
+.material-table-container {
+    /* position: relative; */
+    z-index: 5000; /* 比 navbar 的 z-index 更高 */
+  }
