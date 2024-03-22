@@ -37,6 +37,9 @@ import { APIBaseURL, settings } from '../../../config';
 import axios from 'axios';
 
 
+import Reacttable from '../common/Reacttable'
+
+
 const Fault = ({ setRedirect, setRedirectUrl, t }) => {
   let current_moment = moment();
 
@@ -655,7 +658,7 @@ const Fault = ({ setRedirect, setRedirectUrl, t }) => {
 
   // 以下跟告警有關
   //-----------------------------------------------------------------------------------------
-  const [warning_data, set_warning_data] = useState([]);
+  const [warning_data, set_warning_data] = useState([3]);
   const [listacenvironerror, setlistacenvironerror] = useState([]);
 
   const get_ac1_warning = () => {
@@ -873,13 +876,16 @@ const Fault = ({ setRedirect, setRedirectUrl, t }) => {
                       {...paginationTableProps}
                     />
 
-                    <ul>
+
+                    <Reacttable/>
+                    {/* 還在嘗試顯示告警 */}
+                    {/* <ul>
                       {listacenvironerror.map((error, index) => (
-                        <li key={index} style={{ backgroundColor: handleWarningColor(warning_data.toString(2)[index]) }}>
+                        <li key={index} style={{ backgroundColor: handleWarningColor((warning_data >> index) & 1) }}>
                             {error}
                         </li>
                       ))}
-                    </ul>
+                    </ul> */}
                     {/* <BootstrapTable
                       ref={table}
                       bootstrap4

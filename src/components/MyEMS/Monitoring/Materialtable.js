@@ -30,6 +30,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 // import { Cascader , Input } from 'antd';
 import { Cascader } from 'antd';
 import {
+    Row,
     Col,
     Card,
     CardBody,
@@ -376,45 +377,47 @@ const Example = () => {
 
         <Card className="bg-light mb-3">
             <CardBody className="p-3">
-                {/* <Col xs={3} sm={2}> */}
-                    <Cascader
-                    options={options}
-                    onChange={(value) => setSelectedStrategy(value)}
-                    placeholder="Select Strategy"
-                    value={selectedStrategy}
-                    />
-                {/* </Col> */}
-                {/* <Col xs={3} sm={2}> */}
-                    <Cascader
-                    options={options_month}
-                    onChange={(value) => setSelectedMonth(value)}
-                    placeholder="Select Month"
-                    value={selectedMonth}
-                    />
-                {/* </Col> */}
-                {/* <Col xs={3} sm={2}> */}
-                    <Cascader
-                    options={option_time}
-                    onChange={(value) => setSelectedStartTime(value)}
-                    placeholder="Select Start Time"
-                    value={selectedStartTime}
-                    />
-                {/* </Col> */}
-                {/* <Col xs={3} sm={2}> */}
-                    <Cascader
-                    options={option_time}
-                    onChange={(value) => setSelectedEndTime(value)}
-                    placeholder="Select End Time"
-                    value={selectedEndTime}
-                    />
-                {/* </Col> */}
-                {/* <Col xs={3} sm={2}> */}
-                    <Input
-                    value={selectedPower}
-                    onChange={(e) => setSelectedPower(e.target.value)}
-                    placeholder="Enter Power"
-                    />
-                {/* </Col> */}
+                <Row>
+                    <Col xs={3} sm={2}>
+                        <Cascader
+                        options={options}
+                        onChange={(value) => setSelectedStrategy(value)}
+                        placeholder="Select Strategy"
+                        value={selectedStrategy}
+                        />
+                    </Col>
+                    <Col xs={3} sm={2}>
+                        <Cascader
+                        options={options_month}
+                        onChange={(value) => setSelectedMonth(value)}
+                        placeholder="Select Month"
+                        value={selectedMonth}
+                        />
+                    </Col>
+                    <Col xs={3} sm={2}>
+                        <Cascader
+                        options={option_time}
+                        onChange={(value) => setSelectedStartTime(value)}
+                        placeholder="Select Start Time"
+                        value={selectedStartTime}
+                        />
+                    </Col>
+                    <Col xs={3} sm={2}>
+                        <Cascader
+                        options={option_time}
+                        onChange={(value) => setSelectedEndTime(value)}
+                        placeholder="Select End Time"
+                        value={selectedEndTime}
+                        />
+                    </Col>
+                    <Col xs={3} sm={2}>
+                        <Input
+                        value={selectedPower}
+                        onChange={(e) => setSelectedPower(e.target.value)}
+                        placeholder="Enter Power"
+                        />
+                    </Col>
+                </Row>
             </CardBody>
         </Card>
         <Box sx={{ marginBottom: '1rem' }}>
