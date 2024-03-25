@@ -15,10 +15,11 @@ import {
   Tooltip,
 
 
-
   ThemeProvider,
   createTheme,
-  useTheme
+  useTheme,
+  Select,
+  MenuItem
 } from '@mui/material';
 import {
   QueryClient,
@@ -62,6 +63,9 @@ import {
 // } from 'reactstrap'
 
 import './Materialtable.css';
+
+import option_time from './option_time'
+
 
 const Example = () => {
   const [validationErrors, setValidationErrors] = useState({});
@@ -268,6 +272,18 @@ const Example = () => {
   };
 
 
+  const handleSaveRow = ({ row, values }) => {
+    // tableData[row.index] = values;
+    // setTableData([...tableData]);
+  };
+
+  //------------------------------------------------------------------------
+
+
+
+  //------------------------------------------------------------------------
+  
+  
   //DELETE action
   const openDeleteConfirmModal = (row) => {
     if (window.confirm('Are you sure you want to delete this user?')) {
@@ -328,10 +344,12 @@ const Example = () => {
         <DialogContent
           sx={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}
         >
-          {internalEditComponents} {/* or render custom edit components here */}
+          {internalEditComponents} 
+          {/* or render custom edit components here */}
+
         </DialogContent>
         <DialogActions>
-          <MRT_EditActionButtons variant="text" table={table} row={row} />
+          {/* <MRT_EditActionButtons variant="text" table={table} row={row} /> */}
         </DialogActions>
       </>
     ),
@@ -340,9 +358,55 @@ const Example = () => {
       <>
         <DialogTitle variant="h3">Edit User</DialogTitle>
         <DialogContent
-          sx={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}
+          sx={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', zIndex: '1500' }}
         >
-          {internalEditComponents} {/* or render custom edit components here */}
+          {/* {internalEditComponents}  */}
+          {/* or render custom edit components here */}
+
+          
+          <Row>
+              <Cascader
+              sx={{zIndex: '2000'}}
+              options={options}
+              onChange={(value) => setSelectedStrategy(value)}
+              placeholder="Select Strategy"
+              value={selectedStrategy}
+              />
+          </Row>    
+          <Row>
+              <Cascader
+              options={options_month}
+              onChange={(value) => setSelectedMonth(value)}
+              placeholder="Select Month"
+              value={selectedMonth}
+              />
+          </Row>
+          <Row>
+              <Cascader
+              options={option_time}
+              onChange={(value) => setSelectedStartTime(value)}
+              placeholder="Select Start Time"
+              value={selectedStartTime}
+              />
+          </Row>
+          <Row>
+              <Cascader
+              options={option_time}
+              onChange={(value) => setSelectedEndTime(value)}
+              placeholder="Select End Time"
+              value={selectedEndTime}
+              />
+          </Row>
+          <Row>
+              <Input
+              value={selectedPower}
+              onChange={(e) => setSelectedPower(e.target.value)}
+              placeholder="Enter Power"
+              />
+          </Row>
+          
+          
+
         </DialogContent>
         <DialogActions>
           <MRT_EditActionButtons variant="text" table={table} row={row} />
@@ -351,10 +415,17 @@ const Example = () => {
     ),
     renderRowActions: ({ row, table }) => (
       <Box sx={{ display: 'flex', gap: '1rem' }}>
-        <Tooltip title="Edit">
-          <IconButton onClick={() => table.setEditingRow(row)}>
+        <Tooltip 
+          title="Edit"
+            editDisplayMode="row"
+            enableEditing
+            enableRowActions
+            muiEditTextFieldProps={{ variant: 'outlined' }}
+            onEditingRowSave={handleSaveRow}
+        >
+          {/* <IconButton onClick={() => table.setEditingRow(row)}> */}
             <EditIcon />
-          </IconButton>
+          {/* </IconButton> */}
         </Tooltip>
         <Tooltip title="Delete">
           <IconButton color="error" onClick={() => openDeleteConfirmModal(row)}>
@@ -389,15 +460,15 @@ const Example = () => {
 
   const options = [
     {
-      value: 'strategy1',
+      value: '充電',
       label: '充電',
     },
     {
-      value: 'strategy2',
+      value: '放電',
       label: '放電',
     },
     {
-        value: 'strategy3',
+        value: '待機',
         label: '待機',
     }
     // Add more strategy options as needed
@@ -427,25 +498,25 @@ const Example = () => {
     // Add more month options as needed
   ];
 
-  const option_time = [
-    {
-      value: '00:00',
-      label: '00:00',
-    },
-    {
-      value: '01:00',
-      label: '01:00',
-    },
-    {
-      value: '02:00',
-      label: '02:00',
-    },
-    {
-      value: '03:00',
-      label: '03:00',
-    },
-    // Add more time options as needed
-  ];
+  // const option_time = [
+  //   {
+  //     value: '00:00',
+  //     label: '00:00',
+  //   },
+  //   {
+  //     value: '01:00',
+  //     label: '01:00',
+  //   },
+  //   {
+  //     value: '02:00',
+  //     label: '02:00',
+  //   },
+  //   {
+  //     value: '03:00',
+  //     label: '03:00',
+  //   },
+  //   // Add more time options as needed
+  // ];
 
 
   return (
@@ -506,8 +577,26 @@ const Example = () => {
         {/* <div className="material-table-container"> */}
         <ThemeProvider theme={tableTheme}>
             <MaterialReactTable 
+                    columns={[
+                              { accessorKey: 'strategy', header: 'strategy' },
+                              { accessorKey: 'month', header: 'month' },
+                              { accessorKey: 'starttime', header: 'starttime' },
+                              {
+                                accessorKey: 'endtime',
+                                editSelectOptions: usStates,
+                                editVariant: 'select',
+                                header: 'endtime',
+                              },
+                              { accessorKey: 'power', header: 'power' },
+                            ]}
                     table={table} 
                     className="materialtable_overlay"
+                    editDisplayMode="row"
+                    enableEditing
+                    enableRowActions
+                    muiEditTextFieldProps={{ variant: 'outlined' }}
+                    onEditingRowSave={handleSaveRow}
+                    
             />
         </ThemeProvider>
             

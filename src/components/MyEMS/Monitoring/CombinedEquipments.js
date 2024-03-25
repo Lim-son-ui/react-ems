@@ -51,6 +51,7 @@ import Swal from 'sweetalert2';
 // import '@sweetalert2/theme-borderless'
 import '@sweetalert2/theme-wordpress-admin'
 import Materialtable from './Materialtable';
+import New_material_crud from './New_material_crud'
 
 
 const CombinedEquipments = ({ setRedirect, setRedirectUrl, t }) => {
@@ -947,7 +948,15 @@ const CombinedEquipments = ({ setRedirect, setRedirectUrl, t }) => {
         </CardBody>
       </Card>
 
-      <Materialtable/>
+      <Row>
+        <Col xs="auto">
+          <New_material_crud/>
+        </Col>
+        <Col xs="auto">
+          <Materialtable/>
+        </Col>
+      </Row>
+      
       {/* <ShowTable/> */}
       {/* <ShowTable>
 
