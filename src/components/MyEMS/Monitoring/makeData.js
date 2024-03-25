@@ -137,3 +137,101 @@ export const fakeData = [
     'Wyoming',
     'Puerto Rico',
   ];
+
+
+
+  export const options_strategy = [
+    {
+        value: '充電',
+        label: '充電',
+    },
+    {
+        value: '放電',
+        label: '放電',
+    },
+    {
+      value: '待機',
+      label: '待機',
+    },
+  ];
+//----------------------------------------------------
+export const options_month = [
+    {
+      value: '1',
+      label: '1',
+    },
+    {
+      value: '2',
+      label: '2',
+    },
+    {
+      value: '3',
+      label: '3',
+    },
+    {
+      value: '4',
+      label: '4',
+    },
+    {
+      value: '5',
+      label: '5',
+    },
+    {
+      value: '6',
+      label: '6',
+    },
+    {
+      value: '7',
+      label: '7',
+    },
+    {
+      value: '8',
+      label: '8',
+    },
+    {
+      value: '9',
+      label: '9',
+    },
+    {
+      value: '10',
+      label: '10',
+    },
+    {
+      value: '11',
+      label: '11',
+    },
+    {
+      value: '12',
+      label: '12',
+    },
+  ];
+
+//----------------------------------------------------
+export const option_minute = []
+
+for(let i = 0; i <60; i++){
+    const minutelabel = i + '分';
+    const minuteOption = {
+        value: minutelabel,
+        label: minutelabel,
+    }
+
+    option_minute.push(minuteOption);
+}
+
+export const option_time = []
+
+
+for(let i = 0; i < 24; i++){
+    const timelabel = i + '時';
+    const timeOption = {
+        value: timelabel,
+        label: timelabel,
+        //children: option_minute
+    }
+
+    option_time.push(timeOption);
+}
+
+
+

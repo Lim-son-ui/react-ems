@@ -11,7 +11,7 @@ import {
   useQuery,
   useQueryClient,
 } from '@tanstack/react-query';
-import { fakeData, usStates } from './makeData';
+import { fakeData, usStates, options_strategy, options_month, option_time, option_minute } from './makeData';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 
@@ -27,59 +27,80 @@ const Example = () => {
         size: 80,
       },
       {
-        accessorKey: 'firstName',
-        header: 'First Name',
+        accessorKey: 'strategy',
+        header: 'strategy',
+        editSelectOptions: options_strategy,
         muiEditTextFieldProps: {
-          required: true,
-          error: !!validationErrors?.firstName,
-          helperText: validationErrors?.firstName,
-          onFocus: () =>
-            setValidationErrors({
-              ...validationErrors,
-              firstName: undefined,
-            }),
+          select: true,
+          error: !!validationErrors?.strategy,
+          helperText: validationErrors?.strategy,
         },
       },
       {
-        accessorKey: 'lastName',
-        header: 'Last Name',
+        accessorKey: 'month',
+        header: 'month',
+        editSelectOptions: options_month,
         muiEditTextFieldProps: {
-          required: true,
-          error: !!validationErrors?.lastName,
-          helperText: validationErrors?.lastName,
-          onFocus: () =>
-            setValidationErrors({
-              ...validationErrors,
-              lastName: undefined,
-            }),
+          select: true,
+          error: !!validationErrors?.month,
+          helperText: validationErrors?.month,
         },
       },
       {
-        accessorKey: 'email',
-        header: 'Email',
+        accessorKey: 'starttime',
+        header: 'starttime',
         muiEditTextFieldProps: {
           type: 'email',
           required: true,
-          error: !!validationErrors?.email,
-          helperText: validationErrors?.email,
+          error: !!validationErrors?.starttime,
+          helperText: validationErrors?.starttime,
           onFocus: () =>
             setValidationErrors({
               ...validationErrors,
-              email: undefined,
+              starttime: undefined,
             }),
         },
       },
+      
       {
-        accessorKey: 'state',
-        header: 'State',
+        accessorKey: 'endtime',
+        header: 'endtime',
         editVariant: 'select',
-        editSelectOptions: usStates,
+        editSelectOptions: option_time,
         muiEditTextFieldProps: {
           select: true,
-          error: !!validationErrors?.state,
-          helperText: validationErrors?.state,
+          error: !!validationErrors?.endtime,
+          helperText: validationErrors?.endtime,
         },
+        nestedColumns: [
+          {
+            accessorKey: 'endminute',
+            header: 'endminute',
+            editVariant: 'select',
+            editSelectOptions: option_minute,
+            muiEditTextFieldProps: {
+              select: true,
+              error: !!validationErrors?.endminute,
+              helperText: validationErrors?.endminute,
+            },
+          }
+        ]
       },
+      {
+        accessorKey: 'power',
+        header: 'power',
+        muiEditTextFieldProps: {
+          type: 'email',
+          required: true,
+          error: !!validationErrors?.power,
+          helperText: validationErrors?.power,
+          onFocus: () =>
+            setValidationErrors({
+              ...validationErrors,
+              power: undefined,
+            }),
+        },
+      }
     ],
     [validationErrors]
   );
@@ -259,10 +280,10 @@ email
 
 function validateUser(user) {
 return {
-  firstName: !validateRequired(user.firstName)
-    ? 'First Name is Required'
-    : '',
-  lastName: !validateRequired(user.lastName) ? 'Last Name is Required' : '',
-  email: !validateEmail(user.email) ? 'Incorrect Email Format' : '',
+  // firstName: !validateRequired(user.firstName)
+  //   ? 'First Name is Required'
+  //   : '',
+  // lastName: !validateRequired(user.lastName) ? 'Last Name is Required' : '',
+  // email: !validateEmail(user.email) ? 'Incorrect Email Format' : '',
 };
 }

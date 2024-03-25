@@ -948,14 +948,14 @@ const CombinedEquipments = ({ setRedirect, setRedirectUrl, t }) => {
         </CardBody>
       </Card>
 
-      <Row>
-        <Col xs="auto">
+      {/* <Row> */}
+        {/* <Col xs="auto"> */}
           <New_material_crud/>
-        </Col>
-        <Col xs="auto">
-          <Materialtable/>
-        </Col>
-      </Row>
+        {/* </Col>
+        <Col xs="auto"> */}
+          {/* <Materialtable/> */}
+        {/* </Col>
+      </Row> */}
       
       {/* <ShowTable/> */}
       {/* <ShowTable>
