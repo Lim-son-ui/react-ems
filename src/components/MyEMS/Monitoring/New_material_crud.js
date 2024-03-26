@@ -5,6 +5,10 @@ import {
 } from 'material-react-table';
 import { Box, Button, IconButton, Tooltip } from '@mui/material';
 import {
+    Row,
+    Col,
+} from 'reactstrap'
+import {
   QueryClient,
   QueryClientProvider,
   useMutation,
@@ -15,17 +19,20 @@ import { fakeData, usStates, options_strategy, options_month, option_time, optio
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 
+
+import axios from 'axios';
+
 const Example = () => {
   const [validationErrors, setValidationErrors] = useState({});
 
   const columns = useMemo(
     () => [
-      {
-        accessorKey: 'id',
-        header: 'Id',
-        enableEditing: false,
-        size: 80,
-      },
+    //   {
+    //     accessorKey: 'id',
+    //     header: 'Id',
+    //     enableEditing: false,
+    //     size: 80,
+    //   },
       {
         accessorKey: 'strategy',
         header: 'strategy',
@@ -49,19 +56,25 @@ const Example = () => {
       {
         accessorKey: 'starttime',
         header: 'starttime',
+        editVariant: 'select',
+        editSelectOptions: option_time,
         muiEditTextFieldProps: {
-          type: 'email',
-          required: true,
+          select: true,
           error: !!validationErrors?.starttime,
           helperText: validationErrors?.starttime,
-          onFocus: () =>
-            setValidationErrors({
-              ...validationErrors,
-              starttime: undefined,
-            }),
         },
       },
-      
+      {
+        accessorKey: 'startminute',
+        header: 'startminute',
+        editVariant: 'select',
+        editSelectOptions: option_minute,
+        muiEditTextFieldProps: {
+          select: true,
+          error: !!validationErrors?.startminute,
+          helperText: validationErrors?.startminute,
+        },
+      },
       {
         accessorKey: 'endtime',
         header: 'endtime',
@@ -72,19 +85,17 @@ const Example = () => {
           error: !!validationErrors?.endtime,
           helperText: validationErrors?.endtime,
         },
-        nestedColumns: [
-          {
-            accessorKey: 'endminute',
-            header: 'endminute',
-            editVariant: 'select',
-            editSelectOptions: option_minute,
-            muiEditTextFieldProps: {
-              select: true,
-              error: !!validationErrors?.endminute,
-              helperText: validationErrors?.endminute,
-            },
-          }
-        ]
+      },
+      {
+        accessorKey: 'endminute',
+        header: 'endminute',
+        editVariant: 'select',
+        editSelectOptions: option_minute,
+        muiEditTextFieldProps: {
+          select: true,
+          error: !!validationErrors?.endminute,
+          helperText: validationErrors?.endminute,
+        },
       },
       {
         accessorKey: 'power',
@@ -138,6 +149,76 @@ const Example = () => {
     }
   };
 
+   //新增的部分~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-
+   //主要用於 確定要完整新增資料  0326新增
+   const confirmm = () => {
+        if(window.confirm('請問，確定要執行送出?')){
+        confirm_submit();
+        }
+    }
+
+    const delet = () => {
+        axios.delete("http://localhost:3088/del_getData");
+    }
+    const confirm_queryClient = useQueryClient();
+    const confirm_submit = async () => {
+        
+        // confirm_queryClient.getQueryData(['users'], (allschedule) => {
+           
+        // })
+        //console.log(confirm_data);
+        delet();
+        const confirm_data = confirm_queryClient.getQueryData(['users']);
+        //axios.delete("http://localhost:3088/del_getData");
+        console.log("this is confirm data")
+        console.log(confirm_data)
+
+        if(confirm_data){
+            try{
+
+                //axios.delete("http://localhost:3088/del_getData");
+
+                // confirm_data.map((val) => {
+                confirm_data.map((val, key) => {
+                    // fetchedUsers.forEach((val) => {
+                    // 解析選定的開始時間字符串，假設它的格式是 "12時30分"    
+                    //if( val.starttime && val.startminute && val.endtime && val.endminute) {
+                                        
+                        const  hourStr = val.starttime.split('時')
+                        console.log("this is hourstr")
+                        console.log(hourStr)
+                        const  startTimeHour = parseInt(hourStr, 10);
+                        const  minuteStr = val.startminute.split('分')
+                        const  startTimeMinute = parseInt(minuteStr, 10);
+        
+                        const end_hourStr = val.endtime.split('時')
+                        const endTimeHour = parseInt(end_hourStr, 10);
+                        const end_minuteStr = val.endminute.split('分')
+                        const endTimeMinute = parseInt(end_minuteStr, 10);
+        
+                        axios.post("http://localhost:3088/write_addData", {
+                            startTimeHour,
+                            startTimeMinute,
+                            endTimeHour,
+                            endTimeMinute
+                        }).then(() => {
+                            // 請求成功處理
+                        }).catch((error) => {
+                            // 請求失敗處理
+                            console.error("Error:", error);
+                        });
+                    //}
+                });
+            }
+            catch(error){
+                console.error("error:", error);
+            }
+        }
+        
+    };
+
+   //新增的部分~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-
+
   const table = useMaterialReactTable({
     columns,
     data: fetchedUsers,
@@ -145,6 +226,29 @@ const Example = () => {
     editDisplayMode: 'row',
     enableEditing: true,
     getRowId: (row) => row.id,
+    positionActionsColumn: 'last',
+
+    //新增的部分~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-
+
+    muiTableHeadCellProps: {
+        sx:(theme) => ({
+            // color: theme.palette.text.secondary,
+            color: 'snow',
+            // backgroundColor: 'darkcyan'
+            backgroundColor: 'darkslategray'
+        }),
+    },
+
+    muiTableBodyCellProps: ({ column }) => ({
+        sx: {
+            color: 'darkblue',
+            // backgroundColor: 'cadetblue'
+            backgroundColor: 'honeydew'
+        }
+    }),
+
+    //新增的部分~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-
+
     muiToolbarAlertBannerProps: isLoadingUsersError
       ? {
           color: 'error',
@@ -154,6 +258,7 @@ const Example = () => {
     muiTableContainerProps: {
       sx: {
         minHeight: '500px',
+        // backgroundColor: 'black'
       },
     },
     onCreatingRowCancel: () => setValidationErrors({}),
@@ -175,14 +280,29 @@ const Example = () => {
       </Box>
     ),
     renderTopToolbarCustomActions: ({ table }) => (
-      <Button
-        variant="contained"
-        onClick={() => {
-          table.setCreatingRow(true);
-        }}
-      >
-        Create New User
-      </Button>
+      <div>
+        <Row>
+            {/* <Col xs={6} sm={3}> */}
+                <Button
+                    variant="contained"
+                    onClick={() => {
+                    table.setCreatingRow(true);
+                    }}
+                >
+                    新增排程
+                </Button>
+            {/* </Col>
+            <Col xs={6} sm={3}> */}
+                <Button
+                    color="success"
+                    variant="contained"
+                    onClick={confirmm}
+                >
+                    送出
+                </Button>
+            {/* </Col> */}
+        </Row>
+      </div>
     ),
     state: {
       isLoading: isLoadingUsers,

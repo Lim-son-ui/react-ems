@@ -55,35 +55,35 @@ import New_material_crud from './New_material_crud'
 
 
 const CombinedEquipments = ({ setRedirect, setRedirectUrl, t }) => {
-  useEffect(() => {
-    let is_logged_in = getCookieValue('is_logged_in');
-    let user_name = getCookieValue('user_name');
-    let user_display_name = getCookieValue('user_display_name');
-    let user_uuid = getCookieValue('user_uuid');
-    let token = getCookieValue('token');
-    if (checkEmpty(is_logged_in) || checkEmpty(token)|| checkEmpty(user_uuid) || !is_logged_in) {
-      setRedirectUrl(`/authentication/basic/login`);
-      setRedirect(true);
-    } else {
-      //update expires time of cookies
-      createCookie('is_logged_in', true, settings.cookieExpireTime);
-      createCookie('user_name', user_name, settings.cookieExpireTime);
-      createCookie('user_display_name', user_display_name, settings.cookieExpireTime);
-      createCookie('user_uuid', user_uuid, settings.cookieExpireTime);
-      createCookie('token', token, settings.cookieExpireTime);
-    }
-  });
+  // useEffect(() => {
+  //   let is_logged_in = getCookieValue('is_logged_in');
+  //   let user_name = getCookieValue('user_name');
+  //   let user_display_name = getCookieValue('user_display_name');
+  //   let user_uuid = getCookieValue('user_uuid');
+  //   let token = getCookieValue('token');
+  //   if (checkEmpty(is_logged_in) || checkEmpty(token)|| checkEmpty(user_uuid) || !is_logged_in) {
+  //     setRedirectUrl(`/authentication/basic/login`);
+  //     setRedirect(true);
+  //   } else {
+  //     //update expires time of cookies
+  //     createCookie('is_logged_in', true, settings.cookieExpireTime);
+  //     createCookie('user_name', user_name, settings.cookieExpireTime);
+  //     createCookie('user_display_name', user_display_name, settings.cookieExpireTime);
+  //     createCookie('user_uuid', user_uuid, settings.cookieExpireTime);
+  //     createCookie('token', token, settings.cookieExpireTime);
+  //   }
+  // });
 
-  useEffect(() => {
-    let timer = setInterval(() => {
-      let is_logged_in = getCookieValue('is_logged_in');
-      if (is_logged_in === null || !is_logged_in) {
-        setRedirectUrl(`/authentication/basic/login`);
-        setRedirect(true);
-      }
-    }, 1000);
-    return () => clearInterval(timer);
-  }, [setRedirect, setRedirectUrl]);
+  // useEffect(() => {
+  //   let timer = setInterval(() => {
+  //     let is_logged_in = getCookieValue('is_logged_in');
+  //     if (is_logged_in === null || !is_logged_in) {
+  //       setRedirectUrl(`/authentication/basic/login`);
+  //       setRedirect(true);
+  //     }
+  //   }, 1000);
+  //   return () => clearInterval(timer);
+  // }, [setRedirect, setRedirectUrl]);
 
   // State
   const [selectedSpaceName, setSelectedSpaceName] = useState(undefined);
