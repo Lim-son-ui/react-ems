@@ -21,6 +21,8 @@ import SidePanelModal from '../components/side-panel/SidePanelModal';
 import { getPageName } from '../helpers/utils';
 
 // const DashboardRoutes = loadable(() => import('./DashboardRoutes'));
+
+// 以下為主要路徑的宣告地點 
 const DashboardRoutes = loadable(() => import('./MyEMSRoutes'));
 
 const DashboardLayout = ({ location }) => {

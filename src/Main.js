@@ -114,38 +114,38 @@ const Main = props => {
     // eslint-disable-next-line
   }, [language]);
 
-  useEffect(() => {
-    const mousemove = () => {
-      let user_name = getCookieValue('user_name');
-      let user_display_name = getCookieValue('user_display_name');
-      let user_uuid = getCookieValue('user_uuid');
-      let token = getCookieValue('token');
-      if (checkEmpty(token) || checkEmpty(user_uuid)) return;
-      createCookie('is_logged_in', true, settings.cookieExpireTime);
-      createCookie('user_name', user_name, settings.cookieExpireTime);
-      createCookie('user_display_name', user_display_name, settings.cookieExpireTime);
-      createCookie('user_uuid', user_uuid, settings.cookieExpireTime);
-      createCookie('token', token, settings.cookieExpireTime);
-    };
-    const mousedown = () => {
-      let user_name = getCookieValue('user_name');
-      let user_display_name = getCookieValue('user_display_name');
-      let user_uuid = getCookieValue('user_uuid');
-      let token = getCookieValue('token');
-      if (checkEmpty(token) || checkEmpty(user_uuid)) return;
-      createCookie('is_logged_in', true, settings.cookieExpireTime);
-      createCookie('user_name', user_name, settings.cookieExpireTime);
-      createCookie('user_display_name', user_display_name, settings.cookieExpireTime);
-      createCookie('user_uuid', user_uuid, settings.cookieExpireTime);
-      createCookie('token', token, settings.cookieExpireTime);
-    };
-    window.addEventListener('mousemove', mousemove);
-    window.addEventListener('mousedown', mousedown);
-    return () => {
-      window.removeEventListener('mousedown', mousedown);
-      window.removeEventListener('mousemove', mousemove);
-    };
-  }, []);
+  // useEffect(() => {
+  //   const mousemove = () => {
+  //     let user_name = getCookieValue('user_name');
+  //     let user_display_name = getCookieValue('user_display_name');
+  //     let user_uuid = getCookieValue('user_uuid');
+  //     let token = getCookieValue('token');
+  //     if (checkEmpty(token) || checkEmpty(user_uuid)) return;
+  //     createCookie('is_logged_in', true, settings.cookieExpireTime);
+  //     createCookie('user_name', user_name, settings.cookieExpireTime);
+  //     createCookie('user_display_name', user_display_name, settings.cookieExpireTime);
+  //     createCookie('user_uuid', user_uuid, settings.cookieExpireTime);
+  //     createCookie('token', token, settings.cookieExpireTime);
+  //   };
+  //   const mousedown = () => {
+  //     let user_name = getCookieValue('user_name');
+  //     let user_display_name = getCookieValue('user_display_name');
+  //     let user_uuid = getCookieValue('user_uuid');
+  //     let token = getCookieValue('token');
+  //     if (checkEmpty(token) || checkEmpty(user_uuid)) return;
+  //     createCookie('is_logged_in', true, settings.cookieExpireTime);
+  //     createCookie('user_name', user_name, settings.cookieExpireTime);
+  //     createCookie('user_display_name', user_display_name, settings.cookieExpireTime);
+  //     createCookie('user_uuid', user_uuid, settings.cookieExpireTime);
+  //     createCookie('token', token, settings.cookieExpireTime);
+  //   };
+  //   window.addEventListener('mousemove', mousemove);
+  //   window.addEventListener('mousedown', mousedown);
+  //   return () => {
+  //     window.removeEventListener('mousedown', mousedown);
+  //     window.removeEventListener('mousemove', mousemove);
+  //   };
+  // }, []);
 
   if (!isLoaded) {
     toggleStylesheet({ isRTL, isDark }, () => setIsLoaded(true));

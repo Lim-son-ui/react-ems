@@ -112,6 +112,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "test": "react-scripts test",
     "eject": "react-scripts eject",
     "scss": "gulp",
     "analyze": "npx source-map-explorer 'build/static/js/*.js'"

@@ -7,8 +7,8 @@ import {
   Spinner, } from 'reactstrap';
 import CardSummary from '../common/CardSummary';
 
-import LineChart from '../common/LineChart';
-import LineChartnew from '../common/LineChartnew';
+// import LineChart from '../common/LineChart';
+// import LineChartnew from '../common/LineChartnew';
 
 import { toast } from 'react-toastify';
 
@@ -39,7 +39,7 @@ import Modalex from '../dashboard/Modalex';
 
 
 import EchartsDemo from '../Space/EchartsDemo';
-import MultipleLineChartnew from '../common/MultipleLineChartnew';
+// import MultipleLineChartnew from '../common/MultipleLineChartnew';
 import ReactEchartsCore from 'echarts-for-react';
 import './Dashboardnew.css'
 
@@ -757,12 +757,12 @@ const Dashboardnew = ({ setRedirect, setRedirectUrl, t }) => {
     <Fragment>
 
 
-      <MultipleLineChartnew reportingTitle={t('折線圖1')}
+      {/* <MultipleLineChartnew reportingTitle={t('折線圖1')}
         baseTitle=''
         labels={aa}
         data={bb}
         options={cc}>
-      </MultipleLineChartnew>
+      </MultipleLineChartnew> */}
       <EchartsDemo/>
 
 
@@ -873,12 +873,12 @@ const Dashboardnew = ({ setRedirect, setRedirectUrl, t }) => {
             options={spaceInputLineChartOptions}>
           </LineChart> */}
           {/* 帶出一天的頻率 */}
-          <LineChartnew reportingTitle={("頻率圖")}
+          {/* <LineChartnew reportingTitle={("頻率圖")}
             baseTitle=''
             labels={spaceInputLineChartLabels}
             data={spaceInputLineChartData}
             options={spaceInputLineChartOptions}>
-          </LineChartnew>
+          </LineChartnew> */}
 
           {/* 本年成本 */}
           {/* <LineChart reportingTitle={t("This Year's Costs CATEGORY VALUE UNIT", { 'CATEGORY': null, 'VALUE': null, 'UNIT': null })}

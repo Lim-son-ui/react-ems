@@ -5,7 +5,7 @@ import {
   Row,
   Spinner, } from 'reactstrap';
 import CardSummary from '../common/CardSummary';
-import LineChart from '../common/LineChart';
+// import LineChart from '../common/LineChart';
 import { toast } from 'react-toastify';
 import SharePie from '../common/SharePie';
 import loadable from '@loadable/component';
@@ -606,7 +606,7 @@ const Dashboard = ({ setRedirect, setRedirectUrl, t }) => {
             footnote={t('Per Unit Area')}
             footunit={"/M²"} >
           </BarChart>
-          <LineChart reportingTitle={t("This Year's Consumption CATEGORY VALUE UNIT", { 'CATEGORY': null, 'VALUE': null, 'UNIT': null })}
+          {/* <LineChart reportingTitle={t("This Year's Consumption CATEGORY VALUE UNIT", { 'CATEGORY': null, 'VALUE': null, 'UNIT': null })}
             baseTitle=''
             labels={spaceInputLineChartLabels}
             data={spaceInputLineChartData}
@@ -617,7 +617,7 @@ const Dashboard = ({ setRedirect, setRedirectUrl, t }) => {
             labels={spaceCostLineChartLabels}
             data={spaceCostLineChartData}
             options={spaceCostLineChartOptions}>
-          </LineChart>
+          </LineChart> */}
       </div>
       <div className='wrapper'>
 

@@ -21,7 +21,7 @@ import loadable from '@loadable/component';
 import Cascader from 'rc-cascader';
 import CardSummary from '../common/CardSummary';
 import MultiTrendChart from '../common/MultiTrendChart';
-import MultipleLineChart from '../common/MultipleLineChart';
+// import MultipleLineChart from '../common/MultipleLineChart';
 import SharePie from '../common/SharePie';
 import { getCookieValue, createCookie, checkEmpty } from '../../../helpers/utils';
 import withRedirect from '../../../hoc/withRedirect';
@@ -1099,12 +1099,12 @@ const SpaceEnergyCategory = ({ setRedirect, setRedirectUrl, t }) => {
         options={spaceReportingOptions}>
       </MultiTrendChart>
 
-      <MultipleLineChart reportingTitle={t('Operating Characteristic Curve')}
+      {/* <MultipleLineChart reportingTitle={t('Operating Characteristic Curve')}
         baseTitle=''
         labels={parameterLineChartLabels}
         data={parameterLineChartData}
         options={parameterLineChartOptions}>
-      </MultipleLineChart>
+      </MultipleLineChart> */}
 
       <WorkingDaysConsumptionTable
        data={workingDaysConsumptionTableData}
