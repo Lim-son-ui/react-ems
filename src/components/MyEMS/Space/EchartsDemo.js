@@ -26,7 +26,8 @@ function EchartsDemo() {
     const option = {
         title: {
             // text: 'Temperature Change in the Coming Week'
-            text: '日期統計'
+            // text: '日期統計'
+            text: '溫度折線圖'
           },
           tooltip: {
             trigger: 'axis'

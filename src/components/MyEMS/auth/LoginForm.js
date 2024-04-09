@@ -28,11 +28,15 @@ const LoginForm = ({ setRedirect, hasLabel, layout, t }) => {
   const handleSubmit = e => {
     e.preventDefault();
     let isResponseOK = false;
+    console.log(captchaCode)
     if (captchaCode.toLowerCase() !== code.toLowerCase()) {
       toast.error(t('Captcha Error'));
+
       handleRefreshCaptcha();
       return false;
     }
+
+    // 所以他這個畫面  驗證1.email 2.paswd 3.captcha   只是帶入資料  主要還是要依照 api對照的內容
     fetch(APIBaseURL + '/users/login', {
       method: 'PUT',
       body: JSON.stringify({ data: { email: email, password: password } }),
@@ -87,7 +91,7 @@ const LoginForm = ({ setRedirect, hasLabel, layout, t }) => {
   const toggleVisibility = () => {
     setInputType(inputType === 'password' ? 'text' : 'password');
   };
-
+  // 重新刷新驗證碼
   const handleRefreshCaptcha = () => {
     setCode('');
     captchaRef.current.refresh();
@@ -163,7 +167,8 @@ const LoginForm = ({ setRedirect, hasLabel, layout, t }) => {
         </Col>
       </Row>
       <FormGroup>
-        <Button color="primary" block className="mt-3" disabled={isDisabled}>
+        {/* <Button color="primary" block className="mt-3" disabled={isDisabled}> */}
+        <Button color="primary" block className="mt-3" >
           {t('Log in')}
         </Button>
       </FormGroup>

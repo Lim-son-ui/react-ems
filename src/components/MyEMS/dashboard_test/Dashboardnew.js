@@ -7,13 +7,14 @@ import {
   Spinner, } from 'reactstrap';
 import CardSummary from '../common/CardSummary';
 
-// import LineChart from '../common/LineChart';
-// import LineChartnew from '../common/LineChartnew';
+import LineChart from '../common/LineChart';
+import LineChartnew from '../common/LineChartnew';
 
 import { toast } from 'react-toastify';
 
 import SharePie from '../common/SharePie';
 import SharePienew from '../common/SharePienew';
+import SharePienew_doughnut from '../common/SharePienew_doughnut';
 
 
 import loadable from '@loadable/component';
@@ -39,7 +40,7 @@ import Modalex from '../dashboard/Modalex';
 
 
 import EchartsDemo from '../Space/EchartsDemo';
-// import MultipleLineChartnew from '../common/MultipleLineChartnew';
+import MultipleLineChartnew from '../common/MultipleLineChartnew';
 import ReactEchartsCore from 'echarts-for-react';
 import './Dashboardnew.css'
 
@@ -55,6 +56,7 @@ import HorizontalBarChart from './HorizontalBarChart';
 import ApexCharts from './Apexchart';
 import Apexchart from './Apexchart';
 import Apexchart2 from './Apexchart2';
+import Echarts from 'echarts/lib/echarts';
 
 
 
@@ -135,8 +137,16 @@ const Dashboardnew = ({ setRedirect, setRedirectUrl, t }) => {
   const [thisMonthInputCardSummaryList, setThisMonthInputCardSummaryList] = useState([]);
   const [thisMonthCostCardSummaryList, setThisMonthCostCardSummaryList] = useState([]);
   const [barLabels, setBarLabels] = useState([]);
-  const [totalInTCE, setTotalInTCE] = useState({});
-  const [totalInTCO2E, setTotalInTCO2E] = useState({});
+  const [totalInTCE, setTotalInTCE] = useState({
+                                          'increment_rate':"第1 rack",
+                                          'value_per_unit_area':"3359",
+                                          'value':"320"
+                                        });
+  const [totalInTCO2E, setTotalInTCO2E] = useState({
+    'increment_rate':"第2 rack",
+    'value_per_unit_area':"3270",
+    'value':"317"
+  });
 
   const [spaceInputLineChartLabels, setSpaceInputLineChartLabels] = useState([]);
   
@@ -177,7 +187,7 @@ const Dashboardnew = ({ setRedirect, setRedirectUrl, t }) => {
   // const lastYearBarList1 = [3.341, 3.336, 3.321];
   const lastYearBarList1 = [31, 29, 11];
   // const thisYearBarList1 = [];
-  const thisYearBarList1 = [1, 2, 1];
+  const thisYearBarList1 = [3, 2, 3];
   // const thisYearBarList1 = [3276, 3284, 3269];
 
 
@@ -763,26 +773,51 @@ const Dashboardnew = ({ setRedirect, setRedirectUrl, t }) => {
         data={bb}
         options={cc}>
       </MultipleLineChartnew> */}
-      <EchartsDemo/>
+      <Row noGutters>      
+      <Col>
+        {/* <Col className="mb-5 pr-lg-2 mb-5"> */}
+          <EchartsDemo/>
+        </Col>
+        <Col>
+        {/* <Col className="mb-5 pr-lg-2 mb-5"> */}
+          <Apexchart2/>
+        </Col>
+        {/* <Col className="mb-5 pr-lg-2 mb-5">
+          <Apexchart/>
+        </Col> */}
+        <Col className="mb-5 pr-lg-2 mb-5">
+          <Tabler_react/>
+        </Col>
+      </Row>
+      {/* <Row>       */}
+      <Row noGutters>      
+        <Col className="mb-5 pr-lg-2 mb-5">
+          <Apexchart/>
+        </Col>
+        <Col className="mb-5 pr-lg-2 mb-5">
+          <Tabler_react/>
+        </Col>
+      </Row>
 
 
-      <Apexchart2/>
-      <Apexchart/>
+      
 
       {/* 第五種table 較為完整*/}
-      <Materialreacttable/>
-      
+      {/* <Materialreacttable/> */}
+      <Modalex/>
       <div className="card-deck">
-        <HorizontalBarChart/>
+        {/* <HorizontalBarChart/> */}
         {/* 第三種table */}
-        <Tabler_react/>
+        {/* <Tabler_react/> */}
         {/* 第二種table */}
         <BarChartExample/>
         {/* 第四種table */}
         <Materialtable/>
                
-        <Modalex/>
         
+        
+      </div>
+      <Apexchart2/>
         {/* <EchartsDemo/> */}
         {/* <Spinner color="primary" hidden={spinnerHidden}  />
         <Spinner color="secondary" hidden={spinnerHidden}  />
@@ -812,25 +847,27 @@ const Dashboardnew = ({ setRedirect, setRedirectUrl, t }) => {
             footunit={"(" + cardSummaryItem['unit'] + "/M²)"} >
             {cardSummaryItem['subtotal'] && <CountUp end={cardSummaryItem['subtotal']} duration={2} prefix="" separator="," decimal="." decimals={0} />}
           </CardSummary>
-        ))}
+        ))} */}
+      <div className="card-deck">
          <CardSummary
             rate={totalInTCE['increment_rate'] || ''}
-            title={t("This Year's Consumption CATEGORY VALUE UNIT", { 'CATEGORY': t('Ton of Standard Coal'), 'UNIT': '(TCE)' })}
+            // title={t("This Year's Consumption CATEGORY VALUE UNIT", { 'CATEGORY': t('Ton of Standard Coal'), 'UNIT': '(TCE)' })}
+            title={("電壓")}
             color="warning"
-            footnote={t('Per Unit Area')}
+            footnote={('單位電壓值')}
             footvalue={totalInTCE['value_per_unit_area']}
-            footunit="(TCE/M²)">
+            footunit="(/V)">
             {totalInTCE['value'] && <CountUp end={totalInTCE['value']} duration={2} prefix="" separator="," decimal="." decimals={2} />}
           </CardSummary>
           <CardSummary
             rate={totalInTCO2E['increment_rate'] || ''}
-            title={t("This Year's Consumption CATEGORY VALUE UNIT", { 'CATEGORY': t('Ton of Carbon Dioxide Emissions'), 'UNIT': '(TCO2E)' })}
+            title={("電流")}
             color="warning"
-            footnote={t('Per Unit Area')}
+            footnote={('單位電流值')}
             footvalue={totalInTCO2E['value_per_unit_area']}
-            footunit="(TCO2E/M²)">
+            footunit="(/I)">
             {totalInTCO2E['value'] && <CountUp end={totalInTCO2E['value']} duration={2} prefix="" separator="," decimal="." decimals={2} />}
-          </CardSummary> */}
+          </CardSummary>
       </div>
       {/* <EchartsDemo/>    */}
       
@@ -873,12 +910,12 @@ const Dashboardnew = ({ setRedirect, setRedirectUrl, t }) => {
             options={spaceInputLineChartOptions}>
           </LineChart> */}
           {/* 帶出一天的頻率 */}
-          {/* <LineChartnew reportingTitle={("頻率圖")}
+          <LineChartnew reportingTitle={("頻率圖")}
             baseTitle=''
             labels={spaceInputLineChartLabels}
             data={spaceInputLineChartData}
             options={spaceInputLineChartOptions}>
-          </LineChartnew> */}
+          </LineChartnew>
 
           {/* 本年成本 */}
           {/* <LineChart reportingTitle={t("This Year's Costs CATEGORY VALUE UNIT", { 'CATEGORY': null, 'VALUE': null, 'UNIT': null })}
@@ -909,7 +946,7 @@ const Dashboardnew = ({ setRedirect, setRedirectUrl, t }) => {
           ))}
       </div>
 
-      <BootstrapTable 
+      {/* <BootstrapTable 
           keyField='id' 
           data={ toDoList } 
           columns={ columns } 
@@ -919,7 +956,8 @@ const Dashboardnew = ({ setRedirect, setRedirectUrl, t }) => {
           // classes="table-dashboard table-striped table-sm fs--1 border-bottom mb-0 table-dashboard-th-nowrap custom-margin"
           rowClasses="btn-reveal-trigger"
           headerClasses="bg-200 text-900"
-      />
+      /> */}
+      
       <Row noGutters>
         {/* <Col className="mb-3 pr-lg-2 mb-3">
           <SharePie data={timeOfUseShareData} title={('圓餅統計圖')} />
@@ -929,6 +967,12 @@ const Dashboardnew = ({ setRedirect, setRedirectUrl, t }) => {
         </Col>
         <Col className="mb-5 pr-lg-2 mb-5">
           <SharePienew data={timeOfUseShareData_bms} title={('BMS告警統計圖')} />
+        </Col>
+        <Col className="mb-5 pr-lg-2 mb-5">
+          <SharePienew_doughnut data={timeOfUseShareData} title={('PCS告警統計圖')} />
+        </Col>
+        <Col className="mb-5 pr-lg-2 mb-5">
+          <SharePienew_doughnut data={timeOfUseShareData_bms} title={('BMS告警統計圖')} />
         </Col>
         {/* <Col className="mb-3 pr-lg-2 mb-3">
           <SharePie data={costShareData} title={t('Costs by Energy Category')} />
@@ -958,14 +1002,14 @@ const Dashboardnew = ({ setRedirect, setRedirectUrl, t }) => {
         childSpaces={spaceInputLineChartOptions}
       >
       </ChartSpacesStackBar> */}
-      <ChartSpacesStackBarnew
+      {/* <ChartSpacesStackBarnew
         title={('AC側')}
         labels={monthLabels}
         inputData={fixedChildSpacesInputData}
         costData={fixedChildSpacesCostData}
         childSpaces={spaceInputLineChartOptions}
       >
-      </ChartSpacesStackBarnew>
+      </ChartSpacesStackBarnew> */}
 
       {/* <EchartsDemo/> */}
 

@@ -78,8 +78,10 @@ const RegistrationForm = ({ setRedirect, setRedirectUrl, layout, hasLabel }) => 
         onChange={({ target }) => setIsAccepted(target.checked)}
         type="checkbox"
       />
+      {/* <FormGroup>
+        <Button color="primary" block className="mt-3" disabled={isDisabled}> */}
       <FormGroup>
-        <Button color="primary" block className="mt-3" disabled={isDisabled}>
+        <Button color="primary" block className="mt-3">
           Register
         </Button>
       </FormGroup>

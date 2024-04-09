@@ -11,7 +11,7 @@ import {
 } from 'chart.js';
 // 上面方法不行
 // import faker from 'faker';
-import { faker } from '@faker-js/faker';
+// import { faker } from '@faker-js/faker';
 import moment from 'moment';
 import { date } from 'is_js';
 
@@ -76,38 +76,41 @@ export default function HorizontalBarChart(){
     //     faker.datatype.number({ min: -1000, max: 1000})
     // )
 
+    const label1 = [ -932, -342, -521, 25, 163, 429, 924]
+    const label2 = [ 634, 832, 53, -8, 9, 632, 982, -643]
 
-    
     const data = {
     labels,
     datasets: [
         {
             label: 'Dataset 1',
             //data: datelabels,
-            data: labels.map( () => 
-                faker.datatype.number({ min: -1000, max: 1000 })
-            ),
+            // data: labels.map( () => 
+            //     faker.datatype.number({ min: -1000, max: 1000 })
+            // ),
             // data: datelabels.map( () => 
             //     faker.datatype.number({ min: -1000, max: 1000 })
             // ),
             // data: labels.map(() => 
             //     datelabels
             // ),
+            data: label1,
             borderColor: 'rgb(255, 99, 132)',
             backgroundColor: 'rgba(255, 99, 132, 0.5)',
         },
         {
             label: 'Dataset 2',
             //data: datelabels,
-            data: labels.map(() => 
-                faker.datatype.number({ min: -1000, max: 1000 })
-            ),
+            // data: labels.map(() => 
+            //     faker.datatype.number({ min: -1000, max: 1000 })
+            // ),
             // data: datelabels.map(() => 
             //     faker.datatype.number({ min: -1000, max: 1000 })
             // ),
             // data: labels.map(() => 
             //     datelabels
             // ),
+            data: label2,
             borderColor: 'rgb(53, 162, 235)',
             backgroundColor: 'rgba(53, 162, 235, 0.5)',
         },

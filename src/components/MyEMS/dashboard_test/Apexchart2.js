@@ -9,10 +9,13 @@ const Apexchart2 = () => {
         data: [
           {
             // x: 'Analysis',
-            x: 'ACDC告警',
+            x: 'AD告警',
             y: [
-              new Date('2019-02-27').getTime(),
-              new Date('2019-03-04').getTime(),
+              // new Date('2019-02-26').getTime(),
+              // new Date('2019-02-27').getTime(),
+              // new Date('2019-02-28').getTime(),
+              new Date('2019-03-03').getTime(),
+              new Date('2019-03-06').getTime(),
             ],
             fillColor: '#008FFB',
           },
@@ -20,36 +23,36 @@ const Apexchart2 = () => {
             // x: 'Design',
             x: 'MPPT告警',
             y: [
-              new Date('2019-03-04').getTime(),
-              new Date('2019-03-08').getTime(),
+              new Date('2019-03-01').getTime(),
+              new Date('2019-03-11').getTime(),
             ],
             fillColor: '#00E396',
           },
           {
             // x: 'Coding',
-            x: 'DCDC告警',
+            x: 'DD告警',
             y: [
-              new Date('2019-03-07').getTime(),
-              new Date('2019-03-10').getTime(),
+              new Date('2019-02-22').getTime(),
+              new Date('2019-02-24').getTime(),
             ],
             fillColor: '#775DD0',
           },
-          {
-            x: '消防啟動',
-            y: [
-              new Date('2019-03-08').getTime(),
-              new Date('2019-03-12').getTime(),
-            ],
-            fillColor: '#FEB019',
-          },
-          {
-            x: '水浸',
-            y: [
-              new Date('2019-03-12').getTime(),
-              new Date('2019-03-17').getTime(),
-            ],
-            fillColor: '#FF4560',
-          },
+          // {
+          //   x: '消防啟動',
+          //   y: [
+          //     new Date('2019-03-08').getTime(),
+          //     new Date('2019-03-12').getTime(),
+          //   ],
+          //   fillColor: '#FEB019',
+          // },
+          // {
+          //   x: '水浸',
+          //   y: [
+          //     new Date('2019-03-12').getTime(),
+          //     new Date('2019-03-17').getTime(),
+          //   ],
+          //   fillColor: '#FF4560',
+          // },
         ],
       },
     ],
@@ -114,7 +117,8 @@ const Apexchart2 = () => {
             //     width: 'auto',
             // }}
             style={ containerStyle }
-            height={350} 
+            height={150} 
+            // height={350} 
             // width={1250}
         />
       </div>

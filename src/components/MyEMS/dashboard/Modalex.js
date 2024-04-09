@@ -64,8 +64,8 @@ function Modalex() {
                 contentLabel='example modal'
             >
                 <div className='custom-modal-overlay'>
-                    <h2>另外 顯示告警吧</h2>
-                    <p>測試區。。</p>
+                    <h2>另行顯示</h2>
+                    {/* <p>測試區?</p> */}
                     <button onClick={closeModal}>關閉</button>
                     <Spinner color="primary" hidden={spinnerHidden}  />
                     <Spinner color="secondary" hidden={spinnerHidden}  />
@@ -92,7 +92,7 @@ function Modalex() {
                             }}
                         >
                         </BarChart> */}
-                    <CChartBar
+                    {/* <CChartBar
                         data={{
                         labels: ['vcell1', 'vcell2', 'vcell3', 'vcell4', 'vcell5', 'vcell6', 'vcell7'],
                         datasets: [
@@ -104,12 +104,12 @@ function Modalex() {
                         ],
                         }}
                         labels="months"
-                    />
+                    /> */}
 
                     <Tabler_react/>
                     <BarChartExample/>
 
-                    <CChartLine
+                    {/* <CChartLine
                         data={{
                             labels: ['vcell1', 'vcell2', 'vcell3', 'vcell4', 'vcell5', 'vcell6', 'vcell7'],
                             datasets: [
@@ -141,7 +141,7 @@ function Modalex() {
                                 },
                             ],
                         }}
-                    />
+                    /> */}
                 </div>
 
             </Modal>

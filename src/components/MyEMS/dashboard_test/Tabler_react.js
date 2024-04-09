@@ -10,9 +10,9 @@ function Tabler_react () {
     ];
 
     const data = [
-        { id: 1, name: 'john dole', age: 25 },
-        { id: 2, name: 'jane dole', age: 30 },
-        { id: 3, name: 'jordi dole', age: 28 }
+        { id: 1, name: 'User1 jeffrey', age: 18 },
+        { id: 2, name: 'User2 shian', age: 18 },
+        { id: 3, name: 'User3 joseph', age: 18 }
     ]
 
   

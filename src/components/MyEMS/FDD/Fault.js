@@ -862,6 +862,8 @@ const Fault = ({ setRedirect, setRedirectUrl, t }) => {
               return (
                 <Fragment>
                   <div className="table-responsive">
+                    <Reacttable/>
+
                     <BootstrapTable
                       ref={table}
                       bootstrap4
@@ -877,7 +879,7 @@ const Fault = ({ setRedirect, setRedirectUrl, t }) => {
                     />
 
 
-                    <Reacttable/>
+                  
                     {/* 還在嘗試顯示告警 */}
                     {/* <ul>
                       {listacenvironerror.map((error, index) => (

@@ -7,9 +7,9 @@ import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper
 function Materialtable() {
 
     const data = useMemo( () => [
-        { 'name': 'john doe', 'age':25, 'city': 'new york' },
-        { 'name': 'jane smith', 'age':30, 'city': 'san francisco' },
-        { 'name': 'bob johnson', 'age':22, 'city': 'chicago' }
+        { 'name': 'jeffrey', 'age':18, 'city': 'Hsinchu' },
+        { 'name': 'shian', 'age':18, 'city': 'Taipei' },
+        { 'name': 'joseph', 'age':18, 'city': 'Taoyuan' }
     ],[]);
 
     const columns = useMemo(

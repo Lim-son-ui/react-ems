@@ -8,7 +8,9 @@ import DashboardAlt from '../components/dashboard-alt/DashboardAlt';
 // import Dashboardnu from '../components/dashboard_test/Dashboardnu'
 import Dashboardnu from '../components/dashboard_test/Dashboardnu.js';
 import Dashboardnew from '../components/MyEMS/dashboard_test/Dashboardnew.js';
-import Datatest from '../components/MyEMS/newdatatest/Datatest'
+import Datatest from '../components/MyEMS/newdatatest/Datatest';
+
+import Schedulers from '../components/MyEMS/dashboard_test/Schedulers.js';
 
 
 import NavbarTop from '../components/navbar/NavbarTop';
@@ -19,6 +21,7 @@ import AppContext from '../context/Context';
 import ProductProvider from '../components/e-commerce/ProductProvider';
 import SidePanelModal from '../components/side-panel/SidePanelModal';
 import { getPageName } from '../helpers/utils';
+// import { scheduler } from 'timers/promises';
 
 // const DashboardRoutes = loadable(() => import('./DashboardRoutes'));
 
@@ -46,10 +49,11 @@ const DashboardLayout = ({ location }) => {
           <NavbarTop />
           <Switch>
             {/* added one more route to avoid navlink active issue */}
-            <Route path="/" exact component={Dashboard} />
+            <Route path="/" exact component={Dashboardnew} />
             <Route path="/dashboard" exact component={Dashboard} />
             <Route path="/dashboardnu" exact component={Dashboardnu} />
             <Route path="/dashboardnew" exact component={Dashboardnew} />
+            <Route path="/Schedulers" exact component={Schedulers} />
             <Route path="/dashboard-alt" exact component={DashboardAlt} />
             <Route path="/datatest" exact component={Datatest} />
             <DashboardRoutes />

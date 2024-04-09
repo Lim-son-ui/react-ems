@@ -19,8 +19,8 @@ const getOption = (data, isDark) => {
       series: [
         {
           type: 'pie',
-          radius: '85%',
-          // radius: ['100%', '73%'],
+          // radius: '50%',
+          radius: ['100%', '73%'],
           data: data,
           itemStyle: {
             emphasis: {
@@ -83,7 +83,7 @@ const getOption = (data, isDark) => {
 
 
 
-const SharePienew = ({ data, title }) => {
+const SharePienew_doughnut = ({ data, title }) => {
   const { isDark } = useContext(AppContext);
   const totalShare = data.map(d => d.value).reduce((total, currentValue) => total + currentValue, 0);
   return (
@@ -115,6 +115,6 @@ const SharePienew = ({ data, title }) => {
   );
 };
 
-SharePienew.propTypes = { data: PropTypes.array.isRequired };
+SharePienew_doughnut.propTypes = { data: PropTypes.array.isRequired };
 
-export default SharePienew;
+export default SharePienew_doughnut;

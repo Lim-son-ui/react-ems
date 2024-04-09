@@ -10,40 +10,40 @@ import { withTranslation } from 'react-i18next';
 import { APIBaseURL } from '../../../config';
 
 const LogoutContent = ({ layout, titleTag: TitleTag, t }) => {
-  useEffect(() => {
-    let isResponseOK = false;
-    fetch(APIBaseURL + '/users/logout', {
-      method: 'PUT',
-      headers: {
-        'Content-type': 'application/json',
-        'User-UUID': getCookieValue('user_uuid'),
-        Token: getCookieValue('token')
-      },
-      body: null
-    })
-      .then(response => {
-        console.log(response);
-        if (response.ok) {
-          isResponseOK = true;
-        }
-        return response.json();
-      })
-      .then(json => {
-        console.log(json);
-        if (isResponseOK) {
-          createCookie('user_name', '', 0);
-          createCookie('user_display_name', '', 0);
-          createCookie('user_uuid', '', 0);
-          createCookie('token', '', 0);
-          createCookie('is_logged_in', false, 0);
-        } else {
-          toast.error(t(json.description));
-        }
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  });
+  // useEffect(() => {
+  //   let isResponseOK = false;
+  //   fetch(APIBaseURL + '/users/logout', {
+  //     method: 'PUT',
+  //     headers: {
+  //       'Content-type': 'application/json',
+  //       'User-UUID': getCookieValue('user_uuid'),
+  //       Token: getCookieValue('token')
+  //     },
+  //     body: null
+  //   })
+  //     .then(response => {
+  //       console.log(response);
+  //       if (response.ok) {
+  //         isResponseOK = true;
+  //       }
+  //       return response.json();
+  //     })
+  //     .then(json => {
+  //       console.log(json);
+  //       if (isResponseOK) {
+  //         createCookie('user_name', '', 0);
+  //         createCookie('user_display_name', '', 0);
+  //         createCookie('user_uuid', '', 0);
+  //         createCookie('token', '', 0);
+  //         createCookie('is_logged_in', false, 0);
+  //       } else {
+  //         toast.error(t(json.description));
+  //       }
+  //     })
+  //     .catch(err => {
+  //       console.log(err);
+  //     });
+  // });
 
   return (
     <Fragment>

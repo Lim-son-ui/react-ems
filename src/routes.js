@@ -14,15 +14,16 @@ export const testRoutes = {
     },
     { 
       to: '/fdd', 
-      name: 'fdd', 
+      // name: 'fdd', 
+      name: 'warn', 
       // exact: true 
     },
-    { 
-      // to: '/dashboardnew', 
-      to: '/space/energyitem', 
-      name: 'other', 
-      // exact: true 
-    },
+    // { 
+    //   // to: '/dashboardnew', 
+    //   to: '/space/energyitem', 
+    //   name: 'other', 
+    //   // exact: true 
+    // },
     {
       to: '/',
       name: 'Dashboard',
@@ -30,10 +31,25 @@ export const testRoutes = {
     },
     { 
       to: '/monitoring/combinedequipments', 
-      name: 'combinedequipments',
+      // name: 'combinedequipments',
+      name: 'schedule',
       // exact: true 
-    }
-    
+    },
+    // { 
+    //   // to: '/dashboardnew', 
+    //   to: '/space/energyitem', 
+    //   name: 'other', 
+    //   // exact: true 
+    // }
+    // ,
+    // { 
+    //   to: '/Schedulers', 
+    //   name: 'tl',
+    // },
+    // { 
+    //   to: '/Schedulers', 
+    //   name: 'tl',
+    // }
   ]
 };
 
@@ -46,13 +62,13 @@ export const homeRoutes = {
   icon: 'chart-pie',
   children: [
     {
-      to: '/',
-      name: 'Dashboard',
+      to: '/Schedulers',
+      name: 'time schedule ',
       exact: true
     },
-    { to: '/dashboard-alt', name: 'Dashboard alt' },
-    { to: '/feed', name: 'Feed', exact: true },
-    { to: '/landing', name: 'Landing' }
+    // { to: '/dashboard-alt', name: 'Dashboard alt' },
+    // { to: '/feed', name: 'Feed', exact: true },
+    // { to: '/landing', name: 'Landing' }
   ]
 };
 
