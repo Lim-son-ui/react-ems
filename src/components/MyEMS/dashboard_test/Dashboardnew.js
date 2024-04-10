@@ -59,6 +59,10 @@ import Apexchart2 from './Apexchart2';
 import Echarts from 'echarts/lib/echarts';
 
 
+import Apexchart_compar_strategy from './Apexchart_compare_strategy';
+//----------------------------------------------------------
+// 0409
+import StackedareaChart from './StackareaChart';
 
 ChartJS.register(annotationPlugin);
 
@@ -773,6 +777,9 @@ const Dashboardnew = ({ setRedirect, setRedirectUrl, t }) => {
         data={bb}
         options={cc}>
       </MultipleLineChartnew> */}
+
+      <Apexchart_compar_strategy/>
+      <StackedareaChart/>
       <Row noGutters>      
       <Col>
         {/* <Col className="mb-5 pr-lg-2 mb-5"> */}
@@ -818,6 +825,8 @@ const Dashboardnew = ({ setRedirect, setRedirectUrl, t }) => {
         
       </div>
       <Apexchart2/>
+      <EchartsDemo/>
+      
         {/* <EchartsDemo/> */}
         {/* <Spinner color="primary" hidden={spinnerHidden}  />
         <Spinner color="secondary" hidden={spinnerHidden}  />
@@ -957,7 +966,7 @@ const Dashboardnew = ({ setRedirect, setRedirectUrl, t }) => {
           rowClasses="btn-reveal-trigger"
           headerClasses="bg-200 text-900"
       /> */}
-      
+      <StackedareaChart/>
       <Row noGutters>
         {/* <Col className="mb-3 pr-lg-2 mb-3">
           <SharePie data={timeOfUseShareData} title={('圓餅統計圖')} />

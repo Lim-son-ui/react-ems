@@ -34,10 +34,12 @@ const DashboardLayout = ({ location }) => {
   const isKanban = getPageName('kanban');
 
   useEffect(() => {
+    // 這個是預先加載 路徑  可加快後續載入速度
     DashboardRoutes.preload();
   }, []);
 
   useEffect(() => {
+    // 當路徑重新導航時 視窗會自動滾到  頁面最頂部
     window.scrollTo(0, 0);
   }, [location.pathname]);
 
