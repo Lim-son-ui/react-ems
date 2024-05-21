@@ -11,6 +11,8 @@ import {
 import './Modalex.css'
 
 import {
+    Button,
+    Alert,
     Col,
     Row,
     Spinner, } from 'reactstrap';
@@ -18,8 +20,19 @@ import {
 import BarChartExample from '../common/BarChartExample'
 import Tabler_react from '../dashboard_test/Tabler_react';
 
+import LineChartnew from '../common/LineChartnew';
+import EchartsDemo from '../Space/EchartsDemo';
+
 
 function Modalex() {
+
+    const [chartdata, setchartdata] = useState({
+        label: [],
+        content: []
+      });    
+
+   
+
     const random = () => Math.round(Math.random() * 100)
     const [modalIsOpen, setModalIsOpen] = useState(false);
     const [spinnerHidden, setSpinnerHidden] = useState(false);
@@ -56,7 +69,7 @@ function Modalex() {
 
     return (
         <div>
-        <button onClick={openModal}>點我開啟</button>
+        <button onClick={openModal} style={{ backgroundColor: '#003D79'}}>細部內容</button>
             <Modal
                 // className='ReactModal__Overlay'
                 isOpen={modalIsOpen}
@@ -64,7 +77,7 @@ function Modalex() {
                 contentLabel='example modal'
             >
                 <div className='custom-modal-overlay'>
-                    <h2>另行顯示</h2>
+                    <h2 style={{ color: '#4F4F4F'}}>細部統計圖</h2>
                     {/* <p>測試區?</p> */}
                     <button onClick={closeModal}>關閉</button>
                     <Spinner color="primary" hidden={spinnerHidden}  />
@@ -105,9 +118,17 @@ function Modalex() {
                         }}
                         labels="months"
                     /> */}
+                    
 
-                    <Tabler_react/>
-                    <BarChartExample/>
+                    <LineChartnew 
+                        reportingTitle={("0201 電表功率圖")}
+                        baseTitle=''
+                        labels={chartdata.label}
+                        data={chartdata.content}>
+                    </LineChartnew>
+                    <EchartsDemo/>
+                    {/* <Tabler_react/>
+                    <BarChartExample/> */}
 
                     {/* <CChartLine
                         data={{

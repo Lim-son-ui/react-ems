@@ -20,7 +20,7 @@ const getOption = (data, isDark) => {
         {
           type: 'pie',
           // radius: '50%',
-          radius: ['100%', '73%'],
+          radius: ['100%', '58%'],
           data: data,
           itemStyle: {
             emphasis: {

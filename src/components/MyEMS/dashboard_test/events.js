@@ -2,8 +2,8 @@ export const EVENTS = [
     {
       event_id: 1,
       title: "Event 1",
-      start: new Date(new Date(new Date().setHours(9)).setMinutes(0)),
-      end: new Date(new Date(new Date().setHours(10)).setMinutes(0)),
+      start: new Date(new Date(new Date().setHours(1)).setMinutes(0)),
+      end: new Date(new Date(new Date().setHours(2)).setMinutes(0)),
     //   disabled: true,
       color:"#00CACA",
       textColor:"#FF0080",
@@ -12,16 +12,16 @@ export const EVENTS = [
     {
       event_id: 2,
       title: "Event 2",
-      start: new Date(new Date(new Date().setHours(10)).setMinutes(0)),
-      end: new Date(new Date(new Date().setHours(12)).setMinutes(0)),
+      start: new Date(new Date(new Date().setHours(2)).setMinutes(0)),
+      end: new Date(new Date(new Date().setHours(4)).setMinutes(0)),
       admin_id: 2,
       color: "#50b500",
     },
     {
       event_id: 3,
       title: "Event 3",
-      start: new Date(new Date(new Date().setHours(11)).setMinutes(0)),
-      end: new Date(new Date(new Date().setHours(12)).setMinutes(0)),
+      start: new Date(new Date(new Date().setHours(4)).setMinutes(0)),
+      end: new Date(new Date(new Date().setHours(5)).setMinutes(0)),
       admin_id: 1,
       editable: false,
       deletable: false,
@@ -30,12 +30,12 @@ export const EVENTS = [
       event_id: 4,
       title: "Event 4",
       start: new Date(
-        new Date(new Date(new Date().setHours(9)).setMinutes(30)).setDate(
+        new Date(new Date(new Date().setHours(1)).setMinutes(30)).setDate(
           new Date().getDate() - 2
         )
       ),
       end: new Date(
-        new Date(new Date(new Date().setHours(11)).setMinutes(0)).setDate(
+        new Date(new Date(new Date().setHours(4)).setMinutes(0)).setDate(
           new Date().getDate() - 2
         )
       ),
@@ -46,7 +46,7 @@ export const EVENTS = [
       event_id: 5,
       title: "Event 5",
       start: new Date(
-        new Date(new Date(new Date().setHours(10)).setMinutes(30)).setDate(
+        new Date(new Date(new Date().setHours(2)).setMinutes(30)).setDate(
           new Date().getDate() - 2
         )
       ),
@@ -62,7 +62,7 @@ export const EVENTS = [
       event_id: 6,
       title: "Event 6",
       start: new Date(
-        new Date(new Date(new Date().setHours(10)).setMinutes(30)).setDate(
+        new Date(new Date(new Date().setHours(2)).setMinutes(30)).setDate(
           new Date().getDate() - 4
         )
       ),

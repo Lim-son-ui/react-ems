@@ -14,6 +14,8 @@ import { toast } from 'react-toastify';
 
 import SharePie from '../common/SharePie';
 import SharePienew from '../common/SharePienew';
+import SharePienew_dought1 from '../common/SharePienew_dought1';
+import SharePienew_dought2 from '../common/SharePienew_dought2';
 import SharePienew_doughnut from '../common/SharePienew_doughnut';
 
 
@@ -60,9 +62,71 @@ import Echarts from 'echarts/lib/echarts';
 
 
 import Apexchart_compar_strategy from './Apexchart_compare_strategy';
+import ApexChart_custom_dtbl from './Apexchart_custom_datalabels';
 //----------------------------------------------------------
 // 0409
 import StackedareaChart from './StackareaChart';
+
+import { Button, Alert } from 'reactstrap'
+import axios from 'axios';
+
+//----------------------------------------------------------
+// 想做儀表板
+import Gauge_chart from './Gauge_chart';
+import Gauge_chart2 from './Gauge_chart2';
+import Gauge_chart_volt from './Gauge_chart_volt';
+import Gauge_chart_current from './Gauge_chart_current';
+import Gauge_chart2_volt from './Gauge_chart2_volt';
+import Gauge_chart2_current from './Gauge_chart2_current';
+import Gauge_chart2_power from './Gauge_chart2_power';
+
+import ToggleButton from '../../navbar/ToggleButton';
+import NavbarVertical from '../../navbar/NavbarVertical'
+import TopNavRightSideNavItem from '../../navbar/TopNavRightSideNavItem'
+import NavbarStandard from '../../navbar/NavbarStandard'
+
+import {
+  CCard,
+  CCardBody,
+  CCardHeader,
+  CNav,
+  CNavItem,
+  CNavLink,
+  CAccordion,
+  CAccordionItem,
+  CAccordionHeader,
+  CAccordionBody
+} from '@coreui/react'
+
+
+import AccordionUsage from './AccordionUsage';
+// import Gauge_chart3 from './Gauge_chart3';
+// import Scichart_wave from './Scichart_wave';
+// import { drawExample } from './drawExample'; 
+// import call_drawExample from './call_drawExample'
+// import initScichart from './InitSchchart';
+
+// import SciChart from './Scichart'
+// import Scichart from './Scichart'
+
+//---------------------------------------------------------------
+// import { SciChartReact } from "scichart-react";
+
+// import {
+//   SweepAnimation,
+//   SciChartJsNavyTheme,
+//   NumberRange,
+//   EAxisType,
+//   EChart2DModifierType,
+//   ESeriesType,
+//   EPointMarkerType,
+// } from "scichart";
+
+import Three_cabinet from './three_cabinet';
+import Three_background from './three_background';
+// import Three_reflector from './three_reflector';
+import Three_car from './three_car';
+import New_cabinet from '../../cabinet/New_cabinet';
 
 ChartJS.register(annotationPlugin);
 
@@ -120,6 +184,168 @@ const Dashboardnew = ({ setRedirect, setRedirectUrl, t }) => {
       "percent": 0
     }
   ]);
+  const [timeOfUse_2022data, setTimeOfUse_2022data] = useState([
+    {
+      "name":"PCS功率",
+      "value": 67,
+      "percent": 0
+    },
+    {
+      "name":"用戶負載",
+      "value": 9,
+      "percent": 0
+    },
+    // {
+    //   "name":"汽電",
+    //   "value": 34.4,
+    //   "percent": 0
+    // },
+    // {
+    //   "name":"燃油",
+    //   "value": 35.1,
+    //   "percent": 0
+    // },
+    // {
+    //   "name":"燃氫",
+    //   "value": 1083.3,
+    //   "percent": 0
+    // },
+    // {
+    //   "name":"燃煤",
+    //   "value": 836.1,
+    //   "percent": 0
+    // },
+    // {
+    //   "name":"核能",
+    //   "value": 171.5,
+    //   "percent": 0
+    // }
+  ]);
+  const [timeOfUse_2021data, setTimeOfUse_2021data] = useState([
+    {
+      "name":"PCS功率",
+      "value": 67,
+      "percent": 0
+    },
+    {
+      "name":"用戶負載",
+      "value": 17,
+      "percent": 0
+    },
+    // {
+    //   "name":"汽電",
+    //   "value": 51.3,
+    //   "percent": 0
+    // },
+    // {
+    //   "name":"燃油",
+    //   "value": 39.5,
+    //   "percent": 0
+    // },
+    // {
+    //   "name":"燃氫",
+    //   "value": 1057.5,
+    //   "percent": 0
+    // },
+    // {
+    //   "name":"燃煤",
+    //   "value": 882.1,
+    //   "percent": 0
+    // },
+    // {
+    //   "name":"核能",
+    //   "value": 268.2,
+    //   "percent": 0
+    // }
+  ]);
+  const [timeOfUse_2020data, setTimeOfUse_2020data] = useState([
+    {
+      // "name":"再生",
+      // "value": 137.8,
+      "name":"PCS功率",
+      "value": 69,
+      "percent": 0
+    },
+    {
+      // "name":"抽蓄",
+      // "value": 31.5,
+      "name":"用戶負載",
+      "value": 28,
+      "percent": 0
+    },
+    // {
+    //   // "name":"汽電",
+    //   // "value": 41,
+    //   "name":"0203",
+    //   "value": 1308.060,
+    //   "percent": 0
+    // },
+    // {
+    //   // "name":"燃油",
+    //   // "value": 30.6,
+    //   "name":"0204",
+    //   "value": 1306.981,
+    //   "percent": 0
+    // },
+    // {
+    //   // "name":"燃氫",
+    //   // "value": 974.4,
+    //   "name":"0205",
+    //   "value": 1535.378,
+    //   "percent": 0
+    // },
+    // {
+    //   // "name":"燃煤",
+    //   // "value": 870.5,
+    //   "name":"0206",
+    //   "value": 1733.684,
+    //   "percent": 0
+    // },
+    // {
+    //   // "name":"核能",
+    //   // "value": 303.4,
+    //   "name":"0207",
+    //   "value": 1404.977,
+    //   "percent": 0
+    // }
+  ]);
+  const [timeOfUseShareData_all_energy, setTimeOfUseShareData_all_energy] = useState([
+    {
+      "name":"PCS功率",
+      "value": 70,
+      "percent": 0
+    },
+    {
+      "name":"用戶負載",
+      "value": 6,
+      "percent": 0
+    },
+    // {
+    //   "name":"汽電",
+    //   "value": 6.7,
+    //   "percent": 0
+    // },
+    // {
+    //   "name":"燃油",
+    //   "value": 5.5,
+    //   "percent": 0
+    // },
+    // {
+    //   "name":"燃氫",
+    //   "value": 19.7,
+    //   "percent": 0
+    // },
+    // {
+    //   "name":"燃煤",
+    //   "value": 43.6,
+    //   "percent": 0
+    // },
+    // {
+    //   "name":"核能",
+    //   "value": 20.2,
+    //   "percent": 0
+    // }
+  ]);
   // const [timeOfUseShareData, setTimeOfUseShareData] = useState([
   //   {
   //     "first": 14,
@@ -143,13 +369,18 @@ const Dashboardnew = ({ setRedirect, setRedirectUrl, t }) => {
   const [barLabels, setBarLabels] = useState([]);
   const [totalInTCE, setTotalInTCE] = useState({
                                           'increment_rate':"第1 rack",
-                                          'value_per_unit_area':"3359",
-                                          'value':"320"
+                                          'value_per_unit_area':"231.5",
+                                          'value':"400.958"
                                         });
   const [totalInTCO2E, setTotalInTCO2E] = useState({
     'increment_rate':"第2 rack",
-    'value_per_unit_area':"3270",
-    'value':"317"
+    'value_per_unit_area':"8.9",
+    'value':"15.414"
+  });
+  const [totalInTCO3E, setTotalInTCO3E] = useState({
+    'increment_rate':"第3 rack",
+    'value_per_unit_area':"2",
+    'value':"3.464"
   });
 
   const [spaceInputLineChartLabels, setSpaceInputLineChartLabels] = useState([]);
@@ -186,12 +417,21 @@ const Dashboardnew = ({ setRedirect, setRedirectUrl, t }) => {
   const [sensor, setSensor] = useState({});
   const [pointList, setPointList] = useState({});
 
-  const barLabels1 = ['1月', '2月', '3月'];
+  const barLabels1 = ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'];
+  // const barLabels1 = ['00:00:59', '00:04:00', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'];
+
+  const barLabels1_bms = ['07:00時', '08:00時', '09:00時', '10:00時', '11:00時', '12:00時', '13:00時', '14:00時', '15:00時', '16:00時', '17:00時', '18:00時'];
   // const lastYearBarList1 = [3.341, 3.336, 3.321];
   // const lastYearBarList1 = [3.341, 3.336, 3.321];
-  const lastYearBarList1 = [31, 29, 11];
+  // const lastYearBarList1 = [31, 29, 11];
+  const lastYearBarList1 = [28.23, 24.55, 27.58, 40.65, 30.45, 38.11, 43.91, 41.84, 38.11, 32.34, 28.46, 28.46];
+  // const lastYearBarList1_bms = [1000, 1000, 1000, 7310, 7166, 7027, 7227, 1000, 7270, 7124, 6983, 6911];
+  const lastYearBarList1_bms = [];
   // const thisYearBarList1 = [];
-  const thisYearBarList1 = [3, 2, 3];
+  // const thisYearBarList1 = [3, 2, 3];
+  const thisYearBarList1 = [28.48, 24.01, 33.73, 34.84, 38.07, 38.5, 39.3, 34.72, 34.78, 31.19, 31.72, 24.61];
+  // const thisYearBarList1_bms = [1000, 1000, 1000, 7376, 7240, 7133, 7305, 7479, 7352, 7206, 7057, 6988];
+  const thisYearBarList1_bms = [];
   // const thisYearBarList1 = [3276, 3284, 3269];
 
 
@@ -210,493 +450,99 @@ const Dashboardnew = ({ setRedirect, setRedirectUrl, t }) => {
   //  30
   // ];
   const fixedChildSpacesInputData = [
+    // {
+    //   "交流三相電壓 數值":228.5, 
+    // },
+    // {
+    //   "交流三相電壓 數值":228.4,
+    // } ,
+    // {
+    //   "交流三相電壓 數值":227.2,
+    // },
     {
-      "交流三相電壓 數值":228.5, 
+      "105年":93.07,
     },
     {
-      "交流三相電壓 數值":228.4,
+      "105年":67.77,
+    },
+    {
+      "105年":209.04,
+    },
+    {
+      "106年":138.33,
+    },
+    {
+      "106年":69.03,
+    },
+    {
+      "106年":209.07,
+    },
+    {
+      "107年":234.22,
+    },
+    {
+      "107年":69.96,
+    },
+    {
+      "107年":209.3,
+    },
+    {
+      "108年":355.87,
+    },
+    {
+      "108年":72.08,
+    },
+    {
+      "108年":209.44,
+    },
+    {
+      "109年":556.51,
+    },
+    {
+      "109年":91.58,
+    },
+    {
+      "109年":210.15,
+    },
+    {
+      "110年":720.61,
+    },
+    {
+      "110年":109.21,
+    },
+    {
+      "110年":211.06,
+    },
+    {
+      "111年":924.47,
+    },
+    {
+      "111年":160.01,
+    },
+    {
+      "111年":211.43,
+    },
+    {
+      "112年":1167.24, 
+    },
+    {
+      "112年":266.15,
     } ,
     {
-      "交流三相電壓 數值":227.2,
-    }
+      "112年":212.46,
+    }    
   ];
   const fixedChildSpacesCostData = [
-    {
-      "交流A相 電壓":228.5, 
-    },
-    {
-      "交流B相 電壓":228.4,
-    } ,
-    {
-      "交流C相 電壓":227.2,
-    } 
+    // {
+    //   "交流A相 電壓":228.5, 
+    // },
+    // {
+    //   "交流B相 電壓":228.4,
+    // } ,
+    // {
+    //   "交流C相 電壓":227.2,
+    // } 
   ];
-
-  // useEffect(() => {
-  //   let is_logged_in = getCookieValue('is_logged_in');
-  //   let user_name = getCookieValue('user_name');
-  //   let user_display_name = getCookieValue('user_display_name');
-  //   let user_uuid = getCookieValue('user_uuid');
-  //   let token = getCookieValue('token');
-  //   if (checkEmpty(is_logged_in) || checkEmpty(token)|| checkEmpty(user_uuid) || !is_logged_in) {
-  //     setRedirectUrl(`/authentication/basic/login`);
-  //     setRedirect(true);
-  //   } else {
-  //     //update expires time of cookies
-  //     createCookie('is_logged_in', true, settings.cookieExpireTime);
-  //     createCookie('user_name', user_name, settings.cookieExpireTime);
-  //     createCookie('user_display_name', user_display_name, settings.cookieExpireTime);
-  //     createCookie('user_uuid', user_uuid, settings.cookieExpireTime);
-  //     createCookie('token', token, settings.cookieExpireTime);
-
-  //     let isResponseOK = false;
-  //     if (isFetchDashboard) {
-  //       setIsFetchDashboard(false);
-  //       // toast(
-  //       //   <Fragment>
-  //       //     {t("Welcome to MyEMS")}<br />
-  //       //     {t("An Industry Leading Open Source Energy Management System")}
-  //       //   </Fragment>
-  //       // );
-
-  //       fetch(
-  //         APIBaseURL +
-  //           '/reports/dashboard?' +
-  //           'useruuid=' +
-  //           user_uuid +
-  //           '&periodtype=' +
-  //           periodType +
-  //           '&baseperiodstartdatetime=' +
-  //           (basePeriodBeginsDatetime != null ? basePeriodBeginsDatetime.format('YYYY-MM-DDTHH:mm:ss') : '') +
-  //           '&baseperiodenddatetime=' +
-  //           (basePeriodEndsDatetime != null ? basePeriodEndsDatetime.format('YYYY-MM-DDTHH:mm:ss') : '') +
-  //           '&reportingperiodstartdatetime=' +
-  //           reportingPeriodBeginsDatetime.format('YYYY-MM-DDTHH:mm:ss') +
-  //           '&reportingperiodenddatetime=' +
-  //           reportingPeriodEndsDatetime.format('YYYY-MM-DDTHH:mm:ss'), {
-  //         method: 'GET',
-  //         headers: {
-  //           'Content-type': 'application/json',
-  //           'User-UUID': getCookieValue('user_uuid'),
-  //           Token: getCookieValue('token')
-  //         },
-  //         body: null,
-
-  //       }).then(response => {
-  //         if (response.ok) {
-  //           isResponseOK = true;
-  //         }
-  //         return response.json();
-  //       }).then(json => {
-  //         if (isResponseOK) {
-  //           console.log(json);
-  //           // hide spinner
-  //           setSpinnerHidden(true);
-  //           let labels = []
-  //           let thisYearBarList = []
-  //           let lastYearBarList = []
-  //           json['reporting_period_input']['names'].forEach((currentValue, index) => {
-  //             let cardSummaryItem = {}
-  //             cardSummaryItem['name'] = json['reporting_period_input']['names'][index];
-  //             cardSummaryItem['unit'] = json['reporting_period_input']['units'][index];
-  //             cardSummaryItem['subtotal'] = json['reporting_period_input']['subtotals'][index];
-  //             cardSummaryItem['increment_rate'] = parseFloat(json['reporting_period_input']['increment_rates'][index] * 100).toFixed(2) + "%";
-  //             cardSummaryItem['subtotal_per_unit_area'] = json['reporting_period_input']['subtotals_per_unit_area'][index];
-  //             labels.push(t('CATEGORY Consumption UNIT', {'CATEGORY': null, 'UNIT': null}) + cardSummaryItem['name'] + cardSummaryItem['unit']);
-  //             thisYearBarList.push(cardSummaryItem);
-  //           });
-
-  //           json['reporting_period_cost']['names'].forEach((currentValue, index) => {
-  //             let cardSummaryItem = {}
-  //             cardSummaryItem['name'] = json['reporting_period_cost']['names'][index];
-  //             cardSummaryItem['unit'] = json['reporting_period_cost']['units'][index];
-  //             cardSummaryItem['subtotal'] = json['reporting_period_cost']['subtotals'][index];
-  //             cardSummaryItem['increment_rate'] = parseFloat(json['reporting_period_cost']['increment_rates'][index] * 100).toFixed(2) + "%";
-  //             cardSummaryItem['subtotal_per_unit_area'] = json['reporting_period_cost']['subtotals_per_unit_area'][index];
-  //             labels.push(t('CATEGORY Costs UNIT', {'CATEGORY': null, 'UNIT': null}) + cardSummaryItem['name'] + cardSummaryItem['unit']);
-  //             thisYearBarList.push(cardSummaryItem);
-  //           });
-  //           setBarLabels(labels);
-  //           setThisYearBarList(thisYearBarList);
-
-  //           json['base_period_input']['names'].forEach((currentValue, index) => {
-  //             let cardSummaryItem = {}
-  //             cardSummaryItem['name'] = json['base_period_input']['names'][index];
-  //             cardSummaryItem['unit'] = json['base_period_input']['units'][index];
-  //             cardSummaryItem['subtotal'] = json['base_period_input']['subtotals'][index];
-  //             cardSummaryItem['increment_rate'] = null;
-  //             cardSummaryItem['subtotal_per_unit_area'] = json['base_period_input']['subtotals_per_unit_area'][index];
-  //             lastYearBarList.push(cardSummaryItem);
-  //           });
-
-  //           json['base_period_cost']['names'].forEach((currentValue, index) => {
-  //             let cardSummaryItem = {}
-  //             cardSummaryItem['name'] = json['base_period_cost']['names'][index];
-  //             cardSummaryItem['unit'] = json['base_period_cost']['units'][index];
-  //             cardSummaryItem['subtotal'] = json['base_period_cost']['subtotals'][index];
-  //             cardSummaryItem['increment_rate'] = null;
-  //             cardSummaryItem['subtotal_per_unit_area'] = json['base_period_cost']['subtotals_per_unit_area'][index];
-  //             lastYearBarList.push(cardSummaryItem);
-  //           });
-  //           setLastYearBarList(lastYearBarList);
-
-  //           let timeOfUseArray = [];
-  //           json['reporting_period_input']['energy_category_ids'].forEach((currentValue, index) => {
-  //             if(currentValue === 1) {
-  //               // energy_category_id 1 electricity
-  //               let timeOfUseItem = {}
-  //               timeOfUseItem['id'] = 1;
-  //               timeOfUseItem['name'] =  t('Top-Peak');
-  //               timeOfUseItem['value'] = json['reporting_period_input']['toppeaks'][index];
-  //               timeOfUseItem['color'] = "#"+((1<<24)*Math.random()|0).toString(16);
-  //               timeOfUseArray.push(timeOfUseItem);
-
-  //               timeOfUseItem = {}
-  //               timeOfUseItem['id'] = 2;
-  //               timeOfUseItem['name'] =  t('On-Peak');
-  //               timeOfUseItem['value'] = json['reporting_period_input']['onpeaks'][index];
-  //               timeOfUseItem['color'] = "#"+((1<<24)*Math.random()|0).toString(16);
-  //               timeOfUseArray.push(timeOfUseItem);
-
-  //               timeOfUseItem = {}
-  //               timeOfUseItem['id'] = 3;
-  //               timeOfUseItem['name'] =  t('Mid-Peak');
-  //               timeOfUseItem['value'] = json['reporting_period_input']['midpeaks'][index];
-  //               timeOfUseItem['color'] = "#"+((1<<24)*Math.random()|0).toString(16);
-  //               timeOfUseArray.push(timeOfUseItem);
-
-  //               timeOfUseItem = {}
-  //               timeOfUseItem['id'] = 4;
-  //               timeOfUseItem['name'] =  t('Off-Peak');
-  //               timeOfUseItem['value'] = json['reporting_period_input']['offpeaks'][index];
-  //               timeOfUseItem['color'] = "#"+((1<<24)*Math.random()|0).toString(16);
-  //               timeOfUseArray.push(timeOfUseItem);
-  //             }
-  //           });
-  //           setTimeOfUseShareData(timeOfUseArray);
-  //           let totalInTCE = {};
-  //           totalInTCE['value'] = json['reporting_period_input']['total_in_kgce'] / 1000; // convert from kg to t
-  //           totalInTCE['increment_rate'] = parseFloat(json['reporting_period_input']['increment_rate_in_kgce'] * 100).toFixed(2) + "%";
-  //           totalInTCE['value_per_unit_area'] = json['reporting_period_input']['total_in_kgce_per_unit_area'] / 1000; // convert from kg to t
-  //           setTotalInTCE(totalInTCE);
-
-  //           let costDataArray = [];
-  //           json['reporting_period_cost']['names'].forEach((currentValue, index) => {
-  //             let costDataItem = {}
-  //             costDataItem['id'] = index;
-  //             costDataItem['name'] = currentValue;
-  //             costDataItem['value'] = json['reporting_period_cost']['subtotals'][index];
-  //             costDataItem['color'] = "#"+((1<<24)*Math.random()|0).toString(16);
-  //             costDataArray.push(costDataItem);
-  //           });
-
-  //           setCostShareData(costDataArray);
-  //           let totalInTCO2E = {};
-  //           totalInTCO2E['value'] = json['reporting_period_input']['total_in_kgco2e'] / 1000; // convert from kg to t
-  //           totalInTCO2E['increment_rate'] = parseFloat(json['reporting_period_input']['increment_rate_in_kgco2e'] * 100).toFixed(2) + "%";
-  //           totalInTCO2E['value_per_unit_area'] = json['reporting_period_input']['total_in_kgco2e_per_unit_area'] / 1000; // convert from kg to t
-  //           setTotalInTCO2E(totalInTCO2E);
-
-  //           let TCEDataArray = [];
-  //           json['reporting_period_input']['names'].forEach((currentValue, index) => {
-  //             let TCEDataItem = {}
-  //             TCEDataItem['id'] = index;
-  //             TCEDataItem['name'] = currentValue;
-  //             TCEDataItem['value'] = json['reporting_period_input']['subtotals_in_kgce'][index] / 1000;
-  //             TCEDataItem['color'] = "#"+((1<<24)*Math.random()|0).toString(16);
-  //             TCEDataArray.push(TCEDataItem);
-  //           });
-  //           setTCEShareData(TCEDataArray);
-
-  //           let TCO2EDataArray = [];
-  //           json['reporting_period_input']['names'].forEach((currentValue, index) => {
-  //             let TCO2EDataItem = {}
-  //             TCO2EDataItem['id'] = index;
-  //             TCO2EDataItem['name'] = currentValue;
-  //             TCO2EDataItem['value'] = json['reporting_period_input']['subtotals_in_kgco2e'][index] / 1000; // convert from kg to t
-  //             TCO2EDataItem['color'] = "#"+((1<<24)*Math.random()|0).toString(16);
-  //             TCO2EDataArray.push(TCO2EDataItem);
-  //           });
-  //           setTCO2EShareData(TCO2EDataArray);
-
-  //           let timestamps = {}
-  //           json['reporting_period_input']['timestamps'].forEach((currentValue, index) => {
-  //             timestamps['a' + index] = currentValue;
-  //           });
-  //           setSpaceInputLineChartLabels(timestamps);
-
-  //           let values = {}
-  //           json['reporting_period_input']['values'].forEach((currentValue, index) => {
-  //             values['a' + index] = currentValue;
-  //           });
-  //           setSpaceInputLineChartData(values);
-
-  //           let names = Array();
-  //           let thisMonthInputArr = [];
-  //           json['reporting_period_input']['names'].forEach((currentValue, index) => {
-  //             let unit = json['reporting_period_input']['units'][index];
-  //             let thisMonthItem = {}
-  //             names.push({ 'value': 'a' + index, 'label': currentValue + ' (' + unit + ')'});
-  //             thisMonthItem['name'] = json['reporting_period_input']['names'][index];
-  //             thisMonthItem['unit'] = json['reporting_period_input']['units'][index];
-  //             thisMonthItem['subtotal'] = json['reporting_period_input']['values'][index][json['reporting_period_input']['values'][index].length - 1];
-  //             thisMonthItem['increment_rate'] = parseFloat(json['reporting_period_input']['increment_rates'][index] * 100).toFixed(2) + "%";
-  //             thisMonthItem['subtotal_per_unit_area'] = json['reporting_period_input']['subtotals_per_unit_area'][index];
-  //             thisMonthInputArr.push(thisMonthItem);
-  //           });
-  //           setSpaceInputLineChartOptions(names);
-  //           setThisMonthInputCardSummaryList(thisMonthInputArr);
-
-  //           timestamps = {}
-  //           json['reporting_period_cost']['timestamps'].forEach((currentValue, index) => {
-  //             timestamps['a' + index] = currentValue;
-  //           });
-  //           setSpaceCostLineChartLabels(timestamps);
-
-  //           values = {}
-  //           json['reporting_period_cost']['values'].forEach((currentValue, index) => {
-  //             values['a' + index] = currentValue;
-  //           });
-  //           setSpaceCostLineChartData(values);
-
-  //           names = Array();
-  //           let thisMonthCostArr = [];
-  //           json['reporting_period_cost']['names'].forEach((currentValue, index) => {
-  //             let thisMonthItem = {};
-  //             let unit = json['reporting_period_cost']['units'][index];
-  //             names.push({ 'value': 'a' + index, 'label': currentValue + ' (' + unit + ')'});
-  //             thisMonthItem['name'] = json['reporting_period_cost']['names'][index];
-  //             thisMonthItem['unit'] = json['reporting_period_cost']['units'][index];
-  //             thisMonthItem['subtotal'] = json['reporting_period_cost']['values'][index][json['reporting_period_cost']['values'][index].length - 1];
-  //             thisMonthItem['increment_rate'] = parseFloat(json['reporting_period_cost']['increment_rates'][index] * 100).toFixed(2) + "%";
-  //             thisMonthItem['subtotal_per_unit_area'] = json['reporting_period_cost']['subtotals_per_unit_area'][index];
-  //             thisMonthCostArr.push(thisMonthItem);
-  //           });
-  //           setSpaceCostLineChartOptions(names);
-  //           setThisMonthCostCardSummaryList(thisMonthCostArr);
-
-  //           let detailed_value_list = [];
-  //           if (json['reporting_period_input']['timestamps'].length > 0 ) {
-  //             json['reporting_period_input']['timestamps'][0].forEach((currentTimestamp, timestampIndex) => {
-  //               let detailed_value = {};
-  //               detailed_value['id'] = timestampIndex;
-  //               detailed_value['startdatetime'] = currentTimestamp;
-  //               json['reporting_period_input']['values'].forEach((currentValue, energyCategoryIndex) => {
-  //                 detailed_value['a' + energyCategoryIndex] = json['reporting_period_input']['values'][energyCategoryIndex][timestampIndex].toFixed(2);
-  //               });
-  //               detailed_value_list.push(detailed_value);
-  //             });
-  //           }
-
-  //           let detailed_value = {};
-  //           detailed_value['id'] = detailed_value_list.length;
-  //           detailed_value['startdatetime'] = t('Subtotal');
-  //           json['reporting_period_input']['subtotals'].forEach((currentValue, index) => {
-  //               detailed_value['a' + index] = currentValue.toFixed(2);
-  //             });
-  //           detailed_value_list.push(detailed_value);
-  //           setTimeout( () => {
-  //             setDetailedDataTableData(detailed_value_list);
-  //           }, 0)
-
-  //           let detailed_column_list = [];
-  //           detailed_column_list.push({
-  //             dataField: 'startdatetime',
-  //             text: t('Datetime'),
-  //             sort: true
-  //           })
-  //           json['reporting_period_input']['names'].forEach((currentValue, index) => {
-  //             let unit = json['reporting_period_cost']['units'][index];
-  //             detailed_column_list.push({
-  //               dataField: 'a' + index,
-  //               text: currentValue + ' (' + unit + ')',
-  //               sort: true
-  //             })
-  //           });
-  //           setDetailedDataTableColumns(detailed_column_list);
-
-  //           let child_space_value_list = [];
-  //           if (json['child_space_input']['child_space_names_array'].length > 0) {
-  //             json['child_space_input']['child_space_names_array'][0].forEach((currentSpaceName, spaceIndex) => {
-  //               let child_space_value = {};
-  //               child_space_value['id'] = spaceIndex;
-  //               child_space_value['name'] = currentSpaceName;
-  //               json['child_space_input']['energy_category_names'].forEach((currentValue, energyCategoryIndex) => {
-  //                 child_space_value['a' + energyCategoryIndex] = json['child_space_input']['subtotals_array'][energyCategoryIndex][spaceIndex];
-  //                 child_space_value['b' + energyCategoryIndex] = json['child_space_cost']['subtotals_array'][energyCategoryIndex][spaceIndex];
-  //               });
-  //               child_space_value_list.push(child_space_value);
-  //             });
-  //           }
-
-  //           setChildSpacesTableData(child_space_value_list);
-
-  //           let child_space_column_list = [];
-  //           child_space_column_list.push({
-  //             dataField: 'name',
-  //             text: t('Child Spaces'),
-  //             sort: true
-  //           });
-  //           json['child_space_input']['energy_category_names'].forEach((currentValue, index) => {
-  //             let unit = json['child_space_input']['units'][index];
-  //             child_space_column_list.push({
-  //               dataField: 'a' + index,
-  //               text: t('CATEGORY Consumption UNIT', { 'CATEGORY': currentValue, 'UNIT': '(' + unit + ')' }),
-  //               sort: true,
-  //               formatter: function (decimalValue) {
-  //                 if (typeof decimalValue === 'number') {
-  //                   return decimalValue.toFixed(2);
-  //                 } else {
-  //                   return null;
-  //                 }
-  //               }
-  //             });
-  //           });
-  //           json['child_space_cost']['energy_category_names'].forEach((currentValue, index) => {
-  //             let unit = json['child_space_cost']['units'][index];
-  //             child_space_column_list.push({
-  //               dataField: 'b' + index,
-  //               text: t('CATEGORY Costs UNIT', { 'CATEGORY': currentValue, 'UNIT': '(' + unit + ')' }),
-  //               sort: true,
-  //               formatter: function (decimalValue) {
-  //                 if (typeof decimalValue === 'number') {
-  //                   return decimalValue.toFixed(2);
-  //                 } else {
-  //                   return null;
-  //                 }
-  //               }
-  //             });
-  //           });
-
-  //           setChildSpacesTableColumns(child_space_column_list);
-  //           setChildSpacesInputData(json['child_space_input']);
-  //           setChildSpacesCostData(json['child_space_cost']);
-  //           setMonthLabels(json['reporting_period_cost']['timestamps'][0]);
-  //           setSensor(json['sensor']);
-  //           setPointList(json['point']);
-  //         }
-  //       });
-  //     };
-
-  //   };
-  // }, );
-
-  // useEffect(() => {
-  //   let timer = setInterval(() => {
-  //     let is_logged_in = getCookieValue('is_logged_in');
-  //     if (is_logged_in === null || !is_logged_in) {
-  //       setRedirectUrl(`/authentication/basic/login`);
-  //       setRedirect(true);
-  //     }
-  //   }, 1000);
-  //   return () => clearInterval(timer);
-  // }, [setRedirect, setRedirectUrl]);
-
-  useEffect(() => {
-    setLanguage(getItemFromStore('myems_web_ui_language'));
-  }, [getItemFromStore('myems_web_ui_language')]);
-
-  // useEffect(() => {
-  //   let is_logged_in = getCookieValue('is_logged_in');
-  //   let user_name = getCookieValue('user_name');
-  //   let user_display_name = getCookieValue('user_display_name');
-  //   let user_uuid = getCookieValue('user_uuid');
-  //   let token = getCookieValue('token');
-  //   if (checkEmpty(is_logged_in) || checkEmpty(token)|| checkEmpty(user_uuid) || !is_logged_in) {
-  //     setRedirectUrl(`/authentication/basic/login`);
-  //     setRedirect(true);
-  //   } else {
-  //     //update expires time of cookies
-  //     createCookie('is_logged_in', true, settings.cookieExpireTime);
-  //     createCookie('user_name', user_name, settings.cookieExpireTime);
-  //     createCookie('user_display_name', user_display_name, settings.cookieExpireTime);
-  //     createCookie('user_uuid', user_uuid, settings.cookieExpireTime);
-  //     createCookie('token', token, settings.cookieExpireTime);
-
-  //     let isResponseOK = false;
-  //     fetch(
-  //       APIBaseURL +
-  //         '/spaces/tree', {
-  //       method: 'GET',
-  //       headers: {
-  //         'Content-type': 'application/json',
-  //         'User-UUID': getCookieValue('user_uuid'),
-  //         Token: getCookieValue('token')
-  //       },
-  //       body: null,
-  //     }).then(response => {
-  //       console.log(response);
-  //       if (response.ok) {
-  //         isResponseOK = true;
-  //       }
-  //       return response.json();
-  //     }).then(json => {
-  //       if (isResponseOK) {
-  //         // rename keys
-  //         json = JSON.parse(JSON.stringify([json]).split('"id":').join('"value":').split('"name":').join('"label":'));
-  //         // get Combined Equipments by root Space ID
-  //         let isResponseOK = false;
-  //         fetch(
-  //           APIBaseURL +
-  //             '/spaces/' +
-  //             [json[0]].map(o => o.value) +
-  //             '/children', {
-  //           method: 'GET',
-  //           headers: {
-  //             'Content-type': 'application/json',
-  //             'User-UUID': getCookieValue('user_uuid'),
-  //             Token: getCookieValue('token')
-  //           },
-  //           body: null,
-
-  //         }).then(response => {
-  //           if (response.ok) {
-  //             isResponseOK = true;
-  //           }
-  //           return response.json();
-  //         }).then(json => {
-  //           if (isResponseOK) {
-  //             json = JSON.parse(JSON.stringify([json]).split('"id":').join('"value":').split('"name":').join('"label":'));
-  //             setRootLongitude(json[0]['current']['longitude']);
-  //             setRootLatitude(json[0]['current']['latitude']);
-  //             let geojson = {};
-  //             geojson['type'] = 'FeatureCollection';
-  //             let geojsonData = [];
-  //             for(const childSpace of json[0]['children']){
-  //               if (childSpace['latitude'] && childSpace['longitude']) {
-  //                 geojsonData.push({
-  //                   'type': 'Feature',
-  //                   'geometry': {
-  //                     'type': 'Point',
-  //                     'coordinates': [childSpace['longitude'], childSpace['latitude']]
-  //                     },
-  //                   'properties': {
-  //                     'title': childSpace['label'],
-  //                     'description': childSpace['description'],
-  //                     'uuid': childSpace['uuid'],
-  //                     'url': '/space/energycategory'
-  //                     }
-  //                 })
-  //               }
-  //             }
-  //             geojson['features'] = geojsonData;
-  //             setGeojson(geojson);
-  //           } else {
-  //             toast.error(t(json.description))
-  //           }
-  //         }).catch(err => {
-  //           console.log(err);
-  //         });
-  //         // end of get Combined Equipments by root Space ID
-  //       } else {
-  //         toast.error(t(json.description));
-  //       }
-  //     }).catch(err => {
-  //       console.log(err);
-  //     });
-  //   }
-  // }, [setRedirect, setRedirectUrl, t])
-
 
   const columns = [
     {
@@ -767,10 +613,186 @@ const Dashboardnew = ({ setRedirect, setRedirectUrl, t }) => {
     { value: 'a2', label: 'Label3' }
   ];
 
+  const [chartdata, setchartdata] = useState({
+    label: [],
+    content: []
+  });
+
+  
+  useEffect(() => {
+    setLanguage(getItemFromStore('myems_web_ui_language'));
+  }, [getItemFromStore('myems_web_ui_language')]);
+
+
+  // useEffect(() => {
+  //   axios.get("http://localhost:3088/getexcelfile").then((response) => {
+  //       const label = response.data.map(item => item.time);
+  //       const content = response.data.map(item => Math.abs(parseInt(item.pv_power)))
+
+  //       console.log("this is label");
+  //       console.log(label);
+
+  //       console.log("this is content");
+  //       console.log(content);
+        
+  //       setchartdata(prevstate => ({
+  //         ...prevstate,
+  //         label,
+  //         content
+  //       }));
+  //   });
+  // })
+
+  // useEffect(() => {
+  //   initScichart();
+  // }, []);
+
+  const get_milisecond = () => {
+    axios.get("http://localhost:3088/getexcelfile").then((response) => {
+        const label = response.data.map(item => item.time);
+        const content = response.data.map(item => Math.abs(parseInt(item.pv_power)))
+
+        console.log("this is label");
+        console.log(label);
+
+        console.log("this is content");
+        console.log(content);
+        
+        setchartdata(prevstate => ({
+          ...prevstate,
+          label,
+          content
+        }));
+
+        // console.log("this is chartdata")
+        // console.log(chartdata)
+    });
+  };
+
+  const show_data = () => {
+    console.log("this is chartdata")
+    console.log(chartdata)
+  }
+
+  const [activeKey, setActiveKey] = useState(0)
+    // 用於accordin按鈕切換 選擇顯示 的欄位按鈕
+    const toggleTab = (index) => {
+    console.log(index)
+    setActiveKey(index)
+    }
+
+
+
+    //------------------------------------------------------------------------------------
+
+    // const chartConfig = {
+    //   surface: {
+    //     theme: new SciChartJsNavyTheme(),
+    //     title: "SciChart.js First Chart",
+    //     titleStyle: { fontSize: 22 },
+    //   },
+    //   // Create an XAxis and YAxis with growBy padding
+    //   xAxes: [
+    //     {
+    //       type: EAxisType.NumericAxis,
+    //       options: {
+    //         axisTitle: "X Axis",
+    //         growBy: new NumberRange(0.1, 0.1),
+    //       },
+    //     },
+    //   ],
+    //   yAxes: [
+    //     {
+    //       type: EAxisType.NumericAxis,
+    //       options: {
+    //         axisTitle: "Y Axis",
+    //         growBy: new NumberRange(0.1, 0.1),
+    //       },
+    //     },
+    //   ],
+    //   // Create a line series with some initial data
+    //   series: [
+    //     {
+    //       type: ESeriesType.LineSeries,
+    //       xyData: {
+    //         xValues: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+    //         yValues: [
+    //           0, 0.0998, 0.1986, 0.2955, 0.3894, 0.4794, 0.5646, 0.6442, 0.7173,
+    //           0.7833,
+    //         ],
+    //       },
+    //       options: {
+    //         stroke: "steelblue",
+    //         strokeThickness: 3,
+    //         pointMarker: {
+    //           type: EPointMarkerType.Ellipse,
+    //           options: {
+    //             width: 11,
+    //             height: 11,
+    //             fill: "#fff",
+    //           },
+    //         },
+    //         animation: new SweepAnimation({
+    //           duration: 300,
+    //           fadeEffect: true,
+    //         }),
+    //       },
+    //     },
+    //   ],
+    //   // Add some interaction modifiers to show zooming and panning
+    //   modifiers: [
+    //     { type: EChart2DModifierType.MouseWheelZoom },
+    //     {
+    //       type: EChart2DModifierType.ZoomPan,
+    //       options: { enableZoom: true },
+    //     },
+    //     { type: EChart2DModifierType.ZoomExtents },
+    //   ],
+    // };
+
   return (
     <Fragment>
+      {/* <div id="scichart-root" style={{ width: 800, height: 600 }}></div> */}
+    {/* <Scichart_wave/> */}
+    
+    {/* <call_drawExample/> */}
+    {/* <drawExample/> */}
+    
+    {/* <div className="card-deck">
+      <initScichart/>
+    </div> */}
+    {/* <Scichart/> */}
+    {/* <SciChartReact config={chartConfig} style={{ maxWidth: 900 }} /> */}
+    {/* <Three_reflector/> */}
+    
+    <AccordionUsage/>
 
-
+    {/* <CCard className="mb-4">
+      <CCardHeader>
+      
+      </CCardHeader>
+      <CCardBody>
+    
+        <CAccordion activeItemKey={1}>
+          
+          <CAccordionItem itemKey={2}>
+            <CAccordionHeader style={{ backgroundColor: 'blue'}}>Accordion Item #2</CAccordionHeader>
+            <CAccordionBody style={{ backgroundColor: 'red'}}>
+              <Gauge_chart2_volt />
+            
+            </CAccordionBody>
+          </CAccordionItem>
+          <CAccordionItem itemKey={3}>
+            <CAccordionHeader style={{ backgroundColor: 'green'}}>Accordion Item #3</CAccordionHeader>
+            <CAccordionBody>
+              <Gauge_chart2_current />
+          
+            </CAccordionBody>
+          </CAccordionItem>
+        </CAccordion>
+      
+      </CCardBody>
+    </CCard> */}
       {/* <MultipleLineChartnew reportingTitle={t('折線圖1')}
         baseTitle=''
         labels={aa}
@@ -778,54 +800,237 @@ const Dashboardnew = ({ setRedirect, setRedirectUrl, t }) => {
         options={cc}>
       </MultipleLineChartnew> */}
 
-      <Apexchart_compar_strategy/>
-      <StackedareaChart/>
-      <Row noGutters>      
-      <Col>
-        {/* <Col className="mb-5 pr-lg-2 mb-5"> */}
-          <EchartsDemo/>
+      <CNav variant="tabs">
+          <CNavItem>
+              <CNavLink onClick={() => toggleTab(1)}>電壓 Volt (V)</CNavLink>
+          </CNavItem>
+          <CNavItem>
+              <CNavLink onClick={() => toggleTab(2)}>電流 Current (A)</CNavLink>
+          </CNavItem>
+          <CNavItem>
+              <CNavLink onClick={() => toggleTab(3)}>功率 Power (kw)</CNavLink>
+          </CNavItem>
+          <CNavItem>
+              <CNavLink onClick={() => toggleTab(4)}>機櫃</CNavLink>
+          </CNavItem>
+          <CNavItem>
+              <CNavLink onClick={() => toggleTab(5)}>背景</CNavLink>
+          </CNavItem>
+          <CNavItem>
+              <CNavLink onClick={() => toggleTab(6)}>亮版機房</CNavLink>
+          </CNavItem>
+          <CNavItem>
+              <CNavLink onClick={() => toggleTab(7)}>溫度機房</CNavLink>
+          </CNavItem>
+          <CNavItem>
+              <CNavLink onClick={() => toggleTab(0)}>全部收合</CNavLink>
+          </CNavItem>
+      </CNav> 
+
+      <Row noGutters>
+        
+        <Col className="mb-5 pr-lg-2 mb-5" style={{ display: activeKey === 1 ? 'flow' : 'none' }}>
+          {/* <Gauge_chart2/> */}
+          <Gauge_chart2_volt />
+        </Col>
+        <Col className="mb-5 pr-lg-2 mb-5" style={{ display: activeKey === 2 ? 'flow' : 'none' }}>
+          {/* <Gauge_chart2/> */}
+          <Gauge_chart2_current />
+        </Col>
+        <Col className="mb-5 pr-lg-2 mb-5" style={{ display: activeKey === 3 ? 'flow' : 'none' }}>
+          {/* <Gauge_chart2/> */}
+          <Gauge_chart2_power />
+        </Col>
+        <Col className="mb-5 pr-lg-2 mb-5" style={{ display: activeKey === 4 ? 'flow' : 'none' }}>
+          <Three_cabinet/>
+        </Col>
+        <Col className="mb-5 pr-lg-2 mb-5" style={{ display: activeKey === 5 ? 'flow' : 'none' }}>
+          <Three_background/>
+        </Col>
+        <Col className="mb-5 pr-lg-2 mb-5" style={{ display: activeKey === 6 ? 'flow' : 'none' }}>
+          <Three_car/>
+        </Col>
+        <Col className="mb-5 pr-lg-2 mb-5" style={{ display: activeKey === 7 ? 'flow' : 'none' }}>
+          <New_cabinet/>
+        </Col>
+      </Row>
+
+      {/* <ToggleButton/> */}
+      
+        {/* 看起來也是在右上角的功能 */}
+      {/* <NavbarStandard/> */}
+        {/* 這個就是我右側的那一個功能欄位 */}
+      {/* <TopNavRightSideNavItem/> */}
+      {/* 感覺是垂直 沒有到收闔  的購買按鈕側邊欄位 */}
+      {/* <NavbarVertical/> */}
+      {/* <Row noGutters>
+        <Col className="mb-5 pr-lg-2 mb-5"> */}
+          {/* <Gauge_chart/>    */}
+            {/* <Gauge_chart_volt/>   
+        </Col>
+        <Col className="mb-5 pr-lg-2 mb-5"> */}
+          {/* <Gauge_chart/> */}
+            {/* <Gauge_chart_current/>   
+        </Col>
+      </Row> */}
+
+      {/* <Gauge_chart3/> */}
+      
+      <Row noGutters>
+        {/* <Col className="mb-3 pr-lg-2 mb-3">
+          <SharePie data={timeOfUseShareData} title={('圓餅統計圖')} />
+        </Col> */}
+        <Col className="mb-5 pr-lg-2 mb-5">
+          {/* <SharePienew data={timeOfUseShareData} title={('PCS告警統計圖')} /> */}
+          {/* <SharePienew data={timeOfUse_2020data} title={('2020年發電購電量結構')} /> */}
+          <SharePienew data={timeOfUse_2020data} title={('0201 電表功率 組成占比')} />
+        </Col>
+        <Col className="mb-5 pr-lg-2 mb-5">
+          {/* <SharePienew data={timeOfUseShareData_bms} title={('BMS告警統計圖')} /> */}
+          <SharePienew_dought1 data={timeOfUse_2021data} title={('0202 電表功率 組成占比')} />
+        </Col>
+        <Col className="mb-5 pr-lg-2 mb-5">
+          {/* <SharePienew_doughnut data={timeOfUseShareData} title={('PCS告警統計圖')} /> */}
+          <SharePienew_dought2 data={timeOfUse_2022data} title={('0203 電表功率 組成占比')} />
+        </Col>
+        <Col className="mb-5 pr-lg-2 mb-5">
+          <SharePienew_doughnut data={timeOfUseShareData_all_energy} title={('0204 電表功率 組成占比')} />
+        </Col>
+        {/* <Col className="mb-3 pr-lg-2 mb-3">
+          <SharePie data={costShareData} title={t('Costs by Energy Category')} />
+        </Col>
+        <Col className="mb-3 pr-lg-2 mb-3">
+          <SharePie data={TCEShareData} title={t('Ton of Standard Coal by Energy Category')} />
+        </Col>
+        <Col className="mb-3 pr-lg-2 mb-3">
+          <SharePie data={TCO2EShareData} title={t('Ton of Carbon Dioxide Emissions by Energy Category')} />
+        </Col> */}
+      </Row>
+      
+      <Modalex/>
+
+      {/* <div className="card-deck">
+         <CardSummary
+            rate={totalInTCE['increment_rate'] || ''}
+            // title={t("This Year's Consumption CATEGORY VALUE UNIT", { 'CATEGORY': t('Ton of Standard Coal'), 'UNIT': '(TCE)' })}
+            title={("電壓")}
+            color="warning"
+            footnote={('單位電壓值')}
+            // footvalue={totalInTCE['value_per_unit_area']}
+            footunit="(V)">
+            {totalInTCE['value'] && <CountUp end={totalInTCE['value']} duration={2} prefix="" separator="," decimal="." decimals={2} />}
+          </CardSummary>
+          <CardSummary
+            rate={totalInTCO2E['increment_rate'] || ''}
+            title={("電流")}
+            color="warning"
+            footnote={('單位電流值')}
+            // footvalue={totalInTCO2E['value_per_unit_area']}
+            footunit="(A)">
+            {totalInTCO2E['value'] && <CountUp end={totalInTCO2E['value']} duration={2} prefix="" separator="," decimal="." decimals={2} />}
+          </CardSummary>
+          <CardSummary
+            rate={totalInTCO3E['increment_rate'] || ''}
+            title={("功率")}
+            color="warning"
+            footnote={('單位功率值')}
+            // footvalue={totalInTCO3E['value_per_unit_area']}
+            footunit="(kw)">
+            {totalInTCO3E['value'] && <CountUp end={totalInTCO3E['value']} duration={2} prefix="" separator="," decimal="." decimals={2} />}
+          </CardSummary>
+      </div> */}
+      {/* <ApexChart_custom_dtbl/> */}
+      <Button onClick={get_milisecond} style={{backgroundColor: 'transparent', color: 'transparent', borderBlockColor: 'transparent', borderColor: 'transparent'}}>{('取得資料')}</Button>
+      {/* <Button color="success" onClick={show_data} >{('確認資料')}</Button> */}
+      <Row>
+        <Col>
+          {/* <ApexChart_custom_dtbl/> */}
+          <BarChartnew
+            labels={chartdata.label}
+            data={thisYearBarList1_bms}
+            compareData={chartdata.content}
+            // compareData={lastYearBarList1_bms}
+            // title={('MPPT告警')}
+            // compareTitle={('ACDC告警')}
+            title={('0201電池電量')}
+            compareTitle={('0202電池電量')}            
+            // footnote={('發生:')}
+            // footunit={"次"} 
+            footnote={('發電量:')}
+            footunit={"百萬度"} 
+            >
+          </BarChartnew>
         </Col>
         <Col>
-        {/* <Col className="mb-5 pr-lg-2 mb-5"> */}
-          <Apexchart2/>
+          {/* <StackedareaChart/> */}
+          <BarChartnew
+            labels={barLabels1}
+            data={lastYearBarList1}
+            compareData={thisYearBarList1}
+            // title={('MPPT告警')}
+            // compareTitle={('ACDC告警')}
+            title={('112年 太陽光電發電量')}
+            compareTitle={('111年 太陽光電發電量')}            
+            // footnote={('發生:')}
+            // footunit={"次"} 
+            footnote={('發電量:')}
+            footunit={"百萬度"} 
+            >
+          </BarChartnew>
         </Col>
+      </Row>
+      {/* <EchartsDemo/> */}
+      {/* <Row>
+        <Col>
+          <Apexchart_compar_strategy/>
+        </Col>
+        <Col> */}
+          {/* <EchartsDemo/> */}
+        {/* </Col>
+      </Row> */}
+
+      {/* <Row noGutters>      
+        <Col> */}
+        {/* <Col className="mb-5 pr-lg-2 mb-5"> */}
+          {/* <Apexchart2/>
+        </Col> */}
         {/* <Col className="mb-5 pr-lg-2 mb-5">
           <Apexchart/>
         </Col> */}
-        <Col className="mb-5 pr-lg-2 mb-5">
+        {/* <Col className="mb-5 pr-lg-2 mb-5">
           <Tabler_react/>
         </Col>
-      </Row>
+      </Row> */}
       {/* <Row>       */}
-      <Row noGutters>      
+      {/* <Row noGutters>      
         <Col className="mb-5 pr-lg-2 mb-5">
           <Apexchart/>
         </Col>
         <Col className="mb-5 pr-lg-2 mb-5">
           <Tabler_react/>
         </Col>
-      </Row>
+      </Row> */}
 
 
       
 
       {/* 第五種table 較為完整*/}
       {/* <Materialreacttable/> */}
-      <Modalex/>
-      <div className="card-deck">
+      {/* <Modalex/> */}
+      {/* <div className="card-deck"> */}
         {/* <HorizontalBarChart/> */}
         {/* 第三種table */}
         {/* <Tabler_react/> */}
         {/* 第二種table */}
-        <BarChartExample/>
+        {/* <BarChartExample/> */}
         {/* 第四種table */}
-        <Materialtable/>
+        {/* <Materialtable/>
                
         
         
       </div>
       <Apexchart2/>
-      <EchartsDemo/>
+      <EchartsDemo/> */}
       
         {/* <EchartsDemo/> */}
         {/* <Spinner color="primary" hidden={spinnerHidden}  />
@@ -857,27 +1062,7 @@ const Dashboardnew = ({ setRedirect, setRedirectUrl, t }) => {
             {cardSummaryItem['subtotal'] && <CountUp end={cardSummaryItem['subtotal']} duration={2} prefix="" separator="," decimal="." decimals={0} />}
           </CardSummary>
         ))} */}
-      <div className="card-deck">
-         <CardSummary
-            rate={totalInTCE['increment_rate'] || ''}
-            // title={t("This Year's Consumption CATEGORY VALUE UNIT", { 'CATEGORY': t('Ton of Standard Coal'), 'UNIT': '(TCE)' })}
-            title={("電壓")}
-            color="warning"
-            footnote={('單位電壓值')}
-            footvalue={totalInTCE['value_per_unit_area']}
-            footunit="(/V)">
-            {totalInTCE['value'] && <CountUp end={totalInTCE['value']} duration={2} prefix="" separator="," decimal="." decimals={2} />}
-          </CardSummary>
-          <CardSummary
-            rate={totalInTCO2E['increment_rate'] || ''}
-            title={("電流")}
-            color="warning"
-            footnote={('單位電流值')}
-            footvalue={totalInTCO2E['value_per_unit_area']}
-            footunit="(/I)">
-            {totalInTCO2E['value'] && <CountUp end={totalInTCO2E['value']} duration={2} prefix="" separator="," decimal="." decimals={2} />}
-          </CardSummary>
-      </div>
+      
       {/* <EchartsDemo/>    */}
       
       <div className='card-deck'>
@@ -891,15 +1076,6 @@ const Dashboardnew = ({ setRedirect, setRedirectUrl, t }) => {
             footunit={"/M²"} >
           </BarChart> */}
           
-          <BarChartnew
-            labels={barLabels1}
-            data={lastYearBarList1}
-            compareData={thisYearBarList1}
-            title={('MPPT告警')}
-            compareTitle={('ACDC告警')}
-            footnote={('發生:')}
-            footunit={"次"} >
-          </BarChartnew>
           {/* <BarChartnew
             labels={barLabels}
             data={lastYearBarList}
@@ -919,12 +1095,21 @@ const Dashboardnew = ({ setRedirect, setRedirectUrl, t }) => {
             options={spaceInputLineChartOptions}>
           </LineChart> */}
           {/* 帶出一天的頻率 */}
-          <LineChartnew reportingTitle={("頻率圖")}
+
+          {/* <StackedareaChart/> */}
+          
+          {/* <LineChartnew reportingTitle={("頻率圖")}
             baseTitle=''
             labels={spaceInputLineChartLabels}
             data={spaceInputLineChartData}
             options={spaceInputLineChartOptions}>
-          </LineChartnew>
+          </LineChartnew> */}
+          {/* <LineChartnew reportingTitle={("頻率圖")}
+            baseTitle=''
+            labels={chartdata.label}
+            data={chartdata.content}
+            options={spaceInputLineChartOptions}>
+          </LineChartnew> */}
 
           {/* 本年成本 */}
           {/* <LineChart reportingTitle={t("This Year's Costs CATEGORY VALUE UNIT", { 'CATEGORY': null, 'VALUE': null, 'UNIT': null })}
@@ -939,20 +1124,20 @@ const Dashboardnew = ({ setRedirect, setRedirectUrl, t }) => {
       </div>
       <div className='card-deck'>
 
-      { settings.showOnlineMap ?
+      {/* { settings.showOnlineMap ?
         <div className='mb-3 card' style={{ height: '400px' }}>
         <CustomizeMapBox Latitude={rootLatitude} Longitude={rootLongitude} Zoom={15} Geojson={geojson['features']}>
         </CustomizeMapBox>
         </div>
       :
         <></>
-      }
-      {Object.keys(sensor).map((item) => (
+      } */}
+      {/* {Object.keys(sensor).map((item) => (
             <RealtimeSensor key={uuid()}
               sensor={sensor[item]}
               pointList={pointList}>
             </RealtimeSensor>
-          ))}
+          ))} */}
       </div>
 
       {/* <BootstrapTable 
@@ -967,32 +1152,6 @@ const Dashboardnew = ({ setRedirect, setRedirectUrl, t }) => {
           headerClasses="bg-200 text-900"
       /> */}
       <StackedareaChart/>
-      <Row noGutters>
-        {/* <Col className="mb-3 pr-lg-2 mb-3">
-          <SharePie data={timeOfUseShareData} title={('圓餅統計圖')} />
-        </Col> */}
-        <Col className="mb-5 pr-lg-2 mb-5">
-          <SharePienew data={timeOfUseShareData} title={('PCS告警統計圖')} />
-        </Col>
-        <Col className="mb-5 pr-lg-2 mb-5">
-          <SharePienew data={timeOfUseShareData_bms} title={('BMS告警統計圖')} />
-        </Col>
-        <Col className="mb-5 pr-lg-2 mb-5">
-          <SharePienew_doughnut data={timeOfUseShareData} title={('PCS告警統計圖')} />
-        </Col>
-        <Col className="mb-5 pr-lg-2 mb-5">
-          <SharePienew_doughnut data={timeOfUseShareData_bms} title={('BMS告警統計圖')} />
-        </Col>
-        {/* <Col className="mb-3 pr-lg-2 mb-3">
-          <SharePie data={costShareData} title={t('Costs by Energy Category')} />
-        </Col>
-        <Col className="mb-3 pr-lg-2 mb-3">
-          <SharePie data={TCEShareData} title={t('Ton of Standard Coal by Energy Category')} />
-        </Col>
-        <Col className="mb-3 pr-lg-2 mb-3">
-          <SharePie data={TCO2EShareData} title={t('Ton of Carbon Dioxide Emissions by Energy Category')} />
-        </Col> */}
-      </Row>
       
       {/* <ChartSpacesStackBar
         title={t('Child Spaces Data')}
@@ -1011,14 +1170,15 @@ const Dashboardnew = ({ setRedirect, setRedirectUrl, t }) => {
         childSpaces={spaceInputLineChartOptions}
       >
       </ChartSpacesStackBar> */}
-      {/* <ChartSpacesStackBarnew
-        title={('AC側')}
+      <ChartSpacesStackBarnew
+        // title={('AC側')}
+        title={('歷年再生能源裝置容量')}
         labels={monthLabels}
         inputData={fixedChildSpacesInputData}
         costData={fixedChildSpacesCostData}
         childSpaces={spaceInputLineChartOptions}
       >
-      </ChartSpacesStackBarnew> */}
+      </ChartSpacesStackBarnew>
 
       {/* <EchartsDemo/> */}
 

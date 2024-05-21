@@ -48,8 +48,17 @@ const ChartSpacesStackBarnew = ({ labels, inputData, costData, title, childSpace
             gradientFill.addColorStop(0, isDark ? 'rgba(44,123,229, 0.5)' : 'rgba(255, 255, 255, 0.3)');
             gradientFill.addColorStop(1, isDark ? 'transparent' : 'rgba(255, 255, 255, 0)');
             
-            const labl = [('R相'),('S相'),('T相')];
-
+            // const labl = [('R相'),('S相'),('T相')];
+            const labl = [
+                ('太陽光電'),('風力'),('其他')
+                ,('太陽光電'),('風力'),('其他')
+                ,('太陽光電'),('風力'),('其他')
+                ,('太陽光電'),('風力'),('其他')
+                ,('太陽光電'),('風力'),('其他')
+                ,('太陽光電'),('風力'),('其他')
+                ,('太陽光電'),('風力'),('其他')
+                ,('太陽光電'),('風力'),('其他')
+        ];
 
             inputData.forEach((item, itemIndex) => {
                 dataArray.push({

@@ -10,8 +10,8 @@ import './helpers/initFA';
 import './i18n';
 
 
+  // const root = ReactDOM.createRoot(document.getElementById("main"));
   const root = ReactDOM.createRoot(document.getElementById("main"));
-
   root.render(
     // <React.StrictMode>
     //   <App />
