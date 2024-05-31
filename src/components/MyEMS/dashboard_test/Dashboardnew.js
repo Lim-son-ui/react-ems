@@ -127,6 +127,10 @@ import Three_background from './three_background';
 // import Three_reflector from './three_reflector';
 import Three_car from './three_car';
 import New_cabinet from '../../cabinet/New_cabinet';
+import Googlemap2 from '../../map/Googlemap2';
+import GoogleMap from '../../map/GoogleMap';
+import Slider from 'react-slick'
+
 
 ChartJS.register(annotationPlugin);
 
@@ -681,6 +685,13 @@ const Dashboardnew = ({ setRedirect, setRedirectUrl, t }) => {
     setActiveKey(index)
     }
 
+  const settingss = {
+      dots:true,
+      // speed:500,
+      speed:250,
+      slidesToShow:1,
+      slidesToScroll:1,
+  };
 
 
     //------------------------------------------------------------------------------------
@@ -823,6 +834,9 @@ const Dashboardnew = ({ setRedirect, setRedirectUrl, t }) => {
               <CNavLink onClick={() => toggleTab(7)}>溫度機房</CNavLink>
           </CNavItem>
           <CNavItem>
+              <CNavLink onClick={() => toggleTab(8)}>地圖</CNavLink>
+          </CNavItem>
+          <CNavItem>
               <CNavLink onClick={() => toggleTab(0)}>全部收合</CNavLink>
           </CNavItem>
       </CNav> 
@@ -853,6 +867,10 @@ const Dashboardnew = ({ setRedirect, setRedirectUrl, t }) => {
         <Col className="mb-5 pr-lg-2 mb-5" style={{ display: activeKey === 7 ? 'flow' : 'none' }}>
           <New_cabinet/>
         </Col>
+        <Col className="mb-5 pr-lg-2 mb-5" style={{ display: activeKey === 8 ? 'flow' : 'none' }}>
+          <Googlemap2/>
+          {/* <GoogleMap/> */}
+        </Col>
       </Row>
 
       {/* <ToggleButton/> */}
@@ -880,22 +898,25 @@ const Dashboardnew = ({ setRedirect, setRedirectUrl, t }) => {
         {/* <Col className="mb-3 pr-lg-2 mb-3">
           <SharePie data={timeOfUseShareData} title={('圓餅統計圖')} />
         </Col> */}
-        <Col className="mb-5 pr-lg-2 mb-5">
-          {/* <SharePienew data={timeOfUseShareData} title={('PCS告警統計圖')} /> */}
-          {/* <SharePienew data={timeOfUse_2020data} title={('2020年發電購電量結構')} /> */}
-          <SharePienew data={timeOfUse_2020data} title={('0201 電表功率 組成占比')} />
-        </Col>
-        <Col className="mb-5 pr-lg-2 mb-5">
-          {/* <SharePienew data={timeOfUseShareData_bms} title={('BMS告警統計圖')} /> */}
-          <SharePienew_dought1 data={timeOfUse_2021data} title={('0202 電表功率 組成占比')} />
-        </Col>
-        <Col className="mb-5 pr-lg-2 mb-5">
-          {/* <SharePienew_doughnut data={timeOfUseShareData} title={('PCS告警統計圖')} /> */}
-          <SharePienew_dought2 data={timeOfUse_2022data} title={('0203 電表功率 組成占比')} />
-        </Col>
-        <Col className="mb-5 pr-lg-2 mb-5">
-          <SharePienew_doughnut data={timeOfUseShareData_all_energy} title={('0204 電表功率 組成占比')} />
-        </Col>
+        <Slider {...settingss} style={{width: '100%'}}>
+          <Col className="mb-5 pr-lg-2 mb-5">
+            {/* <SharePienew data={timeOfUseShareData} title={('PCS告警統計圖')} /> */}
+            {/* <SharePienew data={timeOfUse_2020data} title={('2020年發電購電量結構')} /> */}
+            <SharePienew data={timeOfUse_2020data} title={('0201 電表功率 組成占比')} />
+          </Col>
+          <Col className="mb-5 pr-lg-2 mb-5">
+            {/* <SharePienew data={timeOfUseShareData_bms} title={('BMS告警統計圖')} /> */}
+            <SharePienew_dought1 data={timeOfUse_2021data} title={('0202 電表功率 組成占比')} />
+          </Col>
+          <Col className="mb-5 pr-lg-2 mb-5">
+            {/* <SharePienew_doughnut data={timeOfUseShareData} title={('PCS告警統計圖')} /> */}
+            <SharePienew_dought2 data={timeOfUse_2022data} title={('0203 電表功率 組成占比')} />
+          </Col>
+          <Col className="mb-5 pr-lg-2 mb-5">
+            <SharePienew_doughnut data={timeOfUseShareData_all_energy} title={('0204 電表功率 組成占比')} />
+          </Col>
+        </Slider>
+        
         {/* <Col className="mb-3 pr-lg-2 mb-3">
           <SharePie data={costShareData} title={t('Costs by Energy Category')} />
         </Col>
@@ -907,7 +928,7 @@ const Dashboardnew = ({ setRedirect, setRedirectUrl, t }) => {
         </Col> */}
       </Row>
       
-      <Modalex/>
+      
 
       {/* <div className="card-deck">
          <CardSummary
@@ -1170,6 +1191,7 @@ const Dashboardnew = ({ setRedirect, setRedirectUrl, t }) => {
         childSpaces={spaceInputLineChartOptions}
       >
       </ChartSpacesStackBar> */}
+      <Modalex/>
       <ChartSpacesStackBarnew
         // title={('AC側')}
         title={('歷年再生能源裝置容量')}
